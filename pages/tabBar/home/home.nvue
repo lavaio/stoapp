@@ -1,0 +1,225 @@
+<template>
+    <view class="uni-container">
+       <view class="uni-header-logo">
+            <view class="home-header-text">
+                Integrated Platform for Digital Economy & Asset Digitalization
+            </view>
+        </view>
+        <view class="what-token">
+            <text class="pub-title">What Can Be Tokenized?</text>
+            <view class="home-token-view" v-for="item in 4" :key="item">
+                <image class="home-token-view-image" src="/static/token_one.png"></image>
+                <view class="home-token-view-content">
+                    <view class="home-token-view-title">Real Estate</view>
+                    <view class="home-token-view-desc">
+                        Real estate is one of the most popular and promising assets which can be tokenized. Land, buildings, apartments, etc. Real estate has continually been one of the most valuable investment assets.
+                    </view>
+                </view>
+            </view>
+        </view>
+        <view class="info">
+            <text class="info-title">Want More Information?</text>
+            <text class="info-desc">We will gladly tell you more about our services.</text>
+            <text class="public-button">Get in touch</text>
+        </view>
+
+        <view class="why-token">
+            <text class="pub-title">Why Tokenize?</text>
+            <view class="tokenize-view" v-for="item in 6" :key="item">
+                <view class="tokenize-image"></view>
+                <view class="tokenize-content">
+                    <view class="tokenize-title">Efficiency</view>
+                    <view class="tokenize-desc">
+                        No other way of attracting investment has the same ratio of the cost of organization and carrying out access to the widest pool of investors and finance from around the world.
+                   </view>
+                </view>
+            </view>
+        </view>
+        <view class="service">
+            <text class="pub-title">Our Services</text>
+            <view class="service_bg"></view>
+            <view class="service-title">Integrated Digital Asset Solution</view>
+            <view class="service-view" v-for="item in 6" :key="item">
+                <view class="service-view-title">Digital Asset Creation</view>
+                <view class="service-view-content">
+                    We can tokenize any real-world asset, transferring its value to its digital analogue.
+                    This offer is suitable for both professionals of the financial market and ordinary owners.
+                </view>
+            </view>
+        </view>
+
+    </view>
+</template>
+<script>
+    // TODO 修复Android v3 加载过慢问题
+    // #ifdef APP-PLUS
+    var domModule = weex.requireModule('dom');
+    domModule.addRule('fontFace', {
+        'fontFamily': "uniicons",
+        'src': "url('/static/uni.ttf')"
+    });
+    // #endif
+
+    import uLink from '@/components/uLink.vue'
+    export default {
+        components: {
+            uLink
+        },
+        data() {
+            return {
+                list: [{
+                        id: 'view',
+                        name: '视图容器',
+                        open: false,
+                        pages: [
+                            'view',
+                            'scroll-view',
+                            'swiper'
+                            // #ifndef MP-TOUTIAO
+                            ,
+                            'movable-view',
+                            'cover-view'
+                            // #endif
+                        ]
+                    }, {
+                        id: 'content',
+                        name: '基础内容',
+                        open: false,
+                        pages: ['text', 'rich-text', 'progress']
+                    }, {
+                        id: 'form',
+                        name: '表单组件',
+                        open: false,
+                        pages: ['button', 'checkbox', 'form', 'input', 'label', 'picker', 'picker-view', 'radio',
+                            'slider',
+                            'switch', 'textarea',
+                            // #ifdef APP-PLUS || MP-WEIXIN || H5
+                            'editor',
+                            // #endif
+                        ]
+                    }, {
+                        id: 'nav',
+                        name: '导航',
+                        open: false,
+                        pages: ['navigator']
+                    }, {
+                        id: 'media',
+                        name: '媒体组件',
+                        open: false,
+                        pages: [
+                            'image',
+                            'video',
+                            // #ifndef MP-ALIPAY || MP-TOUTIAO
+                            'audio',
+                            // #endif
+                        ],
+                    },
+                    // #ifndef MP-TOUTIAO
+                    {
+                        id: 'map',
+                        name: '地图',
+                        open: false,
+                        pages: ['map']
+
+                    },
+                    // #endif
+                    {
+                        id: 'canvas',
+                        name: '画布',
+                        open: false,
+                        pages: ['canvas']
+
+                    },
+                    // #ifdef APP-PLUS
+                    {
+                        id: 'web-view',
+                        name: '网页',
+                        open: false,
+                        pages: [{
+                            name: '网络网页',
+                            url: '/pages/component/web-view/web-view'
+                        }, {
+                            name: '本地网页',
+                            url: '/pages/component/web-view-local/web-view-local'
+                        }]
+                    },
+                    // #endif
+                    // #ifndef APP-PLUS
+                    {
+                        id: 'web-view',
+                        name: '网页',
+                        open: false,
+                        pages: ['web-view']
+                    },
+                    // #endif
+                    // #ifndef H5 || MP-BAIDU
+                    {
+                        url: 'ad',
+                        name: 'AD组件',
+                        open: false
+                    },
+                    // #endif
+                ],
+                navigateFlag: false
+            }
+        },
+        onShareAppMessage() {
+            return {
+                title: '欢迎体验uni-app',
+                path: '/pages/tabBar/component/component'
+            }
+        },
+        onNavigationBarButtonTap(e) {
+            uni.navigateTo({
+                url: '/pages/about/about'
+            });
+        },
+        methods: {
+            triggerCollapse(e) {
+                if (!this.list[e].pages) {
+                    this.goDetailPage(this.list[e].url);
+                    return;
+                }
+                for (var i = 0; i < this.list.length; ++i) {
+                    if (e === i) {
+                        this.list[i].open = !this.list[e].open;
+                    } else {
+                        this.list[i].open = false;
+                    }
+                }
+            },
+            goDetailPage(e) {
+                if (this.navigateFlag) {
+                    return;
+                }
+                this.navigateFlag = true;
+                if (typeof e === 'string') {
+                    uni.navigateTo({
+                        url: '/pages/component/' + e + '/' + e
+                    })
+                } else {
+                    uni.navigateTo({
+                        url: e.url
+                    })
+                }
+                setTimeout(() => {
+                    this.navigateFlag = false;
+                }, 200)
+            }
+        }
+    }
+</script>
+
+<style>
+    @import '../../../common/uni-nvue.css';
+/*    *{
+    	font-size:16px;
+    }
+    uni-page-body{
+        height: 100%;
+    }
+    page{
+        height: 100%;
+    } */
+
+</style>

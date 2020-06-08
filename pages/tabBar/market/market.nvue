@@ -1,0 +1,764 @@
+<template>
+    <view class="uni-container">
+        <view class="sto-list">
+            <text class="sto-title">STO Being Traded</text>
+            <view class="sto-list-view" v-for="(item, index) in tableData" :key="item.id">
+                <view class="sto-list-top">
+                    <view class="sto-list-top-left">
+                        <image class="sto-list-image" :src="item.logo"></image>
+                        <view class="sto-list-top-info">
+                            <text class="sto-list-num">
+                                {{item.companyName}}
+                            </text>
+                            <view class="sto-list-company">{{item.smallNmae}}</view>
+                        </view>
+                    </view>
+                    <view class="sto-list-top-right">
+                        <view :class="item.change >0 ? 'price up-color':item.change == 0? 'price static-color':'price down-color'">
+                            {{item.price}}
+
+                        </view>
+                        <view class="color-gray">$9,057,297.27</view>
+                    </view>
+                </view>
+                <view class="sto-list-bottom">
+                    <view>
+                        <text class="change-color"> Change：
+                            <text :class="item.change >0 ? 'change-num up-color':item.change == 0? 'change-num static-color':'change-num down-color'">
+                                <!-- <icon :class="item.change >0 ? 'iconfont iconshang':item.change == 0? 'iconfont iconzuoyou':'iconfont iconxia'" ></icon> -->
+                                0.3%
+                            </text>
+                        </text>
+                    </view>
+                    <view>
+                      <text class="change-color">
+                        24 Volume：
+                        <text class="change-num sto-list-margin static-color">
+                            0.3%
+                        </text>
+                      </text>
+                    </view>
+                </view>
+            </view>
+
+            <view class="public-button margin-top">See More</view>
+        </view>
+
+        <view class="banner">
+            <text class="pub-title">Project profile</text>
+            <view class="page-section swiper">
+                <view class="page-section-spacing">
+                    <swiper class="swiper"
+                        :indicator-dots="indicatorDots"
+                        :autoplay="autoplay"
+                        :interval="interval"
+                        previous-margin="105rpx"
+                        next-margin="105rpx"
+                        indicator-active-color="#343744"
+                        @change="handleChange"
+                        circular="true">
+                            <swiper-item>
+                                <view class="swiper-item" current-item-id="one" ref="one" style="transform: scale(1);">
+                                    <view class="swiper-image">
+                                        <image class="swiper-image-style" src="https://s3.amazonaws.com/stm-public-local/sto/manualsync/upload_2y10wy9Zcoq7Qs1vMIzQkykEs0YlglhFgd2GhzfDGbsOsv8PkXQF5Kq.png"></image>
+                                    </view>
+                                    <view class="swiper-title"> La Estancia Holdings, Ltd </view>
+                                    <view class="invest-view">
+                                        <view>
+                                            <view class="investment">Mini Investment</view>
+                                            <view class="swiper-num">$10,000,000</view>
+                                        </view>
+                                        <view>
+                                            <view class="investment">Price Per Token</view>
+                                            <view class="swiper-num">$10</view>
+                                        </view>
+                                    </view>
+                                    <view class="desc">
+                                        <view class="desc-view">
+                                            Real estate backed digital securities offering of three unique portfolios of trophy properties (US$10M/$20M/$45M) under long-term commercial leases. Passive income monthly yields 8-12% with immigration and tax benefits.
+                                        </view>
+                                    </view>
+
+                                </view>
+                            </swiper-item>
+                            <swiper-item>
+                                <view class="swiper-item" current-item-id="two" ref="two"  style="transform: scale(0.9);">
+                                    <view class="swiper-image">
+                                        <image class="swiper-image-style" src="https://s3.amazonaws.com/stm-public-local/sto/manualsync/upload_2y10OnccRIAzu5pbcYWLifSCCZlOJXO6ePmyEJTBmu18KTI6dFmrO.jpg"></image>
+                                    </view>
+                                    <view class="swiper-title"> La Estancia Holdings, Ltd </view>
+                                    <view class="invest-view">
+                                        <view>
+                                            <view class="investment">Mini Investment</view>
+                                            <view class="swiper-num">$10,000,000</view>
+                                        </view>
+                                        <view>
+                                            <view class="investment">Price Per Token</view>
+                                            <view class="swiper-num">$10</view>
+                                        </view>
+                                    </view>
+                                    <view class="desc">
+                                        <view class="desc-view">
+                                            Real estate backed digital securities offering of three unique portfolios of trophy properties (US$10M/$20M/$45M) under long-term commercial leases. Passive income monthly yields 8-12% with immigration and tax benefits.
+                                        </view>
+                                    </view>
+                                </view>
+                            </swiper-item>
+                            <swiper-item>
+                                <view class="swiper-item" current-item-id="three" ref="three"  style="transform: scale(0.9);">
+                                    <view class="swiper-image">
+                                        <image class="swiper-image-style" src="https://s3.amazonaws.com/stm-public-local/sto/manualsync/upload_2y101xwFBMsM6z2AKUhdqdHSlOyuK2bl3QdxEboDRduiHY8Yy3uticS.png"></image>
+                                    </view>
+                                    <view class="swiper-title"> La Estancia Holdings, Ltd </view>
+                                    <view class="invest-view">
+                                        <view>
+                                            <view class="investment">Mini Investment</view>
+                                            <view class="swiper-num">$10,000,000</view>
+                                        </view>
+                                        <view>
+                                            <view class="investment">Price Per Token</view>
+                                            <view class="swiper-num">$10</view>
+                                        </view>
+                                    </view>
+                                    <view class="desc">
+                                        <view class="desc-view">
+                                            Real estate backed digital securities offering of three unique portfolios of trophy properties (US$10M/$20M/$45M) under
+                                            long-term commercial leases.
+                                            Passive income monthly yields 8-12% with immigration and tax benefits.
+                                        </view>
+                                    </view>
+                                </view>
+                            </swiper-item>
+                    </swiper>
+                </view>
+            </view>
+        </view>
+       <!-- <template v-if="showSetTabBarPage">
+            <set-tab-bar @unmount="leaveSetTabBarPage"></set-tab-bar>
+        </template>
+        <template v-else>
+            <view class="uni-header-logo">
+                <image class="uni-header-image" src="/static/apiIndex.png"></image>
+            </view>
+            <view class="uni-hello-text">
+                <text class="hello-text">以下将演示uni-app接口能力，详细文档见：</text>
+                <u-link class="hello-link" :href="'https://uniapp.dcloud.io/api/'" :text="'https://uniapp.dcloud.io/api/'"
+                    :inWhiteList="true"></u-link>
+            </view>
+            <view class="uni-panel" v-for="(item, index) in list" :key="item.id">
+                <view class="uni-panel-h" :class="item.open ? 'uni-panel-h-on' : ''" @click="triggerCollapse(index)">
+                    <text class="uni-panel-text">{{item.name}}</text>
+                    <text class="uni-panel-icon uni-icon" :class="item.open ? 'uni-panel-icon-on' : ''">{{item.pages ? '&#xe581;' : '&#xe470;'}}</text>
+                </view>
+                <view class="uni-panel-c" v-if="item.open">
+                    <view class="uni-navigate-item" v-for="(item2,key) in item.pages" :key="key" :url="item.url" @click="goDetailPage(item2.url)">
+                        <text class="uni-navigate-text">{{item2.name ? item2.name : item2}}</text>
+                        <text class="uni-navigate-icon uni-icon">&#xe470;</text>
+                    </view>
+                </view>
+            </view>
+        </template> -->
+    </view>
+</template>
+<script>
+    import uLink from '@/components/uLink.vue'
+    import setTabBar from '@/components/api-set-tabbar.nvue';
+    import uniSwipeAction from '@/components/uni-swipe-action/uni-swipe-action.vue';
+    import uniSwipeActionItem from '@/components/uni-swipe-action-item/uni-swipe-action-item.vue';
+
+    export default {
+        components: {
+            uLink,
+            setTabBar,
+            uniSwipeAction,
+            uniSwipeActionItem
+        },
+        data() {
+            const tableData = [
+                {
+                    "logo": "https://s3.amazonaws.com/stm-public-local/squarelogos/tzero.png",
+                    "companyName":   "tZERO" ,
+                    "companyNameLink": "https://www.tzero.com/",
+                    "smallNmae": "TZROP",
+                    "smallNmaeLink": "https://www.tzero.com/",
+                    "marketCap": "$26,008,327.50",
+                    "price": "$1.25",
+                    "change": "0",
+                    "volume": "$4,051.00",
+                    "exchange": "tZERO",
+                    "priceSrc": "1.jpg"
+                },
+                {
+                    "logo": "https://s3.amazonaws.com/stm-public-local/squarelogos/blockchaincapital.jpg",
+                    "companyName":   "Blockchain Capital" ,
+                    "companyNameLink": "http://www.blockchaincapital.com/",
+                    "smallNmae": "BCAP",
+                    "smallNmaeLink": "http://www.blockchaincapital.com/",
+                    "marketCap": "$9,057,297.27",
+                    "price": "$1.49",
+                    "change": "10.37",
+                    "volume": "$596.00",
+                    "exchange": "OpenFinance",
+                    "priceSrc": "2.jpg"
+                },
+                {
+                    "logo": "https://s3.amazonaws.com/stm-public-local/squarelogos/spice.jpg",
+                    "companyName":   "SPiCE VC" ,
+                    "companyNameLink": "https://spicevc.com",
+                    "smallNmae": "SPiCE",
+                    "smallNmaeLink": "https://spicevc.com",
+                    "marketCap": "$8,126,101.44",
+                    "price": "$0.96",
+                    "change": "0",
+                    "volume": "$132.48",
+                    "exchange": "OpenFinance",
+                    "priceSrc": "3.jpg"
+                },
+                {
+                    "logo": "https://s3.amazonaws.com/stm-public-local/squarelogos/lotto.jpg",
+                    "companyName":   "Lottery.com" ,
+                    "companyNameLink": "https://lottery.com/",
+                    "smallNmae": "LDCC",
+                    "smallNmaeLink": "https://lottery.com/",
+                    "marketCap": "$4,278,768.50",
+                    "price": "$0.10",
+                    "change": "0",
+                    "volume": "$567.00",
+                    "exchange": "OpenFinance",
+                    "priceSrc": "4.jpg"
+                }, {
+                    "logo": "https://s3.amazonaws.com/stm-public-local/squarelogos/mt-pelerin-icon.png",
+                    "companyName":   "Mt Pelerin" ,
+                    "companyNameLink": "https://www.mtpelerin.com/",
+                    "smallNmae": "MPS",
+                    "smallNmaeLink": "https://www.mtpelerin.com/",
+                    "marketCap": "	$1,580,000.00",
+                    "price": "$3.16",
+                    "change": "-11.98",
+                    "volume": "$338.06",
+                    "exchange": "Uniswap",
+                    "priceSrc": "5.jpg"
+                },
+                {
+                    "logo": "https://s3.amazonaws.com/stm-public-local/squarelogos/22x.png",
+                    "companyName":   "22X Fund" ,
+                    "companyNameLink": "https://www.22xfund.com",
+                    "smallNmae": "22X",
+                    "smallNmaeLink": "https://www.22xfund.com",
+                    "marketCap": "$1,543,370.40",
+                    "price": "$0.30",
+                    "change": "-40",
+                    "volume": "$30.00",
+                    "exchange": "OpenFinance",
+                    "priceSrc": "6.jpg"
+                },
+                {
+                    "logo": "https://s3.amazonaws.com/stm-public-local/squarelogos/protos.jpg",
+                    "companyName":   "Protos" ,
+                    "companyNameLink": "http://protosmanagement.com/",
+                    "smallNmae": "PRTS",
+                    "smallNmaeLink": "http://protosmanagement.com/",
+                    "marketCap": "$1,507,579.20",
+                    "price": "$0.45",
+                    "change": "0",
+                    "volume": "$20.25",
+                    "exchange": "OpenFinance",
+                    "priceSrc": "7.jpg"
+                },
+                {
+                    "logo": "https://s3.amazonaws.com/stm-public-local/squarelogos/realt.jpg",
+                    "companyName":   "16200 Fullerton Ave Detroit MI" ,
+                    "companyNameLink": "https://realt.co/product/16200-fullerton-ave-detroit-mi-48227/",
+                    "smallNmae": "RealT",
+                    "smallNmaeLink": "https://realt.co/product/16200-fullerton-ave-detroit-mi-48227/",
+                    "marketCap": "$650,370.00",
+                    "price": "$171.15",
+                    "change": "-0.83",
+                    "volume": "$1,000.78",
+                    "exchange": "Uniswap",
+                    "priceSrc": "8.jpg"
+                },
+                {
+                    "logo": "https://s3.amazonaws.com/stm-public-local/squarelogos/realt.jpg",
+                    "companyName":   "1002428 Appoline St" ,
+                    "companyNameLink": "https://realt.co/product",
+                    "smallNmae": "RealT",
+                    "smallNmaeLink": "https://realt.co/product",
+                    "marketCap": "$144,860.00",
+                    "price": "$1744.86",
+                    "change": "0.54",
+                    "volume": "$726.00",
+                    "exchange": "Uniswap",
+                    "priceSrc": "9.jpg"
+                },
+                {
+                    "logo": "https://s3.amazonaws.com/stm-public-local/squarelogos/realt.jpg",
+                    "companyName":   "9943 Marlowe Street, Detroit, MI" ,
+                    "companyNameLink": "https://realt.co/product",
+                    "smallNmae": "RealT",
+                    "smallNmaeLink": "https://realt.co/product",
+                    "marketCap": "$71,690.00",
+                    "price": "$71.69",
+                    "change": "2.68",
+                    "volume": "$0.00",
+                    "exchange": "Uniswap",
+                    "priceSrc": "10.jpg"
+                },
+                {
+                    "logo": "https://s3.amazonaws.com/stm-public-local/squarelogos/realt.jpg",
+                    "companyName":   "20200 Lesure St Detroit MI 48235" ,
+                    "companyNameLink": "https://realt.co/product",
+                    "smallNmae": "RealT",
+                    "smallNmaeLink": "https://realt.co/product",
+                    "marketCap": "$69,290.00",
+                    "price": "$69.29",
+                    "change": "0.55",
+                    "volume": "$208.92",
+                    "exchange": "Uniswap",
+                    "priceSrc": "11.jpg"
+                },
+                {
+                    "logo": "https://s3.amazonaws.com/stm-public-local/squarelogos/realt.jpg",
+                    "companyName":   "9336 Patton St Detroit" ,
+                    "companyNameLink": "https://realt.co/product",
+                    "smallNmae": "RealT",
+                    "smallNmaeLink": "https://realt.co/product",
+                    "marketCap": "$62,950.00",
+                    "price": "$62.95",
+                    "change": "-1.5",
+                    "volume": "$126.37",
+                    "exchange": "Uniswap",
+                    "priceSrc": "12.jpg"
+                },
+                {
+                    "logo": "https://s3.amazonaws.com/stm-public-local/squarelogos/realt.jpg",
+                    "companyName":   "942 Audubon Rd Detroit MI" ,
+                    "companyNameLink": "https://realt.co/product",
+                    "smallNmae": "RealT",
+                    "smallNmaeLink": "https://realt.co/product",
+                    "marketCap": "$59,122.50",
+                    "price": "$78.83",
+                    "change": "-1.67",
+                    "volume": "$0.00",
+                    "exchange": "Uniswap",
+                    "priceSrc": "13.jpg"
+                }
+            ];
+            // 暂时这么写，后面看怎么优化。
+            let mediaPages = [{
+                    name: '图片',
+                    url: 'image'
+                },
+                // #ifdef APP-PLUS || MP-WEIXIN || MP-BAIDU || MP-QQ
+                {
+                    name: '录音',
+                    url: 'voice'
+                },
+                {
+                    name: '背景音频',
+                    url: 'background-audio'
+                },
+                // #endif
+                // #ifndef MP-ALIPAY
+                {
+                    name: '视频',
+                    url: 'video'
+                },
+                // #endif
+                // #ifndef H5
+                {
+                    name: '文件',
+                    url: 'file'
+                },
+                // #endif
+                // #ifndef H5 || MP-ALIPAY
+                {
+                    name: '保存媒体到本地',
+                    url: 'save-media'
+                }
+                // #endif
+            ];
+
+            const list = [{
+                    id: 'page',
+                    name: '界面',
+                    open: false,
+                    pages: [{
+                            name: '设置导航条',
+                            url: 'set-navigation-bar-title'
+                        },
+                        //#ifdef APP-PLUS
+                        {
+                            name: '原生子窗体',
+                            url: 'subnvue'
+                        },
+                        //#endif
+                        {
+                            name: '页面跳转',
+                            url: 'navigator'
+                        },
+                        //#ifndef MP-TOUTIAO
+                        {
+                            name: '设置TabBar',
+                            url: 'set-tabbar'
+                        },
+                        //#endif
+                        {
+                            name: '下拉刷新',
+                            url: 'pull-down-refresh'
+                        },
+                        {
+                            name: '创建动画',
+                            url: 'animation'
+                        },
+                        {
+                            name: '创建绘画',
+                            url: 'canvas'
+                        },
+                        {
+                            name: '节点信息',
+                            url: 'get-node-info'
+                        },
+                        {
+                            name: '节点布局交互状态',
+                            url: 'intersection-observer'
+                        },
+                        {
+                            name: '显示操作菜单',
+                            url: 'action-sheet'
+                        },
+                        {
+                            name: '显示模态弹窗',
+                            url: 'modal'
+                        },
+                        {
+                            name: '显示加载提示框',
+                            url: 'show-loading'
+                        },
+                        {
+                            name: '显示消息提示框',
+                            url: 'toast'
+                        }
+                    ]
+                },
+                {
+                    id: 'device',
+                    name: '设备',
+                    open: false,
+                    pages: [{
+                            name: '获取手机网络状态',
+                            url: 'get-network-type'
+                        },
+                        {
+                            name: '获取手机系统信息',
+                            url: 'get-system-info'
+                        },
+                        {
+                            name: '打电话',
+                            url: 'make-phone-call'
+                        },
+                        //#ifndef H5
+                        {
+                            name: '震动',
+                            url: 'vibrate'
+                        },
+                        {
+                            name: '添加手机联系人',
+                            url: 'add-phone-contact'
+                        },
+                        {
+                            name: '扫码',
+                            url: 'scan-code'
+                        },
+                        {
+                            name: '剪贴板',
+                            url: 'clipboard'
+                        },
+                        //#endif
+                        // #ifndef H5 || MP-ALIPAY
+                        {
+                            name: '屏幕亮度',
+                            url: 'brightness'
+                        },
+                        // #endif
+                        // #ifdef APP-PLUS || MP-WEIXIN || MP-QQ
+                        {
+                            name: '蓝牙',
+                            url: 'bluetooth'
+                        },
+                        {
+                            name: '生物认证',
+                            url: 'soter'
+                        },
+                        // #endif
+                        // #ifdef APP-PLUS || MP-WEIXIN
+                        {
+                            name: 'iBeacon',
+                            url: 'ibeacon'
+                        },
+                        // #endif
+                        {
+                            name: '监听加速度传感器',
+                            url: 'on-accelerometer-change'
+                        },
+                        {
+                            name: '监听罗盘数据',
+                            url: 'on-compass-change'
+                        },
+                        //#ifdef APP-PLUS
+                        {
+                            name: '监听距离传感器',
+                            url: '/platforms/app-plus/proximity/proximity'
+                        },
+                        {
+                            name: '监听方向传感器',
+                            url: '/platforms/app-plus/orientation/orientation'
+                        }
+                        //#endif
+                    ]
+                },
+                {
+                    id: 'network',
+                    name: '网络',
+                    open: false,
+                    pages: [{
+                            name: '发起一个请求',
+                            url: 'request'
+                        },
+                        {
+                            name: '上传文件',
+                            url: 'upload-file'
+                        },
+                        {
+                            name: '下载文件',
+                            url: 'download-file'
+                        }
+                    ]
+                },
+                {
+                    id: 'websocket',
+                    name: 'websocket',
+                    open: false,
+                    pages: [
+                        // #ifndef MP-ALIPAY
+                        {
+                            name: 'socketTask',
+                            url: 'websocket-socketTask'
+                        },
+                        // #endif
+                        {
+                            name: '全局websocket',
+                            url: 'websocket-global'
+                        }
+                    ]
+                },
+                {
+                    id: 'media',
+                    name: '媒体',
+                    open: false,
+                    pages: mediaPages
+                },
+                {
+                    id: 'location',
+                    name: '位置',
+                    open: false,
+                    pages: [{
+                            name: '获取当前位置',
+                            url: 'get-location'
+                        },
+                        {
+                            name: '使用地图查看位置',
+                            url: 'open-location'
+                        },
+                        // #ifndef MP-TOUTIAO
+                        {
+                            name: '使用地图选择位置',
+                            url: 'choose-location'
+                        }
+                        // #endif
+                        // #ifndef MP-QQ || MP-TOUTIAO
+                        ,
+                        {
+                            name: '地图控制',
+                            url: 'map'
+                        }
+                        // #endif
+                        // #ifdef APP-PLUS
+                        ,
+                        {
+                            name: '地图搜索',
+                            url: 'map-search'
+                        }
+                        // #endif
+                    ]
+                },
+                {
+                    id: 'storage',
+                    name: '数据',
+                    open: false,
+                    pages: [{
+                            name: '数据存储（key-value）',
+                            url: 'storage'
+                        },
+                        // #ifdef APP-PLUS
+                        {
+                            name: 'SQLite',
+                            url: 'sqlite'
+                        }
+                        // #endif
+                    ]
+                },
+                // #ifdef APP-PLUS || MP-WEIXIN
+                {
+                    url: 'rewarded-video-ad',
+                    name: '激励视频广告',
+                    open: false
+                },
+                // #endif
+                // #ifndef H5
+                {
+                    id: 'login',
+                    name: '登录',
+                    open: false,
+                    pages: [{
+                            name: '登录',
+                            url: 'login'
+                        },
+                        {
+                            name: '获取用户信息',
+                            url: 'get-user-info'
+                        }
+                    ]
+                },
+                {
+                    id: 'share',
+                    name: '分享',
+                    open: false,
+                    pages: [{
+                        name: '分享',
+                        url: 'share'
+                    }]
+                },
+                // #endif
+                // #ifdef APP-PLUS || MP-WEIXIN
+                {
+                    id: 'payment',
+                    name: '支付',
+                    open: false,
+                    pages: [{
+                        name: '发起支付',
+                        url: 'request-payment'
+                    }]
+                },
+                // #endif
+                // #ifdef APP-PLUS
+                {
+                    id: 'speech',
+                    name: '语音',
+                    open: false,
+                    pages: [{
+                        name: '语音识别',
+                        url: '/platforms/app-plus/speech/speech'
+                    }]
+                },
+                {
+                    id: 'push',
+                    name: '推送',
+                    open: false,
+                    pages: [{
+                        name: '推送',
+                        url: '/platforms/app-plus/push/push'
+                    }]
+                }
+                //#endif
+            ];
+            return {
+                showSetTabBarPage: false,
+                list: list,
+                navigateFlag: false,
+                tableData: tableData,
+                indicatorDots: true,
+                autoplay: false,
+                interval: 2000,
+                activeClass: "activeClass"
+            }
+        },
+        onLoad() {
+        },
+        onReady() {
+        },
+        onShow() {
+            this.navigateFlag = false;
+            this.leaveSetTabBarPage();
+        },
+        onHide() {
+            this.leaveSetTabBarPage();
+        },
+        methods: {
+            handleChange(e){
+                let currentIndex = e.detail.current;
+                let objArr = document.getElementsByClassName("swiper-item");
+                for(let index = 0; index < objArr.length; index++){
+                    if(index == currentIndex){
+                        objArr[currentIndex].style.transform = "scale(1)";
+                    } else {
+                        objArr[index].style.transform = "scale(0.9)";
+                    }
+                }
+            },
+            triggerCollapse(e) {
+                if (!this.list[e].pages) {
+                    this.goDetailPage(this.list[e].url);
+                    return;
+                }
+                for (var i = 0; i < this.list.length; ++i) {
+                    if (e === i) {
+                        this.list[i].open = !this.list[e].open;
+                    } else {
+                        this.list[i].open = false;
+                    }
+                }
+            },
+            goDetailPage(e) {
+                if (this.navigateFlag) {
+                    return;
+                }
+                this.navigateFlag = true;
+                if (e === 'set-tabbar') {
+                    this.showSetTabBarPage = true;
+                    return;
+                }
+                let url = ~e.indexOf('platform') ? e : '/pages/API/' + e + '/' + e;
+                uni.navigateTo({
+                    url: url
+                });
+            },
+            leaveSetTabBarPage() {
+                setTimeout(() => {
+                    this.navigateFlag = false;
+                }, 200)
+                this.showSetTabBarPage = false;
+            }
+        }
+    };
+</script>
+
+<style>
+    @import '../../../common/uni-nvue.css';
+    @import '/static/iconfont.css';
+    .swiper-item{
+        width: 504rpx;
+        height: 780rpx;
+        margin: 0 auto;
+        border-radius: 8px;
+    }
+    .activeClass{
+        color: yellow;
+    }
+    .swiper{
+        height: 870rpx;
+    }
+    /* .swiper .swiper-slide-frame{
+        transform: scale(1.3);
+    } */
+</style>
