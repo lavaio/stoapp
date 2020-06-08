@@ -1,19 +1,19 @@
 <template>
     <view class="uni-container">
-        <view class="sto-list">
+        <view class="sto-list-market">
             <text class="sto-title">STO Being Traded</text>
-            <view class="sto-list-view" v-for="(item, index) in tableData" :key="item.id">
-                <view class="sto-list-top">
-                    <view class="sto-list-top-left">
-                        <image class="sto-list-image" :src="item.logo"></image>
-                        <view class="sto-list-top-info">
-                            <text class="sto-list-num">
+            <view class="sto-list-market-view" v-for="(item, index) in tableData" :key="item.id">
+                <view class="sto-list-market-top">
+                    <view class="sto-list-market-top-left">
+                        <image class="sto-list-market-image" :src="item.logo"></image>
+                        <view class="sto-list-market-top-info">
+                            <text class="sto-list-market-num">
                                 {{item.companyName}}
                             </text>
-                            <view class="sto-list-company">{{item.smallNmae}}</view>
+                            <view class="sto-list-market-company">{{item.smallNmae}}</view>
                         </view>
                     </view>
-                    <view class="sto-list-top-right">
+                    <view class="sto-list-market-top-right">
                         <view :class="item.change >0 ? 'price up-color':item.change == 0? 'price static-color':'price down-color'">
                             {{item.price}}
 
@@ -21,7 +21,7 @@
                         <view class="color-gray">$9,057,297.27</view>
                     </view>
                 </view>
-                <view class="sto-list-bottom">
+                <view class="sto-list-market-bottom">
                     <view>
                         <text class="change-color"> Change：
                             <text :class="item.change >0 ? 'change-num up-color':item.change == 0? 'change-num static-color':'change-num down-color'">

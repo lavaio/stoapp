@@ -221,11 +221,11 @@ page {
 .sto-title::after{
     margin-left: 10px;
 }
-.sto-list{
+.sto-list-market{
     padding: 0 16px 40px;
     background: #FFFFFF;
 }
-.sto-list-view{
+.sto-list-market-view{
     min-height: 240rpx;
     box-shadow:0px 8px 20px 0px rgba(202,202,202,0.15),0px 4px 8px 4px rgba(229,233,239,1);
     border-radius:8px;
@@ -233,27 +233,27 @@ page {
     width: 100%;
     margin-bottom: 20px;
 }
-.sto-list-top{
+.sto-list-market-top{
     border-bottom: 2px solid #F4F7FC;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     padding: 16px 12px;
 }
-.sto-list-top-left{
+.sto-list-market-top-left{
     display: flex;
     justify-content: space-between;
     flex-direction: row;
 }
-.sto-list-image{
+.sto-list-market-image{
     width: 88rpx;
     height: 88rpx;
 }
-.sto-list-top-info{
+.sto-list-market-top-info{
     margin-left: 10px;
     height: 88rpx;
 }
-.sto-list-num{
+.sto-list-market-num{
     color: #343744;
     font-size: 32rpx;
     font-weight: bold;
@@ -267,13 +267,13 @@ page {
 .sto-list-margin{
     margin-left: 10px;
 }
-.sto-list-company{
+.sto-list-market-company{
     color: #656B87;
     font-size: 30rpx;
     height: 34rpx;
     font-weight: bold;
 }
-.sto-list-top-right{
+.sto-list-market-top-right{
     height: 88rpx;
 }
 .price{
@@ -296,7 +296,7 @@ page {
     font-size: 24rpx;
     font-weight: bold;
 }
-.sto-list-bottom{
+.sto-list-market-bottom{
     padding: 12px 12px;
     display: flex;
     justify-content: space-between;
@@ -382,8 +382,7 @@ page {
     font-weight: 500;
 }
 .sto-list{
-    /* padding: 10px 16px; */
-    padding: 10px 10px;
+    padding: 10px 16px;
     display: flex;
     justify-content: space-between;
     flex-direction: row;
