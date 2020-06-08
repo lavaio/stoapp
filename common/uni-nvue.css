@@ -381,6 +381,80 @@ page {
     line-height: 34rpx;
     font-weight: 500;
 }
+.sto-list{
+    /* padding: 10px 16px; */
+    padding: 10px 10px;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+.sto-list-view{
+    width: 324rpx;
+    border-radius: 8px;
+    box-shadow:0px 16px 60px 0px rgba(24,98,204,0.09);
+    margin-bottom: 20px;
+}
+.sto-list-image{
+    border-radius: 8px 8px 0 0;
+    height: 240rpx;
+    width: 324rpx;
+}
+.sto-list-image-style{
+    width: 324rpx;
+    height: 240rpx;
+    border-radius: 8px 8px 0 0;
+}
+.logo-view{
+    display: flex;
+    flex-direction: row;
+}
+.sto-list-company-name{
+    margin-left: 8px;
+}
+.sto-list-content{
+    padding: 12px;
+}
+.sto-list-logo{
+    width: 48rpx;
+    height: 48rpx;
+}
+.sto-list-company-name{
+    font-size: 32rpx;
+    color: #343744;
+}
+.sto-list-icon-view{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.sto-list-desc{
+    color: #656B87;
+    font-size: 24rpx;
+    line-height: 40rpx;
+}
+.sto-list-progress{
+    margin-left: 10px;
+}
+.sto-list-progress{
+    color: #EE2E6B;
+    font-size: 24rpx;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 .hello-link {
     color: #7A7E83;

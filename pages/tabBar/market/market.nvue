@@ -25,7 +25,7 @@
                     <view>
                         <text class="change-color"> Change：
                             <text :class="item.change >0 ? 'change-num up-color':item.change == 0? 'change-num static-color':'change-num down-color'">
-                                <!-- <icon :class="item.change >0 ? 'iconfont iconshang':item.change == 0? 'iconfont iconzuoyou':'iconfont iconxia'" ></icon> -->
+                                <icon :class="item.change >0 ? 'iconfont iconshang':item.change == 0? 'iconfont iconzuoyou':'iconfont iconxia'" ></icon>
                                 0.3%
                             </text>
                         </text>
