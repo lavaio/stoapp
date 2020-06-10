@@ -325,7 +325,7 @@
 				"navigationBarTitleText": "问题反馈"
 			}
 		}
-	],
+    ],
 	"subPackages": [{
 			"root": "pages/API",
 			"pages": [{

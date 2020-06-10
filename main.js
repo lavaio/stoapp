@@ -4,6 +4,8 @@ import App from './App'
 import pageHead from './components/page-head.vue'
 import pageFoot from './components/page-foot.vue'
 import uLink from '@/components/uLink.vue'
+
+Vue.component('page-head',pageHead)
 import store from './store'
 
 Vue.config.productionTip = false

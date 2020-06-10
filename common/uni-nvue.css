@@ -89,13 +89,13 @@ page {
     color: #343744;
     margin-bottom: 16rpx;
     font-weight: bold;
-    padding: 0 12px;
+    padding: 0 16px;
 }
 .home-token-view-desc{
     color: #656B87;
     font-size: 24rpx;
     line-height: 40rpx;
-    padding: 0 12px;
+    padding: 0 16px;
 }
 .info{
     width: 100%;
@@ -116,7 +116,7 @@ page {
 }
 
 .why-token{
-    padding: 0 16px 20px;
+    padding: 0 12px 20px;
      margin: 0 auto;
 }
 .tokenize-view{
@@ -125,7 +125,7 @@ page {
     justify-content: space-between;
     box-shadow: 0px 4px 8px 2px rgba(48,68,103,0.1);
     border-radius: 8px;
-    padding: 16px 12px;
+    padding: 16px;
     flex-direction: row;
     margin: 0 auto;
     margin-bottom: 20px;
@@ -170,7 +170,7 @@ page {
     text-align: center;
 }
 .service-view{
-    padding: 16px 15px;
+    padding: 16px 16px;
     /* width: 686rpx; */
     min-height: 290rpx;
     background: #FFFFFF;
@@ -297,7 +297,7 @@ page {
     font-weight: bold;
 }
 .sto-list-market-bottom{
-    padding: 12px 12px;
+    padding: 16px 12px;
     display: flex;
     justify-content: space-between;
     flex-direction: row;
@@ -412,7 +412,7 @@ page {
     margin-left: 8px;
 }
 .sto-list-content{
-    padding: 12px;
+    padding: 12px 16px;
 }
 .sto-list-logo{
     width: 48rpx;
@@ -439,8 +439,14 @@ page {
     color: #EE2E6B;
     font-size: 24rpx;
 }
-
-
+.select-view{
+    height: 100rpx;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    border-bottom: 1px solid rgba(17,34,63,0.1);
+;
+}
 
 
 
@@ -469,7 +475,7 @@ page {
     background-color: #ffffff;
     flex-direction: row;
     align-items: center;
-    padding: 12px;
+    padding: 12px 16px;
 }
 /*
 .uni-panel-h:active {
