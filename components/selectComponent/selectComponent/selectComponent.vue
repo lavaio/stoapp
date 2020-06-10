@@ -64,7 +64,6 @@
 }
 .select_box{
     height: 100%;
-    /* width: 90px; */
     font-size: 32rpx;
     /* border: 1px solid gray; */
     padding: 0 16px;
