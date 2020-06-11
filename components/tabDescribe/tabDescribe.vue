@@ -199,7 +199,7 @@
         </view>
         <view class="backgroundStyle"></view>
         <view class="team-member">
-            <view class="pub-title">Team members (13)</view>
+            <view class="public-title">Team members (13)</view>
             <view ref="lessTeam">
                 <view class="team-member-view" v-for="item in 3" :key="item">
                     <view class="team-left">
@@ -323,10 +323,7 @@
         font-size: 28rpx;
         text-decoration: underline;
     }
-    .backgroundStyle{
-        height: 24rpx;
-        background: #F4F7FC;
-    }
+   
     .info{
         padding: 0 16px;
     }
@@ -463,7 +460,7 @@
         left: 14rpx;
     }
     .team-member{
-        padding: 20px 16px 112rpx;
+        padding: 0px 16px 112rpx;
 
     }
     .team-member-view{

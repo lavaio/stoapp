@@ -56,8 +56,8 @@
                         indicator-active-color="#343744"
                         @change="handleChange"
                         circular="true">
-                            <swiper-item>
-                                <view class="swiper-item" current-item-id="one" ref="one" style="transform: scale(1);">
+                            <swiper-item v-for="item in 3" :key="item">
+                                <view class="swiper-item" current-item-id="one" :style=" item == 1 ? 'transform:scale(1);' : 'transform:scale(0.9)'" @click="goBannerDetailPage(item)">
                                     <view class="swiper-image">
                                         <image class="swiper-image-style" src="https://s3.amazonaws.com/stm-public-local/sto/manualsync/upload_2y10wy9Zcoq7Qs1vMIzQkykEs0YlglhFgd2GhzfDGbsOsv8PkXQF5Kq.png"></image>
                                     </view>
@@ -80,54 +80,8 @@
 
                                 </view>
                             </swiper-item>
-                            <swiper-item>
-                                <view class="swiper-item" current-item-id="two" ref="two"  style="transform: scale(0.9);">
-                                    <view class="swiper-image">
-                                        <image class="swiper-image-style" src="https://s3.amazonaws.com/stm-public-local/sto/manualsync/upload_2y10OnccRIAzu5pbcYWLifSCCZlOJXO6ePmyEJTBmu18KTI6dFmrO.jpg"></image>
-                                    </view>
-                                    <view class="swiper-title"> La Estancia Holdings, Ltd </view>
-                                    <view class="invest-view">
-                                        <view>
-                                            <view class="investment">Mini Investment</view>
-                                            <view class="swiper-num">$10,000,000</view>
-                                        </view>
-                                        <view>
-                                            <view class="investment">Price Per Token</view>
-                                            <view class="swiper-num">$10</view>
-                                        </view>
-                                    </view>
-                                    <view class="desc">
-                                        <view class="desc-view">
-                                            Real estate backed digital securities offering of three unique portfolios of trophy properties (US$10M/$20M/$45M) under long-term commercial leases. Passive income monthly yields 8-12% with immigration and tax benefits.
-                                        </view>
-                                    </view>
-                                </view>
-                            </swiper-item>
-                            <swiper-item>
-                                <view class="swiper-item" current-item-id="three" ref="three"  style="transform: scale(0.9);">
-                                    <view class="swiper-image">
-                                        <image class="swiper-image-style" src="https://s3.amazonaws.com/stm-public-local/sto/manualsync/upload_2y101xwFBMsM6z2AKUhdqdHSlOyuK2bl3QdxEboDRduiHY8Yy3uticS.png"></image>
-                                    </view>
-                                    <view class="swiper-title"> La Estancia Holdings, Ltd </view>
-                                    <view class="invest-view">
-                                        <view>
-                                            <view class="investment">Mini Investment</view>
-                                            <view class="swiper-num">$10,000,000</view>
-                                        </view>
-                                        <view>
-                                            <view class="investment">Price Per Token</view>
-                                            <view class="swiper-num">$10</view>
-                                        </view>
-                                    </view>
-                                    <view class="desc">
-                                        <view class="desc-view">
-                                            Real estate backed digital securities offering of three unique portfolios of trophy properties (US$10M/$20M/$45M) under
-                                            long-term commercial leases.
-                                            Passive income monthly yields 8-12% with immigration and tax benefits.
-                                        </view>
-                                    </view>
-                                </view>
-                            </swiper-item>
+
+
                     </swiper>
                 </view>
             </view>
@@ -694,6 +648,13 @@
             this.leaveSetTabBarPage();
         },
         methods: {
+            goBannerDetailPage(id) {
+                console.log("///")
+            	let url = '/pages/template/banner-detail/banner-detail?id='+ id;
+            	uni.navigateTo({
+            		url: url
+            	});
+            },
             handleChange(e){
                 let currentIndex = e.detail.current;
                 let objArr = document.getElementsByClassName("swiper-item");

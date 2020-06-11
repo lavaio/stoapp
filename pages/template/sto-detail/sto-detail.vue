@@ -122,14 +122,15 @@
                     }, {
                         name: 'Team members',
                         id: 'TeamMember'
-                },{
-                    name: "test",
-                    id: "kjkjkjkjk"
-                },{
-                    name: "test",
-                    id: "lllllllllllllllllllllllllll"
-                },
+                    },{
+                        name: "test",
+                        id: "kjkjkjkjk"
+                    },{
+                        name: "test",
+                        id: "lllllllllllllllllllllllllll"
+                    },
                 ],
+                
                 currentTabId: "Description",
 			}
 		},
@@ -290,33 +291,7 @@
         border-radius: 4px;
     }
 
-    .tabs{
-         border-bottom: 1px solid #F4F7FC;
-    }
-    .tabs-view{
-        display: flex;
-        justify-content: space-between;
-        color: #343744;
-        font-size: 32rpx;
-        overflow: scroll;
-    }
-    .tab-item{
-        flex-shrink: 0;
-        margin-right: 16px;
-        padding: 0 16px 40rpx;
-    }
-    .tab-item-active{
-        position: relative;
-    }
-    .tab-item-active::after{
-        content: " ";
-        width: 80% ;
-        height: 2px;
-        background: #27ACE0;
-        display: inherit;
-        position: absolute;
-        bottom: 0;
-    }
+
 
 
 

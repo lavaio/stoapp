@@ -349,6 +349,14 @@
             "path" : "components/tabTeamMember/tabTeamMember",
             "style" : {}
         }
+        ,{
+            "path" : "pages/template/banner-detail/banner-detail",
+            "style" : {}
+        }
+        ,{
+            "path" : "components/tabOverview/tabOverview",
+            "style" : {}
+        }
     ],
 	"subPackages": [{
 			"root": "pages/API",
