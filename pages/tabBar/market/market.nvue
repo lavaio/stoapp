@@ -16,7 +16,6 @@
                     <view class="sto-list-market-top-right">
                         <view :class="item.change >0 ? 'price up-color':item.change == 0? 'price static-color':'price down-color'">
                             {{item.price}}
-
                         </view>
                         <view class="color-gray">$9,057,297.27</view>
                     </view>
@@ -24,10 +23,10 @@
                 <view class="sto-list-market-bottom">
                     <view>
                         <text class="change-color"> Change：
-                            <text :class="item.change >0 ? 'change-num up-color':item.change == 0? 'change-num static-color':'change-num down-color'">
+                            <view :class="item.change >0 ? 'change-num up-color':item.change == 0? 'change-num static-color':'change-num down-color'">
                                 <icon :class="item.change >0 ? 'iconfont iconshang':item.change == 0? 'iconfont iconzuoyou':'iconfont iconxia'" ></icon>
                                 0.3%
-                            </text>
+                            </view>
                         </text>
                     </view>
                     <view>
@@ -164,14 +163,14 @@
     import uLink from '@/components/uLink.vue'
     import setTabBar from '@/components/api-set-tabbar.nvue';
     import uniSwipeAction from '@/components/uni-swipe-action/uni-swipe-action.vue';
-    import uniSwipeActionItem from '@/components/uni-swipe-action-item/uni-swipe-action-item.vue';
+    // import uniSwipeActionItem from '@/components/uni-swipe-action-item/uni-swipe-action-item.vue';
 
     export default {
         components: {
             uLink,
             setTabBar,
             uniSwipeAction,
-            uniSwipeActionItem
+            // uniSwipeActionItem
         },
         data() {
             const tableData = [

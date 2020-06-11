@@ -11,6 +11,7 @@
     border-radius: 8px;
     margin: 0 auto;
     cursor: pointer;
+	display: inline-block;
 }
 
 
@@ -925,11 +926,11 @@ radio-group label, checkbox-group label{
     flex-direction: column;
 }
 
-.image-view {
+/* .image-view {
     height: 330rpx;
     width: 330rpx;
 	margin:12rpx 0;
-}
+} */
 
 .uni-product-image {
     height: 330rpx;

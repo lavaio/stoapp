@@ -325,6 +325,30 @@
 				"navigationBarTitleText": "问题反馈"
 			}
 		}
+        ,{
+            "path" : "pages/template/sto-detail/sto-detail",
+            "style" : {}
+        }
+        ,{
+            "path" : "components/selectComponent/selectComponent",
+            "style" : {}
+        },
+        {
+            "path" : "components/tabDetail/tabDetail",
+            "style" : {}
+        }
+        ,{
+            "path" : "components/tabDescribe/tabDescribe",
+            "style" : {}
+        }
+        ,{
+            "path" : "components/tabMilestones/tabMilestones",
+            "style" : {}
+        }
+        ,{
+            "path" : "components/tabTeamMember/tabTeamMember",
+            "style" : {}
+        }
     ],
 	"subPackages": [{
 			"root": "pages/API",

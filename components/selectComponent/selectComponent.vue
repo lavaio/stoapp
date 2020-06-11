@@ -24,7 +24,6 @@
 		data() {
 			return {
                 showMask: false,
-                selectLabel: "",
                 selectVale: "",
             }
 		},

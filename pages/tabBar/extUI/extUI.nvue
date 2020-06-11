@@ -8,7 +8,7 @@
             </selectComponent>
         </view>
         <view class="sto-list">
-            <view class="sto-list-view" v-for="item in 6" :key="item">
+            <view class="sto-list-view" v-for="item in 6" :key="item" @click="goDetailPage(item)">
                 <view class="sto-list-image">
                     <image class="sto-list-image-style" src="https://securityin.oss-cn-hongkong.aliyuncs.com/img/cover/Smartchem/Smartchem.png" mode="aspectFill"></image>
                 </view>
@@ -34,7 +34,7 @@
 </template>
 <script>
 	import uLink from "@/components/uLink.vue"
-    import selectComponent from "@/components/selectComponent/selectComponent/selectComponent.vue"
+    import selectComponent from "@/components/selectComponent/selectComponent.vue"
 	export default {
 		components: {
 			uLink,
@@ -273,6 +273,12 @@
 
 
 		methods: {
+            goDetailPage(id) {
+            	let url = '/pages/template/sto-detail/sto-detail?id='+ id;
+            	uni.navigateTo({
+            		url: url
+            	});
+            },
             showSinglePicker() {
                 this.pickerValueArray = this.pickerSingleArray
                 this.mode = 'selector'

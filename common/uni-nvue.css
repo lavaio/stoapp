@@ -312,6 +312,7 @@ page {
 .change-num{
     font-size: 24rpx;
     font-weight: 500;
+    display: inline-block;
 }
 .margin-top{
     margin-top: 20px;
