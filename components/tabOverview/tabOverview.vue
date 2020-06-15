@@ -1,7 +1,7 @@
 <template>
 	<view>
         <view class="sto-list-market">
-            <view class="pub-title">STO Being Traded</view>
+            <view class="pub-title">Trading History</view>
             <view class="sto-list-market-view" v-for="(item, index) in tableData" :key="item.id">
                 <view class="sto-list-market-top">
                     <view class="sto-list-market-top-left">
@@ -114,19 +114,86 @@
                     <view class="team-right">
                         <view class="member-name">Christian Römlein</view>
                         <view class="member-position">CEO</view>
+                        <view class="team-icon-style">
+                            <icon class="iconfont icon-telegram" ></icon>
+                            <icon class="iconfont icon-telegram marginLeft"></icon>
+                        </view>
                     </view>
                 </view>
             </view>
         </view>
         <view class="backgroundStyle"></view>
+        <view class="news">
+            <view class="pub-title">News</view>
+            <view class="news-item" v-for="item in 4" :key="item">
+                <view class="news-item-left">
+                    <image class="news-image" src="@/static/news_item.jpg"></image>
+                </view>
+                <view class="news-item-right">
+                    <view class="news-desc">
+                        SPiCE VC Launches Liquid VC Fund With Tradable …
+                    </view>
+                    <view class="buttonStyle">Show All</view>
+                </view>
+            </view>
+        </view>
+        <view class="backgroundStyle"></view>
+        <view class="pie-style">
+            <view class="pub-title">Press</view>
+
+            <view class="qiun-columns">
+                <view class="qiun-charts qiun-rows" >
+                    <canvas canvas-id="canvasPie" id="canvasPie" class="charts-pie"></canvas>
+                    <view class="qiun-bg-white charts-right">
+                        <view>
+                            <block v-for="(item, index) in piearr" :key="index">
+                                <view class="qiun-rows legend-itme">
+                                    <view class="legend-itme-point" :style="{'background-color':item.color}"></view>
+                                    <view class="legend-itme-text">{{item.name}}:{{item.data}}人</view>
+                                </view>
+                            </block>
+                        </view>
+                    </view>
+                </view>
+            </view>
+
+        </view>
+        <!-- <view class="backgroundStyle"></view> -->
+
     </view>
 </template>
 
 <script>
+    import uCharts from '@/components/u-charts/u-charts.js';
+
 	export default {
 		data() {
 			return {
                 showMore: false,
+                chartData: {
+                  "series": [{
+                	"name": "Reserve",
+                	"data": 50
+                  }, {
+                	"name": "Datacenter Build",
+                	"data": 30
+                  }, {
+                	"name": "三班",
+                	"data": 20
+                  }, {
+                	"name": "四班",
+                	"data": 18
+                  }, {
+                	"name": "五班",
+                	"data": 8,
+                  }]
+                },
+                cWidth:'',
+                cHeight:'',
+                pixelRatio:1,
+                serverData:'',
+                piearr:[],
+
                 tableData:[
                     {
                             "logo": "https://s3.amazonaws.com/stm-public-local/squarelogos/tzero.png",
@@ -299,6 +366,13 @@
                 ]
 			}
 		},
+        mounted() {
+            this.cWidth=uni.upx2px(400);
+            this.cHeight=uni.upx2px(400);
+            this.showPie("canvasPie", this.chartData);
+        },
+
+
 		methods: {
             handleClick(){
                 let showMore = !this.showMore;
@@ -310,12 +384,128 @@
                     this.$refs.readeMore.$el.innerHTML = "reade more"
                 }
                 this.showMore = showMore;
-
             },
-		}
+            showPie(canvasId, chartData){
+                const _self = this;
+                let canvaPie = new uCharts({
+                     $this:_self,
+                    canvasId: canvasId,
+                    type: 'pie',
+                    colors: ["#F7C137","#5AD8A6", "#5D7092", "#8C54FF", "#2E5BFF"],
+                    fontSize:13,
+                    legend: {
+                        show: false
+                    },
+                    background:'#FFFFFF',
+                    pixelRatio:_self.pixelRatio,
+                    series: chartData.series,
+                    animation: true,
+                    width: _self.cWidth*_self.pixelRatio,
+                    height: _self.cHeight*_self.pixelRatio,
+                    dataLabel: false,
+
+                });
+                this.piearr=canvaPie.opts.series;
+            },
+		},
 	}
 </script>
 
 <style>
+    @import '/static/iconfont.css';
+    .team-icon-style{
+        color: #27ACE0;
+    }
+    .marginLeft{
+        margin-left: 10px;
+    }
+    .news{
+        padding: 0 16px 20px;
+    }
+    .news-item{
+        padding: 12px 0;
+        display: flex;
+        flex-direction: row;
+        border-bottom: 1px solid #F4F7FC;
+    }
+    .buttonStyle{
+        text-align: center;
+        width: 160rpx;
+        height: 64rpx;
+        line-height: 64rpx;
+        color: #FFFFFF;
+        font-size: 24rpx;
+        background:linear-gradient(90deg,rgba(49,205,186,1) 0%,rgba(40,170,226,1) 100%);
+        border-radius: 8px;
+        float: right;
+    }
+    .news-item-right{
+        height: 160rpx;
+        padding-left: 12px;
+    }
+    .news-image{
+        width: 204rpx;
+        height: 160rpx;
+    }
+    .news-item-left{
+        width: 204rpx;
+        height: 160rpx;
+    }
+    .news-desc{
+        color: #656B87;
+        font-size: 28rpx;
+        line-height: 44rpx;
+
+        overflow: hidden;
+         text-overflow: ellipsis;
+         display: -webkit-box;
+         -webkit-line-clamp: 2;
+         -webkit-box-orient: vertical;
+    }
+    .pie-style{
+
+    }
+    .pie-view{
+        width: 100%;
+        border: 1px solid yellow;
+        height: 100px;
+    }
+
+
+    .qiun-padding{padding:2%; width:96%;}
+    .qiun-wrap{display:flex; flex-wrap:wrap;}
+    .qiun-rows{display:flex; flex-direction:row !important;}
+    .qiun-columns{display:flex; flex-direction:column !important;}
+    .qiun-bg-white{background:#FFFFFF;}
+    .qiun-charts{
+        width: 750upx;
+        height:400upx;
+        background-color: #FFFFFF;
+        display: flex;
+    }
+
+    .charts-pie{
+        /* width: 300upx; */
+        width: 50%;
+        height:400upx;
+        background-color: #FFFFFF;
+    }
+
+    .charts-right{
+        display:flex;
+        align-items:center;
+        height:400upx;
+        background-color: #FFFFFF;
+        margin-left: 10px;
+    }
+    .legend-itme{
+        /* width: 300upx; */
+        margin-left: -10upx;
+        height: 70upx;
+        align-items:center;
+    }
+    .legend-itme-point{width: 20upx; height:20upx; margin: 15upx;  border: 1px solid #FFFFFF; border-radius: 20upx;background-color: #000000;}
+    .legend-itme-text{height:50upx;line-height: 50upx;color: #666666;font-size: 26upx;}
+
 
 </style>

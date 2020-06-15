@@ -249,6 +249,9 @@
                 showTeamMore: false
 			}
 		},
+        onLoad(){
+            console.log("////////////")
+        },
 		methods: {
             handleTeamMore(){
                 let showTeamMore = !this.showTeamMore;
@@ -378,6 +381,7 @@
         content: " ";
         margin-right: 5px;
     }
+    
     .border-before::before{
         content: " ";
         width: 32rpx;
@@ -465,7 +469,7 @@
     }
     .team-member-view{
         border-bottom: 1px solid #F4F7FC;
-        padding: 12px;
+        padding: 12px 0;
         display: flex;
         flex-direction: row;
     }

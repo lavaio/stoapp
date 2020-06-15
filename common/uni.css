@@ -256,7 +256,7 @@
 }
 .team-member-view{
     border-bottom: 1px solid #F4F7FC;
-    padding: 12px;
+    padding: 12px 0;
     display: flex;
     flex-direction: row;
 }
@@ -278,6 +278,7 @@
     display: flex;
     justify-content: space-between;
     flex-direction: column;
+    height: 128rpx;
 }
 .member-name{
     color: #343744;
@@ -286,6 +287,8 @@
 .member-position{
     color:#656B87;
     font-size: 28rpx;
+    height: 40rpx;
+    line-height: 40rpx;
 }
 
 

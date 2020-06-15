@@ -35,9 +35,10 @@
 			}
 		},
 		{
-			"path": "pages/tabBar/template/template",
+			// "path": "pages/tabBar/template/template",
+            "path": "pages/tabBar/news/news",
 			"style": {
-				"navigationBarTitleText": "St List",
+				"navigationBarTitleText": "News",
 				"app-plus": {
 					"titleNView": {
 						"buttons": [{
@@ -53,7 +54,7 @@
 		{
 			"path": "pages/tabBar/extUI/extUI",
 			"style": {
-				"navigationBarTitleText": "News",
+				"navigationBarTitleText": "St List",
 				"app-plus": {
 					"titleNView": {
 						"buttons": [{
@@ -355,6 +356,10 @@
         }
         ,{
             "path" : "components/tabOverview/tabOverview",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/tabBar/news/news",
             "style" : {}
         }
     ],
@@ -1234,7 +1239,7 @@
 				"selectedIconPath": "static/stlistHL.png",
 				"text": "ST List"
 			}, {
-				"pagePath": "pages/tabBar/template/template",
+				"pagePath": "pages/tabBar/news/news",
 				"iconPath": "static/news.png",
 				"selectedIconPath": "static/newsHL.png",
 				"text": "News"
