@@ -47,7 +47,7 @@
         <view class="info">
             <text class="info-title">Want More Information?</text>
             <text class="info-desc">We will gladly tell you more about our services.</text>
-            <text class="public-button">Get in touch</text>
+            <text class="public-button" @click="toContact">Get in touch</text>
         </view>
 
         <view class="why-token">
@@ -135,35 +135,35 @@
                     This offer is suitable for both professionals of the financial market and ordinary owners.
                 </view>
             </view>
-            
+
             <view class="service-view">
                 <view class="service-view-title">Digital Asset Advisory</view>
                 <view class="service-view-content">
                     We are ready to give advice on any issues relating to the implementation of Security Token Offering. This can be either one-time assistance or the full project support.
                 </view>
             </view>
-            
+
             <view class="service-view">
                 <view class="service-view-title">Legal Regulation</view>
                 <view class="service-view-content">
                     Every security token offering must be registered in accordance with the laws of a country. We help to understand all the complexities of legislation and to register STOs with regulatory authorities.
                 </view>
             </view>
-            
+
             <view class="service-view">
                 <view class="service-view-title">Solution Integrations</view>
                 <view class="service-view-content">
                     We can help integrate blockchain into client's business processes, such as logistics, law, management, etc. This can help streamline processes and save resources.
                 </view>
             </view>
-            
+
             <view class="service-view">
                 <view class="service-view-title">Marketing and PR</view>
                 <view class="service-view-content">
                     PR and Promotion of security token sale is a complex process requiring an integrated approach. We can take on the whole implementation of a marketing strategy.
                 </view>
             </view>
-            
+
             <view class="service-view">
                 <view class="service-view-title">Info Disclosure and Rating</view>
                 <view class="service-view-content">
@@ -299,6 +299,11 @@
             });
         },
         methods: {
+            toContact(){
+               uni.navigateTo({
+                    url: '/pages/tabBar/contact/contact',
+               });
+            },
             triggerCollapse(e) {
                 if (!this.list[e].pages) {
                     this.goDetailPage(this.list[e].url);

@@ -69,7 +69,6 @@ export default {
                 var year = da.getFullYear()+'年';
                 var month = da.getMonth()+1+'月';
                 var date = da.getDate()+'日';
-                console.log([year,month,date].join('-'));
                 return [year,month,date].join('');
         },
 		getNewsList() {
@@ -88,7 +87,6 @@ export default {
 			});
 		},
 		goDetail: function(e) {
-
 			uni.navigateTo({
 				// url: '../../template/newsDetail/newsDetail?detailDate=' + encodeURIComponent(JSON.stringify(detail))
                 url: '/pages/template/newsDetail/newsDetail?id='+e["id"],

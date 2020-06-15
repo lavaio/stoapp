@@ -1,7 +1,7 @@
 <template>
 	<view>
 		<view class="contact-form">
-            <view class="pub-title">Contact us to issue STO</view>
+            <text class="pub-title">Contact us to issue STO</text>
             <view class="input-label">NAME</view>
             <input class="uni-input" placeholder-style="color:#97A4BA" focus placeholder="name" />
             <view class="input-label">CONTACT EMAIL</view>
@@ -17,7 +17,7 @@
 
         </view>
         <view class="other-contact">
-            <view class="pub-title" style="color: #FFFFFF;">Other Ways Of Contact</view>
+            <text class="pub-title" style="color: #FFFFFF;">Other Ways Of Contact</text>
             <view class="contact-icon-view">
                 <view class="contact-icon">
                     <image class="icon-image" src="/static/tuite.png"></image>
@@ -50,6 +50,7 @@
 </script>
 
 <style>
+    @import './../../../common/uni.css';
 .contact-form{
     padding: 0px 16px 40px;
     background-color: #FBFBFE;
@@ -65,7 +66,7 @@
 .uni-input{
     border: 1px solid #8A8E9E;
     border-radius: 8px;
-    height: 44rpx;
+    height: 88rpx;
 }
 .uni-textarea{
     border: 1px solid #8A8E9E;
@@ -83,6 +84,7 @@
 }
 .contact-icon-view{
     display: flex;
+    flex-direction: row;
     justify-content: space-between;
 }
 .contact-icon{

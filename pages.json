@@ -366,10 +366,6 @@
             "path" : "pages/template/newsDetail/newsDetail",
             "style" : {}
         }
-        ,{
-            "path" : "pages/tabBar/contact/contact",
-            "style" : {}
-        }
     ],
 	"subPackages": [{
 			"root": "pages/API",
