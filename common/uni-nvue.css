@@ -200,6 +200,12 @@ page {
 .sto-title::after{
     margin-left: 10px;
 }
+.position-fixed{
+	position: fixed;
+}
+.sto-list{
+	
+}
 .sto-list-market{
     padding: 0 16px 40px;
     background: #FFFFFF;
@@ -362,6 +368,9 @@ page {
     line-height: 34rpx;
     font-weight: 500;
 }
+.position-fixed{
+	position: fixed;
+}
 .sto-list{
     padding: 10px 16px;
     display: flex;
@@ -426,8 +435,10 @@ page {
     align-items: center;
     flex-direction: row;
     border-bottom: 1px solid rgba(17,34,63,0.1);
-	overflow: scroll
-;
+	overflow: scroll;
+	position: fixed;
+	background: #FFFFFF;
+	z-index: 10;
 }
 
 

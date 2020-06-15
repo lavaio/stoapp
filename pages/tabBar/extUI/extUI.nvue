@@ -1,13 +1,14 @@
 <template>
 	<view class="uni-container">
-        <view class="select-view">
+        <view class='select-view'>
             <selectComponent v-for="(item,index) in selectTitleZh" :key="index"
                 class="selectItem"
+                :changeFixed = "changeFixed"
                 :selectList = "item.options"
                 :selectLabel = "item.title">
             </selectComponent>
         </view>
-        <view class="sto-list">
+        <view :class="isFixed ? 'sto-list position-fixed' : 'sto-list' ">
             <view class="sto-list-view" v-for="item in 6" :key="item" @click="goDetailPage(item)">
                 <view class="sto-list-image">
                     <image class="sto-list-image-style" src="https://securityin.oss-cn-hongkong.aliyuncs.com/img/cover/Smartchem/Smartchem.png" mode="aspectFill"></image>
@@ -42,6 +43,7 @@
 		},
 		data() {
 			return {
+                isFixed: false,
                 selectList: [{
                     label: "Status",
                     value: ""
@@ -273,6 +275,11 @@
 
 
 		methods: {
+            changeFixed(isFixed){
+                console.log("//////////")
+                console.log(isFixed)
+                this.isFixed = isFixed
+            },
             goDetailPage(id) {
             	let url = '/pages/template/sto-detail/sto-detail?id='+ id;
             	uni.navigateTo({
