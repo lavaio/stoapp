@@ -7,12 +7,39 @@
         </view>
         <view class="what-token">
             <text class="pub-title">What Can Be Tokenized?</text>
-            <view class="home-token-view" v-for="item in 4" :key="item">
+            <view class="home-token-view">
                 <image class="home-token-view-image" src="/static/token_one.png"></image>
                 <view class="home-token-view-content">
                     <view class="home-token-view-title">Real Estate</view>
                     <view class="home-token-view-desc">
                         Real estate is one of the most popular and promising assets which can be tokenized. Land, buildings, apartments, etc. Real estate has continually been one of the most valuable investment assets.
+                    </view>
+                </view>
+            </view>
+            <view class="home-token-view">
+                <image class="home-token-view-image" src="/static/token_two.png"></image>
+                <view class="home-token-view-content">
+                    <view class="home-token-view-title">Equity in Business</view>
+                    <view class="home-token-view-desc">
+                        The tokenization of business (shares) is a promising area for STO. It enables you to sell a share or business, entirely. This option is also suitable if you wish to attract additional money for the development of the company.
+                    </view>
+                </view>
+            </view>
+            <view class="home-token-view">
+                <image class="home-token-view-image" src="/static/token_three.png"></image>
+                <view class="home-token-view-content">
+                    <view class="home-token-view-title">Equity, Debt & Derivatives</view>
+                    <view class="home-token-view-desc">
+                        If you own or manage an investment fund and are looking for new sources of funds to improve your portfolio, STO can be an excellent alternative to traditional investments. You will be able to determine what rights you are willing to share with investors.
+                    </view>
+                </view>
+            </view>
+            <view class="home-token-view">
+                <image class="home-token-view-image" src="/static/token_four.png"></image>
+                <view class="home-token-view-content">
+                    <view class="home-token-view-title">Alternative Assets</view>
+                    <view class="home-token-view-desc">
+                        In theory, almost any object can be tokenized. This makes sense mainly for objects of comparatively high value and cost. These can range from art (paintings, movies, photographs), to cars, jewelry, and much more.
                     </view>
                 </view>
             </view>
@@ -25,12 +52,74 @@
 
         <view class="why-token">
             <text class="pub-title">Why Tokenize?</text>
-            <view class="tokenize-view" v-for="item in 6" :key="item">
-                <view class="tokenize-image"></view>
+            <view class="tokenize-view">
+                <view class="tokenize-image">
+                    <image class="tokenize-image-style" src="/static/tokenize_one.png"></image>
+                </view>
                 <view class="tokenize-content">
                     <view class="tokenize-title">Efficiency</view>
                     <view class="tokenize-desc">
                         No other way of attracting investment has the same ratio of the cost of organization and carrying out access to the widest pool of investors and finance from around the world.
+                   </view>
+                </view>
+            </view>
+
+            <view class="tokenize-view">
+                <view class="tokenize-image">
+                    <image class="tokenize-image-style" src="/static/tokenize_two.png"></image>
+                </view>
+                <view class="tokenize-content">
+                    <view class="tokenize-title">Security</view>
+                    <view class="tokenize-desc">
+                        All sides of the process - both issuers and investors are protected during the sale. Security is ensured by a smart contract and supervisory regulators.
+                   </view>
+                </view>
+            </view>
+
+            <view class="tokenize-view">
+                <view class="tokenize-image">
+                    <image class="tokenize-image-style" src="/static/tokenize_three.png"></image>
+                </view>
+                <view class="tokenize-content">
+                    <view class="tokenize-title">Liquidity</view>
+                    <view class="tokenize-desc">
+                        Tokenization of assets allows you to make them available for fast sale. To sell something in parts is much easier than looking for a buyer for the entire object.
+                   </view>
+                </view>
+            </view>
+
+            <view class="tokenize-view">
+                <view class="tokenize-image">
+                    <image class="tokenize-image-style" src="/static/tokenize_four.png"></image>
+                </view>
+                <view class="tokenize-content">
+                    <view class="tokenize-title">Transparency</view>
+                    <view class="tokenize-desc">
+                        Blockchain technology, together with legal transparency, allows all participants in the sale, token owners, to track any processes related to their assets.
+                   </view>
+                </view>
+            </view>
+
+            <view class="tokenize-view">
+                <view class="tokenize-image">
+                    <image class="tokenize-image-style" src="/static/tokenize_five.png"></image>
+                </view>
+                <view class="tokenize-content">
+                    <view class="tokenize-title">Availability</view>
+                    <view class="tokenize-desc">
+                        Security Token Markets and Exchanges are open 24/7. Your tokenized objects are always available to buy and sell, unlike traditional markets.
+                   </view>
+                </view>
+            </view>
+
+            <view class="tokenize-view">
+                <view class="tokenize-image">
+                    <image class="tokenize-image-style" src="/static/tokenize_six.png"></image>
+                </view>
+                <view class="tokenize-content">
+                    <view class="tokenize-title">Legality</view>
+                    <view class="tokenize-desc">
+                        All processes are conducted in full compliance with international law and the laws of individual countries. All participants in the process are fully protected.
                    </view>
                 </view>
             </view>
@@ -39,11 +128,46 @@
             <text class="pub-title">Our Services</text>
             <view class="service_bg"></view>
             <view class="service-title">Integrated Digital Asset Solution</view>
-            <view class="service-view" v-for="item in 6" :key="item">
+            <view class="service-view">
                 <view class="service-view-title">Digital Asset Creation</view>
                 <view class="service-view-content">
                     We can tokenize any real-world asset, transferring its value to its digital analogue.
                     This offer is suitable for both professionals of the financial market and ordinary owners.
+                </view>
+            </view>
+            
+            <view class="service-view">
+                <view class="service-view-title">Digital Asset Advisory</view>
+                <view class="service-view-content">
+                    We are ready to give advice on any issues relating to the implementation of Security Token Offering. This can be either one-time assistance or the full project support.
+                </view>
+            </view>
+            
+            <view class="service-view">
+                <view class="service-view-title">Legal Regulation</view>
+                <view class="service-view-content">
+                    Every security token offering must be registered in accordance with the laws of a country. We help to understand all the complexities of legislation and to register STOs with regulatory authorities.
+                </view>
+            </view>
+            
+            <view class="service-view">
+                <view class="service-view-title">Solution Integrations</view>
+                <view class="service-view-content">
+                    We can help integrate blockchain into client's business processes, such as logistics, law, management, etc. This can help streamline processes and save resources.
+                </view>
+            </view>
+            
+            <view class="service-view">
+                <view class="service-view-title">Marketing and PR</view>
+                <view class="service-view-content">
+                    PR and Promotion of security token sale is a complex process requiring an integrated approach. We can take on the whole implementation of a marketing strategy.
+                </view>
+            </view>
+            
+            <view class="service-view">
+                <view class="service-view-title">Info Disclosure and Rating</view>
+                <view class="service-view-content">
+                    After the release and sale of tokens, an equally important and crucial stage begins. You need to register investments correctly, disclose asset or project information, and get rated in a credible framework.
                 </view>
             </view>
         </view>

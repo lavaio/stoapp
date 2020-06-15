@@ -5,32 +5,30 @@
                 class="selectItem"
                 :changeFixed = "changeFixed"
                 :selectList = "item.options"
-                :selectLabel = "item.title">
+                :handleSelectValue = "handleSelectValue"
+                :name = "item.selectName"
+                :selectLabel = "item.options[0].label">
             </selectComponent>
         </view>
+        <view class="empty-view"></view>
         <view :class="isFixed ? 'sto-list position-fixed' : 'sto-list' ">
-            <view class="sto-list-view" v-for="item in 6" :key="item" @click="goDetailPage(item)">
+            <view class="sto-list-view" v-for="(item, index) in stoListData" :key="index" @click="goDetailPage(item)">
                 <view class="sto-list-image">
-                    <image class="sto-list-image-style" src="https://securityin.oss-cn-hongkong.aliyuncs.com/img/cover/Smartchem/Smartchem.png" mode="aspectFill"></image>
+                    <image class="sto-list-image-style" :src="item.cover" mode="aspectFill"></image>
                 </view>
                 <view class="sto-list-content">
                     <view class="logo-view">
-                        <image class="sto-list-logo" src="https://securityin.oss-cn-hongkong.aliyuncs.com/img/logo/edeXa/edeXa.jpg"></image>
-                        <text class="sto-list-company-name">VMC</text>
+                        <image class="sto-list-logo" :src="item.logo_urk"></image>
+                        <text class="sto-list-company-name">{{item['token name']}}</text>
                     </view>
-                    <view class="sto-list-desc">connecting the dots of urban mobility</view>
+                    <view class="sto-list-desc">{{item.brief}}</view>
                     <view class="sto-list-icon-view">
                         <icon class = "iconfont icondanxuankuang" style="color: #EE2E6B; font-size: 14px;"></icon>
-                        <text class="sto-list-progress">Uncoming</text>
+                        <text class="sto-list-progress">{{item.status}}</text>
                     </view>
                 </view>
             </view>
         </view>
-        <!-- <u-link class="hello-link" :href="'https://uniapp.dcloud.io/component/'" :text="'https://uniapp.dcloud.io/component/'"
-            :inWhiteList="true">
-        </u-link> -->
-
-
 	</view>
 </template>
 <script>
@@ -43,7 +41,9 @@
 		},
 		data() {
 			return {
+                stoListData:[],
                 isFixed: false,
+                selectLabel: "Status",
                 selectList: [{
                     label: "Status",
                     value: ""
@@ -140,6 +140,16 @@
                         label: 'End date',
                 }],
                 sortValue: 'Date added asc',
+
+
+                status:"All",
+                category:"All",
+                asset_class:"All",
+                token_right:"All",
+                country:"All",
+                profile:"",
+
+                page:"",
 
                 selectTitleZh:[{
                     title: "状态",
@@ -273,15 +283,32 @@
             }
         },
 
-
+        mounted(){
+            this.getStoList()
+        },
 		methods: {
             changeFixed(isFixed){
-                console.log("//////////")
-                console.log(isFixed)
                 this.isFixed = isFixed
             },
-            goDetailPage(id) {
-            	let url = '/pages/template/sto-detail/sto-detail?id='+ id;
+            handleSelectValue(name,value){
+                this[name] = value
+            },
+            getStoList(){
+                let params =`sort=&status=${this.status}&category=${this.category}&asset_class=${this.asset_class}&token_right=${this.token_right}&country=${this.country}&page=1&limit=100`;
+                uni.request({
+                	url: `https://securityin.com/api/stos/get_list?${params}`,
+                	data: {},
+                	success: data => {
+                		console.log(data)
+                        this.stoListData = data.data.data;
+                	},
+                	fail: (data, code) => {
+                		console.log('fail' + JSON.stringify(data));
+                	}
+                });
+            },
+            goDetailPage(item) {
+            	let url = '/pages/template/sto-detail/sto-detail?tokenName='+ item["token name"];
             	uni.navigateTo({
             		url: url
             	});

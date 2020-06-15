@@ -3,7 +3,6 @@
             <view class="select_box" @click="handleMask">
                 <view class="label" ref="label">{{selectLabel}}</view>
                 <view class="iconfont-style">
-
                     <icon  v-if="showMask" class='iconfont iconarrow-down' style="color: #27ACE0;" ref="down"></icon>
                     <icon v-else class='iconfont iconIcon-KeyboardArrow-Down-Rounded' ref="up"></icon>
                 </view>
@@ -28,21 +27,25 @@
                 selectVale: "",
             }
 		},
-        props:[
-            "selectList",
-            "selectLabel",
-            "changeFixed"
-            // selectList:{
-            //     default: ""
-            // },
-            // selectLabel: {
-            // },
-            // changeFixed
-        ],
+        props:{
+            "selectList": {
+
+            },
+            "selectLabel": {
+                default: "All"
+            },
+            "changeFixed": {},
+            "name": {
+            },
+            "handleSelectValue": {
+
+            }
+        },
 		methods: {
             handleSelectItemClick(e){
                 this.selectVale = e.target.id
                 this.selectLabel = e.target.dataset.selectLabel;
+                this.handleSelectValue(this.name, e.target.id)
             },
             closeMask(){
                 this.showMask = false;

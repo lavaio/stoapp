@@ -5,15 +5,12 @@
                 Description
             </view>
             <view class="desc" ref="desc">
-                VMC is a blockchain based open mobility platform, developed to host various mobility service providers into
-                a single digital space. The company is building a one-stop shop decentralized solution for a trillion dollar
-                mobility market, which enables developers and mobility
-                service providers to build dApps that offer services for ride/vehicle sharing, public transport and more.
+                	{{stoItem.description}}
             </view>
             <view class="read-more" ref="readeMore" @click="handleClick"> read more</view>
         </view>
         <view class="backgroundStyle"></view>
-        <view class="info">
+       <!-- <view class="info">
             <view class="public-title">General information</view>
             <view class="public-info">
                 <view  class="info-left">
@@ -45,16 +42,16 @@
                     <view class="info-item border-before">Netherlands </view>
                 </view>
             </view>
-        </view>
+        </view> -->
         <view class="backgroundStyle"></view>
         <view class="info">
-            <view class="public-title">General information</view>
+            <view class="public-title">Legal</view>
             <view class="public-info">
                 <view class="info-left">
                     Company name:
                 </view>
                 <view class="right">
-                    <view class="info-item">VMC.AI BV </view>
+                    <view class="info-item">{{stoItem['Company name']}}</view>
                 </view>
             </view>
             <view class="public-info">
@@ -62,7 +59,7 @@
                     Country of incorporation:
                 </view>
                 <view class="right">
-                    <view class="info-item border-before">Netherlands </view>
+                    <view class="info-item border-before">{{stoItem['Country of incorporation']}} </view>
                 </view>
             </view>
             <view class="public-info">
@@ -71,7 +68,7 @@
                 </view>
                 <view class="right">
                     <view class="info-item location">
-                        Prinsengracht 463-1, 1016 HP, Amsterdam
+                        {{stoItem['Company address']}}
                     </view>
                 </view>
             </view>
@@ -80,7 +77,7 @@
                     Whitelist:
                 </view>
                 <view class="right">
-                    <view class="info-item gou">
+                    <view :class=" stoItem.WhiteList ? 'info-item gou' : 'info-item'">
                         Required
                     </view>
                 </view>
@@ -91,13 +88,13 @@
                     KYC:
                 </view>
                 <view class="right">
-                    <view class="info-item gou">
+                    <view :class=" stoItem.KYC ? 'info-item gou' : 'info-item'">
                         Required
                     </view>
                 </view>
             </view>
 
-            <view class="public-info">
+            <!-- <view class="public-info">
                 <view class="info-left">
                     AML:
                 </view>
@@ -106,7 +103,7 @@
                         Required
                     </view>
                 </view>
-            </view>
+            </view> -->
         </view>
         <view class="backgroundStyle"></view>
         <view class="info">
@@ -125,13 +122,33 @@
         <view class="backgroundStyle"></view>
         <view class="info">
             <view class="public-title">Token details</view>
-            <view class="public-info" v-for="item in 3" :key="item">
+            <view class="public-info">
+                <view class="info-left">
+                    Symbol:
+                </view>
+                <view class="right">
+                    <view class="info-item">
+                        	{{stoItem['Symbol']}}
+                    </view>
+                </view>
+            </view>
+            <view class="public-info">
                 <view class="info-left">
                     Available for sale:
                 </view>
                 <view class="right">
                     <view class="info-item">
-                        45 000 000 (45%)
+                        {{stoItem['Available for sale']}}
+                    </view>
+                </view>
+            </view>
+            <view class="public-info">
+                <view class="info-left">
+                    Total supply tokens:
+                </view>
+                <view class="right">
+                    <view class="info-item">
+                        {{stoItem['Total supply tokens']}}
                     </view>
                 </view>
             </view>
@@ -140,9 +157,42 @@
         <view class="backgroundStyle"></view>
         <view class="info">
             <view class="public-title">Fundraise Information</view>
-            <view class="public-info" v-for="item in 3" :key="item">
+            <view class="public-info">
                 <view class="info-left">
-                    Presale Price::
+                    Minimum goal:
+                </view>
+                <view class="right">
+                    <view class="info-item">
+                        {{stoItem['Minimum goal']}}
+
+                    </view>
+                </view>
+            </view>
+            <view class="public-info">
+                <view class="info-left">
+                    Fundraising goal:
+                </view>
+                <view class="right">
+                    <view class="info-item">
+                        		{{stoItem['Fundraising goal']}}
+                    </view>
+                </view>
+            </view>
+            <view class="public-info">
+                <view class="info-left">
+                    Min investment:
+
+                </view>
+                <view class="right">
+                    <view class="info-item">
+                        								{{stoItem['Min investment']}}
+
+                    </view>
+                </view>
+            </view>
+            <view class="public-info">
+                <view class="info-left">
+                    Bonuses:
                 </view>
                 <view class="right">
                     <view class="info-item">
@@ -150,38 +200,40 @@
                     </view>
                 </view>
             </view>
+
+
             <view class="public-info">
                <view class="info-left">
                    Bonuses:
                </view>
                <view class="right">
                    <view class="info-item">
-                       Option A: For Placement of 1,000–2,000 EUR — 10%
-                       Option B: For Placement of 2,001–4,000 EUR — 20%
-                       Option C: For Placement of 4,001–6,000 EUR — 30%
-                       Option D: For Placement over 6,001 EUR — Negotiable
+                       								{{stoItem['Bonuses']}}
+
                    </view>
                </view>
            </view>
         </view>
         <view class="backgroundStyle"></view>
         <view class="date-line">
-            <view class="public-title">Additional links</view>
-            <view class="date-view" ref="lessLine">
-                <view class="date-view-box" v-for="item in 3" :key="item">
+            <view class="public-title">Milestones</view>
+            <view class="date-view" ref="lessLine"  v-if="stoItem['milestones'] && stoItem['milestones'].length">
+                <view class="date-view-box" v-for="(value,key,itemIndex) in stoItem['milestones'][0]" :key="itemIndex">
                     <view>
-                        <view :class="item == 3 ? 'line-item': 'line-item line-style'"></view>
+                        <!-- <view :class="item == 3 ? 'line-item': 'line-item line-style'"></view> -->
+                        <view :class="itemIndex== Object.keys(stoItem['milestones'][0]).length-1? 'line-item' : 'line-item line-style' "></view>
                     </view>
                     <view class="date-view-right">
-                        <view class="date-title">Q3 2017</view>
+                        <view class="date-title">{{key}}</view>
                         <view class="date-desc">
-                            Write the first release of the white paper
+                            {{value}}
                         </view>
                     </view>
                 </view>
             </view>
+
             <view class="date-view display-none" ref="moreLine" >
-                <view class="date-view-box" v-for="item in 6" :key="item">
+                <!-- <view class="date-view-box" v-for="item in 6" :key="item">
                     <view>
                         <view :class="item == 6 ? 'line-item': 'line-item line-style'"></view>
                     </view>
@@ -191,7 +243,7 @@
                             Write the first release of the white paper
                         </view>
                     </view>
-                </view>
+                </view> -->
             </view>
             <view class="button-style">
                 <view class="public-button" @click="handleLineMore" ref="lineMoreBut">view more</view>
@@ -199,15 +251,15 @@
         </view>
         <view class="backgroundStyle"></view>
         <view class="team-member">
-            <view class="public-title">Team members (13)</view>
+            <view class="public-title">Team members {{stoItem['team members'].length}}</view>
             <view ref="lessTeam">
-                <view class="team-member-view" v-for="item in 3" :key="item">
+                <view class="team-member-view" v-for="(team,index) in stoItem['team members']" :key="index">
                     <view class="team-left">
-                        <image class="team-left-image" src="https://securityin.oss-cn-hongkong.aliyuncs.com/img/mempic/Smartchem/Christian Römlein.png"></image>
+                        <image class="team-left-image" :src="team['ImgURL']"></image>
                     </view>
                     <view class="team-right">
-                        <view class="member-name">Christian Römlein</view>
-                        <view class="member-position">CEO</view>
+                        <view class="member-name">{{team['Name']}}</view>
+                        <view class="member-position">{{team['Post']}}</view>
                     </view>
                 </view>
             </view>
@@ -249,6 +301,11 @@
                 showTeamMore: false
 			}
 		},
+        props:{
+            stoItem: {
+
+            }
+        },
         onLoad(){
             console.log("////////////")
         },
@@ -326,7 +383,7 @@
         font-size: 28rpx;
         text-decoration: underline;
     }
-   
+
     .info{
         padding: 0 16px;
     }
@@ -381,7 +438,7 @@
         content: " ";
         margin-right: 5px;
     }
-    
+
     .border-before::before{
         content: " ";
         width: 32rpx;
@@ -457,7 +514,7 @@
     }
     .line-style::after{
         content: "";
-        height: 100px;
+        height: 130px;
         border: 1px solid #27ACE0;
         display: inline-block;
         position: absolute;

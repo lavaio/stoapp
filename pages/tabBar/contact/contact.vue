@@ -1,0 +1,101 @@
+<template>
+	<view>
+		<view class="contact-form">
+            <view class="pub-title">Contact us to issue STO</view>
+            <view class="input-label">NAME</view>
+            <input class="uni-input" placeholder-style="color:#97A4BA" focus placeholder="name" />
+            <view class="input-label">CONTACT EMAIL</view>
+            <input class="uni-input" placeholder-style="color:#97A4BA" focus placeholder="Contact email" />
+
+            <view class="input-label">INFORMATION</view>
+            <view class="uni-textarea">
+                <textarea placeholder-style="color:#97A4BA" placeholder="We will get back to you as soon as possible…"/>
+            </view>
+            <view class="form-button-style">
+                <text class="public-button">Send</text>
+            </view>
+
+        </view>
+        <view class="other-contact">
+            <view class="pub-title" style="color: #FFFFFF;">Other Ways Of Contact</view>
+            <view class="contact-icon-view">
+                <view class="contact-icon">
+                    <image class="icon-image" src="/static/tuite.png"></image>
+                    <view class="icon-name">Telegram</view>
+                </view>
+                <view class="contact-icon">
+                    <image class="icon-image" src="/static/mail.png"></image>
+                    <view class="icon-name">Mailbox</view>
+                </view>
+                <view class="contact-icon">
+                    <image class="icon-image" src="/static/message.png"></image>
+                    <view class="icon-name">Spreadsheets</view>
+                </view>
+            </view>
+        </view>
+	</view>
+</template>
+
+<script>
+	export default {
+		data() {
+			return {
+
+			}
+		},
+		methods: {
+
+		}
+	}
+</script>
+
+<style>
+.contact-form{
+    padding: 0px 16px 40px;
+    background-color: #FBFBFE;
+    overflow: hidden;
+}
+.input-label{
+    color: #343744;
+    font-size: 32rpx;
+    margin-bottom: 12px;
+    padding-left: 5px;
+    margin-top: 20px;
+}
+.uni-input{
+    border: 1px solid #8A8E9E;
+    border-radius: 8px;
+    height: 44rpx;
+}
+.uni-textarea{
+    border: 1px solid #8A8E9E;
+    border-radius: 8px;
+}
+.form-button-style{
+    text-align: center;
+    margin-top: 32px;
+}
+.other-contact{
+    padding: 0 16px 160rpx;
+    background: linear-gradient(90deg,rgba(49,205,186,1) 0%,rgba(40,170,226,1) 100%);
+    /* background: linear-gradient(180deg,rgba(139,199,251,1) 0%,rgba(82,149,245,1) 100%) linear-gradient(90deg,rgba(49,205,186,1) 0%,rgba(40,170,226,1) 100%);; */
+    overflow: hidden;
+}
+.contact-icon-view{
+    display: flex;
+    justify-content: space-between;
+}
+.contact-icon{
+    text-align: center;
+}
+.icon-image{
+    width: 88rpx;
+    height: 88rpx;
+}
+.icon-name{
+    color: #FFFFFF;
+    margin-top: 16px;
+    font-size: 32rpx;
+    text-align: center;
+}
+</style>

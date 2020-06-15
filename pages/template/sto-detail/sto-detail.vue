@@ -2,10 +2,10 @@
 	<view class="sto-detail">
         <view class="head-view">
             <view class="image-view">
-                <image class="image-style" src="https://securityin.oss-cn-hongkong.aliyuncs.com/img/logo/Smartchem/Smartchem.png"></image>
+                <image class="image-style" :src="stoItem['logo_urk']"></image>
                 <view class="image-content">
-                    <view class="company-name">VMC</view>
-                    <view class="company-desc">Connecting the dots of urban mobility.</view>
+                    <view class="company-name">{{stoItem['token name']}}</view>
+                    <view class="company-desc">{{stoItem['brief']}}</view>
                     <view class="progress">
                         <icon class='iconfont icondanxuankuang' style="font-size: 24rpx;"></icon>
                         <text class="progress-text">Uncoming </text>
@@ -15,13 +15,17 @@
             <view class="tag">
                 <view class="tag-percent">
                     <view class="tag-item tag-back">PROFILE</view>
-                    <view class="percent">70%</view>
+                    <view class="percent">{{stoItem.profile}}</view>
                 </view>
-                <view class="tag-item tag-back tag-border">INFRASTRUCTURE</view>
+               <view class="tag-item tag-back tag-border" v-for="(tag,index) in stoItem['industry tags']"  :key="index">
+
+                    {{tag}}
+
+                    </view>
+                <!-- <view class="tag-item tag-back tag-border">SERVICES</view>
                 <view class="tag-item tag-back tag-border">SERVICES</view>
                 <view class="tag-item tag-back tag-border">SERVICES</view>
-                <view class="tag-item tag-back tag-border">SERVICES</view>
-                <view class="tag-item tag-back tag-border">SERVICES</view>
+                <view class="tag-item tag-back tag-border">SERVICES</view> -->
             </view>
             <view class="rank">
                 <view class="rank-text">Interest  Rank</view>
@@ -39,25 +43,36 @@
                 <view class="period-view">
                     <view class="period-item">
                         <view class="period-name">Rank</view>
-                        <view class="first-period-num">#36</view>
+                        <view class="first-period-num">
+                          {{stoItem.interests && stoItem.interests.length? stoItem.interests[0].Rank : ""}}
+
+                        </view>
                     </view>
                 </view>
                 <view class="period-view">
                     <view class="period-item">
                         <view class="period-name">24H</view>
-                        <view class="period-num">-58.3%</view>
+                        <view class="period-num">
+                            								{{stoItem.interests && stoItem.interests.length? stoItem.interests[0].OneDay : ""}}
+                        </view>
                     </view>
                 </view>
                 <view class="period-view">
                     <view class="period-item">
                         <view class="period-name">7D</view>
-                        <view class="period-num">-47%</view>
+                        <view class="period-num">
+                            								{{stoItem.interests && stoItem.interests.length? stoItem.interests[0].OneWeek : ""}}
+
+                        </view>
                     </view>
                 </view>
                 <view class="period-view">
                     <view class="period-item">
                         <view class="period-name">1M</view>
-                        <view class="period-num">6.9%</view>
+                        <view class="period-num">
+                            								{{stoItem.interests && stoItem.interests.length? stoItem.interests[0].OneMonth : ""}}
+
+                        </view>
                     </view>
                 </view>
             </view>
@@ -76,7 +91,7 @@
                 </view>
             </view>
         </view>
-        <tabDescribe   v-if="currentTabId == 'Description'">
+        <tabDescribe   v-if="currentTabId == 'Description'" :stoItem="stoItem">
 
         </tabDescribe>
        <tabDetail v-if="currentTabId== 'Details' ">
@@ -130,19 +145,38 @@
                         id: "lllllllllllllllllllllllllll"
                     },
                 ],
-                
+                tokenName: "",
+                stoItem: [],
                 currentTabId: "Description",
 			}
 		},
+        mounted(){
+            this.getStoDetail();
+        },
 		methods: {
             handleTab(e){
                 console.log(e.target)
                 this.currentTabId = e.target.id;
-
+            },
+            getStoDetail(){
+                const that = this;
+                uni.request({
+                	url: "https://securityin.com/api/sto/"+ that.tokenName,
+                	data: {},
+                	success: data => {
+                		console.log(data)
+                        this.stoItem = data.data.data;
+                	},
+                	fail: (data, code) => {
+                		console.log('fail' + JSON.stringify(data));
+                	}
+                });
             }
 		},
         onLoad: function (option) {
             console.log(option)
+            this.tokenName = option.tokenName;
+
             // const item = JSON.parse(decodeURIComponent(option.item));
             // console.log(item)
 

@@ -4,7 +4,7 @@
 		{
 			"path": "pages/tabBar/home/home",
 			"style": {
-				"navigationBarTitleText": "Hhjome",
+				"navigationBarTitleText": "Home",
 				"app-plus": {
 					"bounce": "vertical",
 					"titleNView": {
@@ -21,7 +21,7 @@
 		{
 			"path": "pages/tabBar/market/market",
 			"style": {
-				"navigationBarTitleText": "MarApiket",
+				"navigationBarTitleText": "Market",
 				"app-plus": {
 					"titleNView": {
 						"buttons": [{
@@ -68,7 +68,7 @@
 			}
 		},
         {
-        	"path": "pages/tabBar/extUI/extUI",
+        	"path": "pages/tabBar/contact/contact",
         	"style": {
         		"navigationBarTitleText": "Contact",
         		"app-plus": {
@@ -360,6 +360,14 @@
         }
         ,{
             "path" : "pages/tabBar/news/news",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/template/newsDetail/newsDetail",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/tabBar/contact/contact",
             "style" : {}
         }
     ],
@@ -1245,7 +1253,7 @@
 				"text": "News"
 			},
             {
-            	"pagePath": "pages/tabBar/template/template",
+            	"pagePath": "pages/tabBar/contact/contact",
             	"iconPath": "static/contact.png",
             	"selectedIconPath": "static/contactHL.png",
             	"text": "Contact"
