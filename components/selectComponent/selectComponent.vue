@@ -125,6 +125,7 @@
     bottom: 0;
     z-index: 1000;
     background: rgba(0, 0, 0, 0.4);
+    border: 1px solid red;
 }
 .back-white{
     background: #FFFFFF;

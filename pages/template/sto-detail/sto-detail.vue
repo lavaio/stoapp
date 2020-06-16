@@ -124,16 +124,17 @@
                 tabBars: [{
                         name: 'Description',
                         id: 'Description'
-                    }, {
-                        name: 'Details',
-                        id: 'Details'
-                    }, {
-                        name: 'Milestones',
-                        id: 'Milestones'
-                    }, {
-                        name: 'Team members',
-                        id: 'TeamMember'
                     }
+                    // {
+                    //     name: 'Details',
+                    //     id: 'Details'
+                    // }, {
+                    //     name: 'Milestones',
+                    //     id: 'Milestones'
+                    // }, {
+                    //     name: 'Team members',
+                    //     id: 'TeamMember'
+                    // }
                 ],
                 tokenName: "",
                 stoItem: [],

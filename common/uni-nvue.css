@@ -447,11 +447,16 @@ page {
     display: flex;
     align-items: center;
     flex-direction: row;
+    overflow: scroll;
     border-bottom: 1px solid rgba(17,34,63,0.1);
-	overflow: scroll;
 	position: fixed;
 	background: #FFFFFF;
 	z-index: 10;
+	left: 0;
+	right: 0;
+}
+.select-component-view{
+	
 }
 .empty-view{
     height: 100rpx;
