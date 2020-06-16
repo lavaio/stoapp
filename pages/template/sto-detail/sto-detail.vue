@@ -2,7 +2,9 @@
 	<view class="sto-detail">
         <view class="head-view">
             <view class="image-view">
-                <image class="image-style" :src="stoItem['logo_urk']"></image>
+                <view class="head-image">
+                    <image class="image-style" :src="stoItem['logo_urk']"></image>
+                </view>
                 <view class="image-content">
                     <view class="company-name">{{stoItem['token name']}}</view>
                     <view class="company-desc">{{stoItem['brief']}}</view>
@@ -17,28 +19,22 @@
                     <view class="tag-item tag-back">PROFILE</view>
                     <view class="percent">{{stoItem.profile}}</view>
                 </view>
-               <view class="tag-item tag-back tag-border" v-for="(tag,index) in stoItem['industry tags']"  :key="index">
-
+                <view class="tag-item tag-back tag-border" v-for="(tag,index) in stoItem['industry tags']"  :key="index">
                     {{tag}}
-
-                    </view>
-                <!-- <view class="tag-item tag-back tag-border">SERVICES</view>
-                <view class="tag-item tag-back tag-border">SERVICES</view>
-                <view class="tag-item tag-back tag-border">SERVICES</view>
-                <view class="tag-item tag-back tag-border">SERVICES</view> -->
+                </view>
             </view>
             <view class="rank">
                 <view class="rank-text">Interest  Rank</view>
-                <!-- <icon class="iconfont icondanxuankuang"></icon> -->
+                <icon class="iconfont iconyiwen" style="color: #B4B6BF; font-size: 18px;"></icon>
             </view>
-            <view class="head-logo-box">
+            <!-- <view class="head-logo-box">
                 <view class="head-logo-view">
                     <image class="head-logo" src="https://securityin.oss-cn-hongkong.aliyuncs.com/img/logo/Smartchem/Smartchem.png"></image>
                 </view>
                 <view class="head-logo-view">
                     <image class="head-logo" src="https://securityin.oss-cn-hongkong.aliyuncs.com/img/logo/Smartchem/Smartchem.png"></image>
                 </view>
-            </view>
+            </view> -->
             <view class="period">
                 <view class="period-view">
                     <view class="period-item">
@@ -53,7 +49,7 @@
                     <view class="period-item">
                         <view class="period-name">24H</view>
                         <view class="period-num">
-                            								{{stoItem.interests && stoItem.interests.length? stoItem.interests[0].OneDay : ""}}
+                            {{stoItem.interests && stoItem.interests.length? stoItem.interests[0].OneDay : ""}}
                         </view>
                     </view>
                 </view>
@@ -61,7 +57,7 @@
                     <view class="period-item">
                         <view class="period-name">7D</view>
                         <view class="period-num">
-                            								{{stoItem.interests && stoItem.interests.length? stoItem.interests[0].OneWeek : ""}}
+                            {{stoItem.interests && stoItem.interests.length? stoItem.interests[0].OneWeek : ""}}
 
                         </view>
                     </view>
@@ -70,7 +66,7 @@
                     <view class="period-item">
                         <view class="period-name">1M</view>
                         <view class="period-num">
-                            								{{stoItem.interests && stoItem.interests.length? stoItem.interests[0].OneMonth : ""}}
+                            {{stoItem.interests && stoItem.interests.length? stoItem.interests[0].OneMonth : ""}}
 
                         </view>
                     </view>
@@ -137,13 +133,7 @@
                     }, {
                         name: 'Team members',
                         id: 'TeamMember'
-                    },{
-                        name: "test",
-                        id: "kjkjkjkjk"
-                    },{
-                        name: "test",
-                        id: "lllllllllllllllllllllllllll"
-                    },
+                    }
                 ],
                 tokenName: "",
                 stoItem: [],
@@ -155,7 +145,6 @@
         },
 		methods: {
             handleTab(e){
-                console.log(e.target)
                 this.currentTabId = e.target.id;
             },
             getStoDetail(){
@@ -164,7 +153,6 @@
                 	url: "https://securityin.com/api/sto/"+ that.tokenName,
                 	data: {},
                 	success: data => {
-                		console.log(data)
                         this.stoItem = data.data.data;
                 	},
                 	fail: (data, code) => {
@@ -174,7 +162,6 @@
             }
 		},
         onLoad: function (option) {
-            console.log(option)
             this.tokenName = option.tokenName;
 
             // const item = JSON.parse(decodeURIComponent(option.item));
@@ -199,13 +186,17 @@
         display: flex;
         flex-direction: row;
     }
+    .head-image{
+        width: 128rpx;
+        height: 128rpx;
+    }
     .image-style{
         width: 128rpx;
         height: 128rpx;
     }
     .image-content{
         margin-left: 10px;
-        height: 128rpx;
+        /* height: 128rpx; */
     }
     .company-name{
         color: #343744;
@@ -218,7 +209,6 @@
     .company-desc{
         color: #343744;
         font-size: 24rpx;
-        height: 28rpx;
         line-height: 28rpx;
     }
     .progress{

@@ -215,13 +215,13 @@
            </view>
         </view>
         <view class="backgroundStyle"></view>
-        <view class="date-line">
+        <view class="date-line" v-if="stoItem['milestones'] && stoItem['milestones'].length">
             <view class="public-title">Milestones</view>
-            <view class="date-view" ref="lessLine"  v-if="stoItem['milestones'] && stoItem['milestones'].length">
-                <view class="date-view-box" v-for="(value,key,itemIndex) in stoItem['milestones'][0]" :key="itemIndex">
+            <view class="date-view" ref="lessLine"  >
+                <view class="date-view-box" v-for="(value,key,itemIndex) in computTimeLine" :key="itemIndex">
                     <view>
                         <!-- <view :class="item == 3 ? 'line-item': 'line-item line-style'"></view> -->
-                        <view :class="itemIndex== Object.keys(stoItem['milestones'][0]).length-1? 'line-item' : 'line-item line-style' "></view>
+                        <view :class="itemIndex== 2 ? 'line-item' : 'line-item line-style' "></view>
                     </view>
                     <view class="date-view-right">
                         <view class="date-title">{{key}}</view>
@@ -233,19 +233,19 @@
             </view>
 
             <view class="date-view display-none" ref="moreLine" >
-                <!-- <view class="date-view-box" v-for="item in 6" :key="item">
+                <view class="date-view-box" v-for="(value,key,itemIndex) in stoItem['milestones'][0]" :key="itemIndex">
                     <view>
-                        <view :class="item == 6 ? 'line-item': 'line-item line-style'"></view>
+                       <view :class="itemIndex== Object.keys(stoItem['milestones'][0]).length-1? 'line-item' : 'line-item line-style' "></view>
                     </view>
                     <view class="date-view-right">
-                        <view class="date-title">Q3 2017</view>
-                        <view class="date-desc">
-                            Write the first release of the white paper
-                        </view>
+                       <view class="date-title">{{key}}</view>
+                       <view class="date-desc">
+                           {{value}}
+                       </view>
                     </view>
-                </view> -->
+               </view>
             </view>
-            <view class="button-style">
+            <view class="button-style" v-if="stoItem['milestones'] && stoItem['milestones'].length">
                 <view class="public-button" @click="handleLineMore" ref="lineMoreBut">view more</view>
             </view>
         </view>
@@ -253,7 +253,7 @@
         <view class="team-member">
             <view class="public-title">Team members {{stoItem['team members'].length}}</view>
             <view ref="lessTeam">
-                <view class="team-member-view" v-for="(team,index) in stoItem['team members']" :key="index">
+                <view class="team-member-view"  v-for="(team,index) in computTeamMember" :key="index">
                     <view class="team-left">
                         <image class="team-left-image" :src="team['ImgURL']"></image>
                     </view>
@@ -264,14 +264,14 @@
                 </view>
             </view>
             <view ref="moreTeam" class="display-none">
-                <view class="team-member-view" v-for="item in 6" :key="item">
+                <view class="team-member-view"  v-for="(team,index) in stoItem['team members']" :key="index">
                     <view class="team-left">
-                        <image class="team-left-image" src="https://securityin.oss-cn-hongkong.aliyuncs.com/img/mempic/Smartchem/Christian Römlein.png"></image>
+                        <image class="team-left-image" :src="team['ImgURL']"></image>
                     </view>
                     <view class="team-right">
-                        <view class="member-name">Christian Römlein</view>
-                        <view class="member-position">CEO</view>
-                     </view>
+                        <view class="member-name">{{team['Name']}}</view>
+                        <view class="member-position">{{team['Post']}}</view>
+                    </view>
                 </view>
             </view>
             <view class="button-style marginTop">
@@ -303,9 +303,26 @@
 		},
         props:{
             stoItem: {
-
             }
         },
+        computed: {
+            computTimeLine: function () {
+                let obj = this.stoItem['milestones'][0];
+                let newObj = {};
+                Object.keys(obj).map((item, index)=>{
+                    if(index < 3){
+                        newObj[item] = obj[item]
+                    }
+                })
+                return newObj
+            },
+            computTeamMember: function () {
+                return this.stoItem['team members'].filter((item,index)=>{
+                    return index < 4
+                })
+            },
+        },
+
         onLoad(){
             console.log("////////////")
         },
@@ -315,7 +332,7 @@
                 if(showTeamMore){
                     this.$refs.lessTeam.$el.style.display = "none";
                     this.$refs.moreTeam.$el.style.display = "block";
-                    this.$refs.teamMoreButton.$el.innerHTML = "收起";
+                    this.$refs.teamMoreButton.$el.innerHTML = "Collapse";
                 } else{
                     this.$refs.lessTeam.$el.style.display = "block";
                     this.$refs.moreTeam.$el.style.display = "none";
@@ -328,7 +345,7 @@
                 let showMore = !this.showMore;
                 if(showMore){
                     this.$refs.desc.$el.style.webkitLineClamp = "unset"
-                    this.$refs.readeMore.$el.innerHTML = "收起"
+                    this.$refs.readeMore.$el.innerHTML = "Collapse"
                 } else{
                     this.$refs.desc.$el.style.webkitLineClamp = "6";
                     this.$refs.readeMore.$el.innerHTML = "reade more"
@@ -342,7 +359,7 @@
                 if(showLineMore){
                     this.$refs.lessLine.$el.style.display = "none"
                     this.$refs.moreLine.$el.style.display = "block"
-                    this.$refs.lineMoreBut.$el.innerHTML = "收起"
+                    this.$refs.lineMoreBut.$el.innerHTML = "Collapse"
                 } else{
                     this.$refs.lessLine.$el.style.display = "block"
                     this.$refs.moreLine.$el.style.display = "none"

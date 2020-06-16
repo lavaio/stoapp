@@ -9,8 +9,8 @@
 					"bounce": "vertical",
 					"titleNView": {
 						"buttons": [{
-							"text": "\ue600",
-							"fontSrc": "/static/iconfont.ttf",
+							// "text": "\ue600",
+							// "fontSrc": "/static/iconfont.ttf",
 							"fontSize": "22px",
 							"color": "#FFFFFF"
 						}]
@@ -25,8 +25,8 @@
 				"app-plus": {
 					"titleNView": {
 						"buttons": [{
-							"text": "\ue534",
-							"fontSrc": "/static/uni.ttf",
+							// "text": "\ue534",
+							// "fontSrc": "/static/uni.ttf",
 							"fontSize": "22px",
 							"color": "#FFFFFF"
 						}]
@@ -42,8 +42,8 @@
 				"app-plus": {
 					"titleNView": {
 						"buttons": [{
-							"text": "\ue534",
-							"fontSrc": "/static/uni.ttf",
+							// "text": "\ue534",
+							// "fontSrc": "/static/uni.ttf",
 							"fontSize": "22px",
 							"color": "#FFFFFF"
 						}]
@@ -58,8 +58,8 @@
 				"app-plus": {
 					"titleNView": {
 						"buttons": [{
-							"text": "\ue534",
-							"fontSrc": "/static/uni.ttf",
+							// "text": "\ue534",
+							// "fontSrc": "/static/uni.ttf",
 							"fontSize": "22px",
 							"color": "#FFFFFF"
 						}]
@@ -328,7 +328,9 @@
 		}
         ,{
             "path" : "pages/template/sto-detail/sto-detail",
-            "style" : {}
+            "style" : {
+                "navigationBarTitleText": "ST Detail"
+            }
         }
         ,{
             "path" : "components/selectComponent/selectComponent",
@@ -352,7 +354,9 @@
         }
         ,{
             "path" : "pages/template/banner-detail/banner-detail",
-            "style" : {}
+            "style" : {
+                "navigationBarTitleText": "Project profile"
+            }
         }
         ,{
             "path" : "components/tabOverview/tabOverview",
@@ -364,7 +368,9 @@
         }
         ,{
             "path" : "pages/template/newsDetail/newsDetail",
-            "style" : {}
+            "style" : {
+                "navigationBarTitleText": "News Detail"
+            }
         }
     ],
 	"subPackages": [{
@@ -1215,7 +1221,7 @@
 		// #endif
 		"pageOrientation": "portrait",
 		"navigationBarTextStyle": "white",
-		"navigationBarTitleText": "Hello uniapp",
+		// "navigationBarTitleText": "Hello uniapp",
 		"navigationBarBackgroundColor": "#27ACE0",
 		"backgroundColor": "#F8F8F8",
 		"backgroundColorTop": "#F4F5F6",

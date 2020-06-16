@@ -212,6 +212,9 @@ page {
     padding: 0 16px 40px;
     background: #FFFFFF;
 }
+.market-display-none{
+    display: none;
+}
 .sto-list-market-view{
     min-height: 240rpx;
     box-shadow:0px 8px 20px 0px rgba(202,202,202,0.15),0px 4px 8px 4px rgba(229,233,239,1);

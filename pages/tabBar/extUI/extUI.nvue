@@ -1,7 +1,7 @@
 <template>
 	<view class="uni-container">
         <view class='select-view'>
-            <selectComponent v-for="(item,index) in selectTitleZh" :key="index"
+            <selectComponent v-for="(item,index) in selectTitleEn" :key="index"
                 class="selectItem"
                 :changeFixed = "changeFixed"
                 :selectList = "item.options"
@@ -11,7 +11,8 @@
             </selectComponent>
         </view>
         <view class="empty-view"></view>
-        <view :class="isFixed ? 'sto-list position-fixed' : 'sto-list' ">
+        <!-- <view :class="isFixed ? 'sto-list position-fixed' : 'sto-list' " ref="stoList"> -->
+        <view class="sto-list" ref="stoList">
             <view class="sto-list-view" v-for="(item, index) in stoListData" :key="index" @click="goDetailPage(item)">
                 <view class="sto-list-image">
                     <image class="sto-list-image-style" :src="item.cover" mode="aspectFill"></image>
@@ -140,8 +141,6 @@
                         label: 'End date',
                 }],
                 sortValue: 'Date added asc',
-
-
                 status:"All",
                 category:"All",
                 asset_class:"All",
@@ -150,7 +149,136 @@
                 profile:"",
 
                 page:"",
+            selectTitleEn:[{
+					title: "Status",
+					selectName: "status",
+					options: [{
+							value: 'All',
+							label: 'All'
+						}, {
+							value: 'Upcoming',
+							label: 'Upcoming'
+						}, {
+							value: 'Main sale',
+							label: 'Main sale'
+						}, {
+							value: 'Ended',
+							label: 'Ended'
+						}, {
+							value: 'Funded',
+							label: 'Funded'
+						},{
+							value: 'TBA',
+							label: 'TBA'
+					}],
+				},{
+					title: "Industry",
+					selectName: "category",
+					options: [{
+							value: 'All',
+							label: 'All'
+						}, {
+							value: 'Art',
+							label: 'Art'
+						}, {
+							value: 'Banking',
+							label: 'Banking'
+						}, {
+							value: 'E-commerce',
+							label: 'E-commerce'
+						}, {
+							value: 'Energy',
+							label: 'Energy'
+						},{
+							value: 'Finance',
+							label: 'Finance'
+						},{
+							value: 'Gambling',
+							label: 'Gambling'
+						},{
+							value: 'Healthcare',
+							label: 'Healthcare'
+						}],
+				},{
+					title: "asset class",
+					selectName: "asset_class",
+					options: [{
+						value: 'All',
+						label: 'All'
+						},{
+							value: 'Bonds',
+							label: 'Bonds'
+						}, {
+							value: 'Equity',
+							label: 'Equity'
+						}, {
+							value: 'Fund',
+							label: 'Fund'
+						}, {
+							value: 'Real Estate',
+							label: 'Real Estate'
+						}, {
+							value: 'REIT',
+							label: 'REIT'
+						},{
+							value: 'Stock',
+							label: 'Stock'
+					}],
+				},{
+					title: "Token rights",
+					selectName: "token_right",
+					options: [{
+							value: 'All',
+							label: 'All'
+						}, {
+							value: 'Equitable Interest',
+							label: 'Equitable Interest'
+						}, {
+							value: 'Equity Ownership',
+							label: 'Equity Ownership'
+						}, {
+							value: 'Profit Share Right',
+							label: 'Profit Share Right'
+						}, {
+							value: 'Redemption Right',
+							label: 'Redemption Right'
+						},{
+							value: 'Voting Rights',
+							label: 'Voting Rights'
+						}],
 
+				},{
+				title: "Country of incorporation",
+				selectName: "country",
+				options: [{
+						value: 'All',
+						label: 'All'
+					}, {
+						value: 'Bahamas',
+						label: 'Bahamas'
+					}, {
+						value: 'Brazil',
+						label: 'Brazil'
+					}, {
+						value: 'Canada',
+						label: 'Canada'
+					}, {
+						value: 'Cayman Islands',
+						label: 'Cayman Islands'
+					},{
+						value: 'Denmark',
+						label: 'Denmark'
+					},{
+						value: 'Estonia',
+						label: 'Estonia'
+					},{
+						value: 'Finland',
+						label: 'Finland'
+					},{
+						value: 'France',
+						label: 'France'
+				}],
+            }],
                 selectTitleZh:[{
                     title: "状态",
                     selectName: "status",
@@ -288,10 +416,16 @@
         },
 		methods: {
             changeFixed(isFixed){
-                this.isFixed = isFixed
+                // this.isFixed = isFixed
+                if(isFixed){
+                    this.$refs.stoList.$el.setAttribute("class", "sto-list position-fixed")
+                } else {
+                    this.$refs.stoList.$el.setAttribute("class", "sto-list")
+                }
             },
-            handleSelectValue(name,value){
+            handleSelectValue(name,value, label){
                 this[name] = value
+                console.log(this[name])
             },
             getStoList(){
                 let params =`sort=&status=${this.status}&category=${this.category}&asset_class=${this.asset_class}&token_right=${this.token_right}&country=${this.country}&page=1&limit=100`;

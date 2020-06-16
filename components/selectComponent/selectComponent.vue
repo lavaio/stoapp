@@ -45,7 +45,7 @@
             handleSelectItemClick(e){
                 this.selectVale = e.target.id
                 this.selectLabel = e.target.dataset.selectLabel;
-                this.handleSelectValue(this.name, e.target.id)
+                this.handleSelectValue(this.name, e.target.id,  e.target.dataset.selectLabel)
             },
             closeMask(){
                 this.showMask = false;
@@ -106,7 +106,7 @@
     top: 186rpx;
     right: 0;
     bottom: 0;
-    z-index: 1;
+    z-index: 1000;
     background: rgba(0, 0, 0, 0.4);
 
 }

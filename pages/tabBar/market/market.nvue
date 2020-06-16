@@ -2,45 +2,85 @@
     <view class="uni-container">
         <view class="sto-list-market">
             <text class="sto-title">STO Being Traded</text>
-            <view class="sto-list-market-view" v-for="(item, index) in tableData" :key="item.id">
-                <view class="sto-list-market-top">
-                    <view class="sto-list-market-top-left">
-                        <image class="sto-list-market-image" :src="item.logo"></image>
-                        <view class="sto-list-market-top-info">
-                            <text class="sto-list-market-num">
-                                {{item.companyName}}
-                            </text>
-                            <view class="sto-list-market-company">{{item.smallNmae}}</view>
-                        </view>
-                    </view>
-                    <view class="sto-list-market-top-right">
-                        <view :class="item.change >0 ? 'price up-color':item.change == 0? 'price static-color':'price down-color'">
-                            {{item.price}}
-                        </view>
-                        <view class="color-gray">$9,057,297.27</view>
-                    </view>
-                </view>
-                <view class="sto-list-market-bottom">
-                    <view>
-                        <text class="change-color"> Change：
-                            <view :class="item.change >0 ? 'change-num up-color':item.change == 0? 'change-num static-color':'change-num down-color'">
-                                <icon :class="item.change >0 ? 'iconfont iconshang':item.change == 0? 'iconfont iconzuoyou':'iconfont iconxia'" ></icon>
-                                0.3%
+            <view ref="lessTable">
+                <view class="sto-list-market-view"  v-for="(item, index) in computTableMember" :key="item.id">
+                    <view class="sto-list-market-top">
+                        <view class="sto-list-market-top-left">
+                            <image class="sto-list-market-image" :src="item.logo"></image>
+                            <view class="sto-list-market-top-info">
+                                <text class="sto-list-market-num">
+                                    {{item.companyName}}
+                                </text>
+                                <view class="sto-list-market-company">{{item.smallNmae}}</view>
                             </view>
-                        </text>
+                        </view>
+                        <view class="sto-list-market-top-right">
+                            <view :class="item.change >0 ? 'price up-color':item.change == 0? 'price static-color':'price down-color'">
+                                {{item.price}}
+                            </view>
+                            <view class="color-gray">$9,057,297.27</view>
+                        </view>
                     </view>
-                    <view>
-                      <text class="change-color">
-                        24 Volume：
-                        <text class="change-num sto-list-margin static-color">
-                            0.3%
-                        </text>
-                      </text>
+                    <view class="sto-list-market-bottom">
+                        <view>
+                            <text class="change-color"> Change：
+                                <view :class="item.change >0 ? 'change-num up-color':item.change == 0? 'change-num static-color':'change-num down-color'">
+                                    <icon :class="item.change >0 ? 'iconfont iconshang':item.change == 0? 'iconfont iconzuoyou':'iconfont iconxia'" ></icon>
+                                    0.3%
+                                </view>
+                            </text>
+                        </view>
+                        <view>
+                          <text class="change-color">
+                            24 Volume：
+                            <text class="change-num sto-list-margin static-color">
+                                0.3%
+                            </text>
+                          </text>
+                        </view>
                     </view>
                 </view>
             </view>
-
-            <view class="public-button margin-top">See More</view>
+            <view class="market-display-none" ref="moreTable">
+                <view class="sto-list-market-view"  v-for="(item, index) in tableData" :key="item.id">
+                    <view class="sto-list-market-top">
+                        <view class="sto-list-market-top-left">
+                            <image class="sto-list-market-image" :src="item.logo"></image>
+                            <view class="sto-list-market-top-info">
+                                <text class="sto-list-market-num">
+                                    {{item.companyName}}
+                                </text>
+                                <view class="sto-list-market-company">{{item.smallNmae}}</view>
+                            </view>
+                        </view>
+                        <view class="sto-list-market-top-right">
+                            <view :class="item.change >0 ? 'price up-color':item.change == 0? 'price static-color':'price down-color'">
+                                {{item.price}}
+                            </view>
+                            <view class="color-gray">$9,057,297.27</view>
+                        </view>
+                    </view>
+                    <view class="sto-list-market-bottom">
+                        <view>
+                            <text class="change-color"> Change：
+                                <view :class="item.change >0 ? 'change-num up-color':item.change == 0? 'change-num static-color':'change-num down-color'">
+                                    <icon :class="item.change >0 ? 'iconfont iconshang':item.change == 0? 'iconfont iconzuoyou':'iconfont iconxia'" ></icon>
+                                    0.3%
+                                </view>
+                            </text>
+                        </view>
+                        <view>
+                          <text class="change-color">
+                            24 Volume：
+                            <text class="change-num sto-list-margin static-color">
+                                0.3%
+                            </text>
+                          </text>
+                        </view>
+                    </view>
+                </view>
+            </view>
+            <view class="public-button margin-top" @click="handleTableMore" ref="tableMoreButton">See More</view>
         </view>
 
         <view class="banner">
@@ -297,12 +337,6 @@
                     "priceSrc": "13.jpg"
                 }
             ];
-
-
-
-
-
-
 
             // 暂时这么写，后面看怎么优化。
             let mediaPages = [{
@@ -635,6 +669,7 @@
             return {
                 showSetTabBarPage: false,
                 list: list,
+                showTableMore: false,
                 navigateFlag: false,
                 tableData: tableData,
                 indicatorDots: true,
@@ -750,6 +785,15 @@
                 ]
             }
         },
+        computed: {
+            computTableMember: function () {
+                let newArr = this.tableData.filter((item,index)=>{
+                    return index < 4
+                })
+                return newArr
+            }
+        },
+
         onLoad() {
         },
         onReady() {
@@ -761,9 +805,22 @@
         onHide() {
             this.leaveSetTabBarPage();
         },
+
         methods: {
+            handleTableMore(){
+                let showTableMore = !this.showTableMore;
+                if(showTableMore){
+                    this.$refs.lessTable.$el.style.display = "none";
+                    this.$refs.moreTable.$el.style.display = "block";
+                    this.$refs.tableMoreButton.$el.innerHTML = "Collapse";
+                } else{
+                    this.$refs.lessTable.$el.style.display = "block";
+                    this.$refs.moreTable.$el.style.display = "none";
+                    this.$refs.tableMoreButton.$el.innerHTML = "See More"
+                }
+                this.showTableMore = showTableMore;
+            },
             goBannerDetailPage(id) {
-                console.log("///")
             	let url = '/pages/template/banner-detail/banner-detail?id='+ id;
             	uni.navigateTo({
             		url: url
