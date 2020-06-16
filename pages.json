@@ -67,22 +67,22 @@
 				}
 			}
 		},
-        {
-        	"path": "pages/tabBar/contact/contact",
-        	"style": {
-        		"navigationBarTitleText": "Contact",
-        		"app-plus": {
-        			"titleNView": {
-        				"buttons": [{
-        					"text": "\ue534",
-        					"fontSrc": "/static/uni.ttf",
-        					"fontSize": "22px",
-        					"color": "#FFFFFF"
-        				}]
-        			}
-        		}
-        	}
-        },
+        // {
+        // 	"path": "pages/tabBar/contact/contact",
+        // 	"style": {
+        // 		"navigationBarTitleText": "Contact",
+        // 		"app-plus": {
+        // 			"titleNView": {
+        // 				"buttons": [{
+        // 					"text": "\ue534",
+        // 					"fontSrc": "/static/uni.ttf",
+        // 					"fontSize": "22px",
+        // 					"color": "#FFFFFF"
+        // 				}]
+        // 			}
+        // 		}
+        // 	}
+        // },
 		{
 			"path": "pages/component/view/view",
 			"style": {
@@ -1253,13 +1253,13 @@
 				"iconPath": "static/news.png",
 				"selectedIconPath": "static/newsHL.png",
 				"text": "News"
-			},
-            {
-            	"pagePath": "pages/tabBar/contact/contact",
-            	"iconPath": "static/contact.png",
-            	"selectedIconPath": "static/contactHL.png",
-            	"text": "Contact"
-            }
+			}
+            // {
+            // 	"pagePath": "pages/tabBar/contact/contact",
+            // 	"iconPath": "static/contact.png",
+            // 	"selectedIconPath": "static/contactHL.png",
+            // 	"text": "Contact"
+            // }
 		]
 	}
 }

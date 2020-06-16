@@ -112,6 +112,7 @@ export default {
     background: url("~@/static/news_bg.png") no-repeat;
     text-align: center;
     padding-top: 64rpx;
+	border-radius: 8px;
 }
 
 .banner-title {

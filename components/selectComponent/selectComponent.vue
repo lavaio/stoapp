@@ -1,17 +1,20 @@
 <template>
 	<view class="select">
-            <view class="select_box" @click="handleMask">
+            <!-- <view class="select_box" @click="handleMask" @click.native="selectClick"> -->
+            <view class="select_box"  @click.native="selectClick">
                 <view class="label" ref="label">{{selectLabel}}</view>
                 <view class="iconfont-style">
-                    <icon  v-if="showMask" class='iconfont iconarrow-down' style="color: #27ACE0;" ref="down"></icon>
-                    <icon v-else class='iconfont iconIcon-KeyboardArrow-Down-Rounded' ref="up"></icon>
+                    <view  v-if="showMask" class='iconfont iconarrow-down' style="color: #27ACE0;" ref="down"></view>
+                    <view v-else class='iconfont iconIcon-KeyboardArrow-Down-Rounded' ref="up"></view>
                 </view>
             </view>
         <!-- 遮罩层 -->
             <view  v-if="showMask" class="mask"  ref="mask">
-                <view class="select-list">
-                    <view class="select-item" v-for="item in selectList" :key="item.value" v-bind:id="item.value" @click="handleSelectItemClick" :data-select-label="item.label">
-                        {{item.label}}
+                <view class="back-white">
+                    <view class="select-list">
+                        <view class="select-item" v-for="item in selectList" :key="item.value" v-bind:id="item.value" @click="handleSelectItemClick" :data-select-label="item.label">
+                            {{item.label}}
+                        </view>
                     </view>
                     <text class="select-margin select-button" @click="closeMask">Determine</text>
                 </view>
@@ -29,19 +32,30 @@
 		},
         props:{
             "selectList": {
-
+                type: Array
             },
             "selectLabel": {
-                default: "All"
+                default: "All",
+                type: String
             },
-            "changeFixed": {},
+            "changeFixed": {
+                type: Function
+            },
             "name": {
+                type: String
             },
             "handleSelectValue": {
-
+                type: Function
+            },
+            "selectHeadClick": {
+                type: Function
             }
         },
 		methods: {
+            selectClick(e){
+               this.selectHeadClick(e.target);
+               this.handleMask();
+            },
             handleSelectItemClick(e){
                 this.selectVale = e.target.id
                 this.selectLabel = e.target.dataset.selectLabel;
@@ -51,7 +65,9 @@
                 this.showMask = false;
                 this.changeFixed(false)
             },
-
+            justCloseMask(){
+                this.showMask = false;
+            },
             handleMask(){
                 let showMask = !this.showMask;
                 if(showMask){
@@ -102,19 +118,22 @@
     width: 750rpx;
     height:100vh;
     position: fixed;
+    margin-top: -4px;
     left: 0;
-    top: 186rpx;
+    top: 188rpx;
     right: 0;
     bottom: 0;
     z-index: 1000;
     background: rgba(0, 0, 0, 0.4);
-
+}
+.back-white{
+    background: #FFFFFF;
+    padding: 0 16px 16px;
 }
 .select-list{
-    background: #FFFFFF;
-    padding:0  16px 16px;
     color: #343744;
-
+    max-height: 400px;
+    overflow-y: scroll;
 }
 .select-item{
     height: 96rpx;

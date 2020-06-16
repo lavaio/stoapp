@@ -97,7 +97,8 @@
                         @change="handleChange"
                         circular="true">
                             <swiper-item v-for="(item,index) in bannerData" :key="item.id">
-                                <view class="swiper-item" current-item-id="one" :style=" index == 0 ? 'transform:scale(1);' : 'transform:scale(0.9)'" @click="goBannerDetailPage(item)">
+                                <!-- <view class="swiper-item" current-item-id="one" :style=" index == 0 ? 'transform:scale(1);' : 'transform:scale(0.9)'" @click="goBannerDetailPage(item)"> -->
+                                <view class="swiper-item" current-item-id="one" :style=" index == 0 ? 'transform:scale(1);' : 'transform:scale(0.9)'">
                                     <view class="swiper-image">
                                         <image class="swiper-image-style" :src="item.src"></image>
                                     </view>

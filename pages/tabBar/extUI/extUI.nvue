@@ -3,14 +3,18 @@
         <view class='select-view'>
             <selectComponent v-for="(item,index) in selectTitleEn" :key="index"
                 class="selectItem"
+                ref="selectDom"
                 :changeFixed = "changeFixed"
                 :selectList = "item.options"
                 :handleSelectValue = "handleSelectValue"
                 :name = "item.selectName"
-                :selectLabel = "item.options[0].label">
+                :selectLabel = "item.title"
+                :selectHeadClick = "selectHeadClick"
+            >
             </selectComponent>
         </view>
         <view class="empty-view"></view>
+        <!-- :selectLabel = "item.options[0].label" -->
         <!-- <view :class="isFixed ? 'sto-list position-fixed' : 'sto-list' " ref="stoList"> -->
         <view class="sto-list" ref="stoList">
             <view class="sto-list-view" v-for="(item, index) in stoListData" :key="index" @click="goDetailPage(item)">
@@ -415,6 +419,11 @@
             this.getStoList()
         },
 		methods: {
+            selectHeadClick(targetDom){
+                this.$refs.selectDom.map(item=>{
+                    item.justCloseMask();
+                })
+            },
             changeFixed(isFixed){
                 // this.isFixed = isFixed
                 if(isFixed){
@@ -425,7 +434,8 @@
             },
             handleSelectValue(name,value, label){
                 this[name] = value
-                console.log(this[name])
+                this.getStoList()
+                
             },
             getStoList(){
                 let params =`sort=&status=${this.status}&category=${this.category}&asset_class=${this.asset_class}&token_right=${this.token_right}&country=${this.country}&page=1&limit=100`;
@@ -433,7 +443,6 @@
                 	url: `https://securityin.com/api/stos/get_list?${params}`,
                 	data: {},
                 	success: data => {
-                		console.log(data)
                         this.stoListData = data.data.data;
                 	},
                 	fail: (data, code) => {

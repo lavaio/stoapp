@@ -86,6 +86,7 @@
     height: 360rpx;
     margin: 20px 16px;
     background: url("~@/static/news_detail_banner.png") no-repeat;
+	background-size: contain;
 }
 .news-detail-content{
     padding: 0 16px 20px;

@@ -303,6 +303,7 @@
 		},
         props:{
             stoItem: {
+				type: Object
             }
         },
         computed: {
