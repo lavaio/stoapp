@@ -120,8 +120,8 @@
     position: fixed;
     margin-top: -4px;
     left: 0;
-    top: 188rpx;
-    right: 0;
+    /* top: 188rpx; */
+    /* right: 0; */
     bottom: 0;
     z-index: 1000;
     background: rgba(0, 0, 0, 0.4);

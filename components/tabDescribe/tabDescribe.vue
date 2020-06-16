@@ -215,7 +215,7 @@
            </view>
         </view>
         <view class="backgroundStyle"></view>
-        <view class="date-line" v-if="stoItem['milestones'] && stoItem['milestones'].length">
+        <view class="date-line" v-if="stoItem['milestones'] && stoItem['milestones'][0].length">
             <view class="public-title">Milestones</view>
             <view class="date-view" ref="lessLine"  >
                 <view class="date-view-box" v-for="(value,key,itemIndex) in computTimeLine" :key="itemIndex">
@@ -250,7 +250,7 @@
             </view>
         </view>
         <view class="backgroundStyle"></view>
-        <view class="team-member">
+        <view class="team-member" v-if="stoItem['team members'] && stoItem['team members'].length " >
             <view class="public-title">Team members {{stoItem['team members'].length}}</view>
             <view ref="lessTeam">
                 <view class="team-member-view"  v-for="(team,index) in computTeamMember" :key="index">

@@ -1,7 +1,6 @@
 <template>
 	<view class="uni-container">
-        <view class='select-view'>
-            <!-- <view class="select-component-view"> -->
+        <!-- <view class='select-view'>
                 <selectComponent v-for="(item,index) in selectTitleEn" :key="index"
                     class="selectItem"
                     ref="selectDom"
@@ -13,9 +12,8 @@
                     :selectHeadClick = "selectHeadClick"
                 >
                 </selectComponent>
-            <!-- </view> -->
-        </view>
-        <view class="empty-view"></view>
+        </view> -->
+        <!-- <view class="empty-view"></view> -->
         <!-- :selectLabel = "item.options[0].label" -->
         <!-- <view :class="isFixed ? 'sto-list position-fixed' : 'sto-list' " ref="stoList"> -->
         <view class="sto-list" ref="stoList">

@@ -155,6 +155,7 @@
                 	data: {},
                 	success: data => {
                         this.stoItem = data.data.data;
+                        console.log(this.stoItem)
                 	},
                 	fail: (data, code) => {
                 		console.log('fail' + JSON.stringify(data));
