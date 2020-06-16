@@ -2,7 +2,7 @@
 	<view class="select">
             <!-- <view class="select_box" @click="handleMask" @click.native="selectClick"> -->
             <view class="select_box"  @click.native="selectClick">
-                <view class="label" ref="label">{{selectLabel}}</view>
+                <view class="label" ref="label">{{label}}</view>
                 <view class="iconfont-style">
                     <view  v-if="showMask" class='iconfont iconarrow-down' style="color: #27ACE0;" ref="down"></view>
                     <view v-else class='iconfont iconIcon-KeyboardArrow-Down-Rounded' ref="up"></view>
@@ -27,7 +27,7 @@
 		data() {
 			return {
                 showMask: false,
-                selectVale: "",
+                label: this.selectLabel
             }
 		},
         props:{
@@ -57,9 +57,9 @@
                this.handleMask();
             },
             handleSelectItemClick(e){
-                this.selectVale = e.target.id
-                this.selectLabel = e.target.dataset.selectLabel;
-                this.handleSelectValue(this.name, e.target.id,  e.target.dataset.selectLabel)
+                let selectVale = e.target.id;
+                this.label = e.target.dataset.selectLabel;
+                this.handleSelectValue(this.name, selectVale,  e.target.dataset.selectLabel)
             },
             closeMask(){
                 this.showMask = false;
