@@ -11,7 +11,7 @@
             <view class="read-more" ref="readeMore" @click="handleClick">
             <!-- read more -->
            <!-- {{ i18n["more"] }} -->
-             {{ i18n["more"] }}
+             {{ market["more"] }}
             </view>
         </view>
         <view class="backgroundStyle"></view>
@@ -263,7 +263,9 @@
                </view>
             </view>
             <view class="button-style" v-if="stoItem['milestones'] && stoItem['milestones'].length">
-                <view class="public-button" @click="handleLineMore" ref="lineMoreBut"> {{ i18n["more"] }} </view>
+                <view class="public-button" @click="handleLineMore" ref="lineMoreBut">
+                {{ market["more"] }}
+                </view>
             </view>
         </view>
         <view class="backgroundStyle"></view>
@@ -297,7 +299,7 @@
             </view>
             <view class="button-style marginTop">
                 <view class="public-button" @click="handleTeamMore" ref="teamMoreButton">
-                    {{ i18n["more"] }}
+                    {{ market["more"] }}
                 </view>
             </view>
         </view>
@@ -327,6 +329,7 @@
 
 <script>
     import mpvuePicker from '@/components/mpvue-picker/mpvuePicker.vue';
+    var util = require('@/common/util.js');
 	export default {
 		data() {
 
@@ -359,9 +362,7 @@
         components:{
             mpvuePicker
         },
-        mounted(){
-            this.setButtonInnerHtml()
-        },
+
         computed: {
             computTimeLine: function () {
                 let obj = this.stoItem['milestones'][0];
@@ -380,6 +381,9 @@
             },
             i18n() {
               return this.$t('sto-detail')
+            },
+            market(){
+              return this.$t('market')
             }
         },
 
@@ -388,13 +392,21 @@
             handleTeamMore(){
                 let showTeamMore = !this.showTeamMore;
                 if(showTeamMore){
+                    if( this.$i18n.locale == "zh-CN"){
+                        this.$refs.teamMoreButton.$el.innerHTML = "收起";
+                    } else{
+                        this.$refs.teamMoreButton.$el.innerHTML = "collapse";
+                    }
                     this.$refs.lessTeam.$el.style.display = "none";
                     this.$refs.moreTeam.$el.style.display = "block";
-                    this.$refs.teamMoreButton.$el.innerHTML = "collapse";
                 } else{
+                    if( this.$i18n.locale == "zh-CN"){
+                        this.$refs.teamMoreButton.$el.innerHTML = "更多";
+                    } else{
+                        this.$refs.teamMoreButton.$el.innerHTML = "see more"
+                    }
                     this.$refs.lessTeam.$el.style.display = "block";
                     this.$refs.moreTeam.$el.style.display = "none";
-                    this.$refs.teamMoreButton.$el.innerHTML = "see more"
                 }
                 this.showTeamMore = showTeamMore;
             },
@@ -405,7 +417,7 @@
                     if( this.$i18n.locale == "zh-CN"){
                         this.$refs.readeMore.$el.innerHTML = "收起"
                     } else {
-                        this.$refs.readeMore.$el.innerHTML = "Collapse"
+                        this.$refs.readeMore.$el.innerHTML = "collapse"
                     }
                     this.$refs.desc.$el.style.webkitLineClamp = "unset"
                 } else{
@@ -423,122 +435,142 @@
                 let showLineMore = !this.showLineMore;
 
                 if(showLineMore){
+                    if( this.$i18n.locale == "zh-CN"){
+                        this.$refs.lineMoreBut.$el.innerHTML = "收起";
+                    } else{
+                        this.$refs.lineMoreBut.$el.innerHTML = "collapse"
+                    }
                     this.$refs.lessLine.$el.style.display = "none"
                     this.$refs.moreLine.$el.style.display = "block"
-                    this.$refs.lineMoreBut.$el.innerHTML = "Collapse"
+
                 } else{
+
+                    if( this.$i18n.locale == "zh-CN"){
+                        this.$refs.lineMoreBut.$el.innerHTML = "更多";
+                    } else{
+                        this.$refs.lineMoreBut.$el.innerHTML = "see more"
+                    }
+
                     this.$refs.lessLine.$el.style.display = "block"
                     this.$refs.moreLine.$el.style.display = "none"
 
-                    this.$refs.lineMoreBut.$el.innerHTML = "reade more"
                 }
                 this.showLineMore = showLineMore;
             },
 
             setButtonInnerHtml(){
-
-                    if( this.$i18n.locale == "zh-CN"){
-                         if(showLineMore){
-                             this.$refs.lineMoreBut.$el.innerHTML = "收起";
-                         } else {
-                             this.$refs.lineMoreBut.$el.innerHTML = "更多";
-                         }
-                        if(showMore){
-                           this.$refs.readeMore.$el.innerHTML = "收起";
-                        } else{
-                            this.$refs.readeMore.$el.innerHTML = "更多";
-                        }
-                        if(showTeamMore){
+                console.log("ppppppppppppppppppp")
+                if(this.$refs.teamMoreButton){
+                    if(this.showTeamMore){
+                        if( this.$i18n.locale == "zh-CN"){
                             this.$refs.teamMoreButton.$el.innerHTML = "收起";
-                        }else{
-                            this.$refs.teamMoreButton.$el.innerHTML = "更多";
-                        }
-
-                    } else {
-                        if(showLineMore){
-                             this.$refs.lineMoreBut.$el.innerHTML = "collapse";
-                         } else {
-                             this.$refs.lineMoreBut.$el.innerHTML = "reade more";
-                         }
-                        if(showMore){
-                           this.$refs.readeMore.$el.innerHTML = "collapse";
                         } else{
+                            this.$refs.teamMoreButton.$el.innerHTML = "collapse";
+                        }
+                    } else{
+                        if( this.$i18n.locale == "zh-CN"){
+                            this.$refs.teamMoreButton.$el.innerHTML = "更多";
+                        } else{
+                            this.$refs.teamMoreButton.$el.innerHTML = "see more"
+                        }
+                    }
+                }
+                if(this.$refs.readeMore){
+                    if(this.showMore){
+                        if( this.$i18n.locale == "zh-CN"){
+                            this.$refs.readeMore.$el.innerHTML = "收起"
+                        } else {
+                            this.$refs.readeMore.$el.innerHTML = "collapse"
+                        }
+                    } else{
+                        if( this.$i18n.locale == "zh-CN"){
+                            this.$refs.readeMore.$el.innerHTML = "更多"
+                        } else {
                             this.$refs.readeMore.$el.innerHTML = "reade more";
                         }
-                        if(showTeamMore){
-                            this.$refs.teamMoreButton.$el.innerHTML = "collapse";
-                        }else{
-                            this.$refs.teamMoreButton.$el.innerHTML = "reade more";
+                    }
+                }
+                if(this.$refs.lineMoreBut){
+                    if(this.showLineMore ){
+                        if( this.$i18n.locale == "zh-CN"){
+                            this.$refs.lineMoreBut.$el.innerHTML = "收起";
+                        } else{
+                            this.$refs.lineMoreBut.$el.innerHTML = "collapse"
+                        }
+
+                    } else{
+
+                        if( this.$i18n.locale == "zh-CN"){
+                            this.$refs.lineMoreBut.$el.innerHTML = "更多";
+                        } else{
+                            this.$refs.lineMoreBut.$el.innerHTML = "see more"
                         }
 
                     }
-                
+                }
+
 
             },
-            onLoad(){
-                this.setButtonInnerHtml();
-            },
+
+            // onCancel(){
+
+            // },
+            // 	// 单列
+            // showSinglePicker() {
+            //     this.mode = 'selector';
+            //     this.deepLength = 1;
+            //     this.pickerValueDefault = [0];
+            //     this.$refs.mpvuePicker.show();
+            // },
+
+            // onConfirm(e) {
+            //     this.$i18n.locale = e.value[0];
+            //     this.setStyle(0, e.label);
+            //     util.setTabBar(this.$i18n.locale,"ST 详情", "ST Detail")
 
 
-
-            onCancel(){
-
-            },
-            	// 单列
-            showSinglePicker() {
-                this.mode = 'selector';
-                this.deepLength = 1;
-                this.pickerValueDefault = [0];
-                this.$refs.mpvuePicker.show();
-            },
-
-            onConfirm(e) {
-                this.$i18n.locale = e.value[0];
-                this.setStyle(0, e.label);
-                this.setButtonInnerHtml();
-
-            },
+            // },
             /**
                 * 修改导航栏buttons
                 * index[number] 修改的buttons 下标索引，最右边索引为0
                 * text[string] 需要修改的text 内容
                 */
-            setStyle(index, text) {
-            	let pages = getCurrentPages();
-            	let page = pages[pages.length - 1];
-            	if (text.length > 3) {
-            		text = text.substr(0, 3) + '...';
-            	}
-            	// #ifdef APP-PLUS
-            	let currentWebview = page.$getAppWebview();
-            	let titleNView = currentWebview.getStyle().titleNView;
-            	// 添加文字过长截取为3个字符，请根据自己业务需求更改
-            	titleNView.buttons[0].text = text;
-            	currentWebview.setStyle({
-            		titleNView: titleNView
-            	});
-            	// #endif
-            	// #ifdef H5
-            	// h5 临时方案
-            	document.getElementsByClassName('uni-btn-icon')[1].innerText = text;
-            	// #endif
-            },
-            onBackPress() {
-                if (this.$refs.mpvuePicker.showPicker) {
-                    this.$refs.mpvuePicker.pickerCancel();
-                    return true;
-                }
-            },
-            onUnload() {
-                if (this.$refs.mpvuePicker.showPicker) {
-                    this.$refs.mpvuePicker.pickerCancel();
-                }
-            },
-            onNavigationBarButtonTap(e) {
-                if (e.index === 0) {
-                    this.showSinglePicker();
-                }
-            }
+            // setStyle(index, text) {
+            // 	let pages = getCurrentPages();
+            // 	let page = pages[pages.length - 1];
+            // 	if (text.length > 3) {
+            // 		text = text.substr(0, 3) + '...';
+            // 	}
+            // 	// #ifdef APP-PLUS
+            // 	let currentWebview = page.$getAppWebview();
+            // 	let titleNView = currentWebview.getStyle().titleNView;
+            // 	// 添加文字过长截取为3个字符，请根据自己业务需求更改
+            // 	titleNView.buttons[0].text = text;
+            // 	currentWebview.setStyle({
+            // 		titleNView: titleNView
+            // 	});
+            // 	// #endif
+            // 	// #ifdef H5
+            // 	// h5 临时方案
+            // 	document.getElementsByClassName('uni-btn-icon')[1].innerText = text;
+            // 	// #endif
+            // },
+            // onBackPress() {
+            //     if (this.$refs.mpvuePicker.showPicker) {
+            //         this.$refs.mpvuePicker.pickerCancel();
+            //         return true;
+            //     }
+            // },
+            // onUnload() {
+            //     if (this.$refs.mpvuePicker.showPicker) {
+            //         this.$refs.mpvuePicker.pickerCancel();
+            //     }
+            // },
+            // onNavigationBarButtonTap(e) {
+            //     if (e.index === 0) {
+            //         this.showSinglePicker();
+            //     }
+            // }
         }
 	}
 </script>

@@ -101,7 +101,7 @@
                 </view>
             </view>
         </view>
-        <tabDescribe   v-if="currentTabId == 'Description'" :stoItem="stoItem">
+        <tabDescribe   v-if="currentTabId == 'Description'" :stoItem="stoItem" ref="tabDescribe">
 
         </tabDescribe>
        <tabDetail v-if="currentTabId== 'Details' ">
@@ -217,6 +217,8 @@
             onConfirm(e) {
                 this.$i18n.locale = e.value[0];
                 this.setStyle(0, e.label);
+                console.log("xxxxxxxxxxxxxxxxx")
+                this.$refs.tabDescribe.setButtonInnerHtml();
                 util.setTabBar(this.$i18n.locale,"ST 详情", "ST Detail")
             },
             /**
