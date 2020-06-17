@@ -16,7 +16,10 @@
             </view>
             <view class="tag">
                 <view class="tag-percent">
-                    <view class="tag-item tag-back">PROFILE</view>
+                    <view class="tag-item tag-back">
+                        <!-- PROFILE -->
+                        {{ i18n["profile"] }}
+                    </view>
                     <view class="percent">{{stoItem.profile}}</view>
                 </view>
                 <view class="tag-item tag-back tag-border" v-for="(tag,index) in stoItem['industry tags']"  :key="index">
@@ -24,7 +27,7 @@
                 </view>
             </view>
             <view class="rank">
-                <view class="rank-text">Interest  Rank</view>
+                <view class="rank-text">{{ i18n["interest-rank"] }}</view>
                 <icon class="iconfont iconyiwen" style="color: #B4B6BF; font-size: 18px;"></icon>
             </view>
             <!-- <view class="head-logo-box">
@@ -73,6 +76,17 @@
                 </view>
             </view>
         </view>
+
+        <mpvue-picker
+        	:themeColor="themeColor"
+        	ref="mpvuePicker"
+        	:mode="mode"
+        	:deepLength="deepLength"
+        	:pickerValueDefault="pickerValueDefault"
+        	@onConfirm="onConfirm"
+        	@onCancel="onCancel"
+        	:pickerValueArray="pickerValueArray"
+        ></mpvue-picker>
         <view class="tabs">
             <view class="tabs-view">
                 <view
@@ -101,6 +115,7 @@
         <tabTeamMember v-if="currentTabId== 'TeamMember' "></tabTeamMember>
 
 
+
 	</view>
 </template>
 
@@ -109,18 +124,38 @@
     import tabDescribe from "@/components/tabDescribe/tabDescribe.vue"
     import tabDetail from "@/components/tabDetail/tabDetail.vue"
     import tabMilestones from "@/components/tabMilestones/tabMilestones.vue"
-    import tabTeamMember from "@/components/tabTeamMember/tabTeamMember.vue"
+    import tabTeamMember from "@/components/tabTeamMember/tabTeamMember.vue";
+    import mpvuePicker from '@/components/mpvue-picker/mpvuePicker.vue';
+    var util = require('../../../common/util.js');
+
 
 
 	export default {
-        comments:{
+        components:{
             tabDescribe,
             tabDetail,
             tabMilestones,
-            tabTeamMember
+            tabTeamMember,
+            mpvuePicker
         },
 		data() {
 			return {
+                themeColor: '#007AFF',
+                mode: '',
+                deepLength: 1,
+                pickerValueDefault: [0],
+                pickerValueArray: [
+                	{
+                		label: '中文',
+                		value: "zh-CN"
+                	},
+                	{
+                		label: '英文',
+                		value: "en-US"
+                	}
+                ],
+
+
                 tabBars: [{
                         name: 'Description',
                         id: 'Description'
@@ -144,6 +179,11 @@
         mounted(){
             this.getStoDetail();
         },
+        computed: {
+            i18n() {
+              return this.$t('sto-detail')
+            }
+        },
 		methods: {
             handleTab(e){
                 this.currentTabId = e.target.id;
@@ -155,25 +195,84 @@
                 	data: {},
                 	success: data => {
                         this.stoItem = data.data.data;
-                        console.log(this.stoItem)
-                        console.log(
-                            Object.keys( this.stoItem['milestones'][0]).length
-                        )
                 	},
                 	fail: (data, code) => {
                 		console.log('fail' + JSON.stringify(data));
                 	}
                 });
+            },
+
+
+            onCancel(){
+
+            },
+            	// 单列
+            showSinglePicker() {
+                this.mode = 'selector';
+                this.deepLength = 1;
+                this.pickerValueDefault = [0];
+                this.$refs.mpvuePicker.show();
+            },
+
+            onConfirm(e) {
+                this.$i18n.locale = e.value[0];
+                this.setStyle(0, e.label);
+                util.setTabBar(this.$i18n.locale,"ST 详情", "ST Detail")
+            },
+            /**
+                * 修改导航栏buttons
+                * index[number] 修改的buttons 下标索引，最右边索引为0
+                * text[string] 需要修改的text 内容
+                */
+            setStyle(index, text) {
+            	let pages = getCurrentPages();
+            	let page = pages[pages.length - 1];
+            	if (text.length > 3) {
+            		text = text.substr(0, 3) + '...';
+            	}
+            	// #ifdef APP-PLUS
+            	let currentWebview = page.$getAppWebview();
+            	let titleNView = currentWebview.getStyle().titleNView;
+            	// 添加文字过长截取为3个字符，请根据自己业务需求更改
+            	titleNView.buttons[0].text = text;
+            	currentWebview.setStyle({
+            		titleNView: titleNView
+            	});
+            	// #endif
+            	// #ifdef H5
+            	// h5 临时方案
+            	document.getElementsByClassName('uni-btn-icon')[1].innerText = text;
+            	// #endif
+            },
+            onBackPress() {
+                if (this.$refs.mpvuePicker.showPicker) {
+                    this.$refs.mpvuePicker.pickerCancel();
+                    return true;
+                }
+            },
+            onUnload() {
+                if (this.$refs.mpvuePicker.showPicker) {
+                    this.$refs.mpvuePicker.pickerCancel();
+                }
+            },
+            onNavigationBarButtonTap(e) {
+                if (e.index === 0) {
+                    this.showSinglePicker();
+                }
             }
+
 		},
         onLoad: function (option) {
             this.tokenName = option.tokenName;
-
             // const item = JSON.parse(decodeURIComponent(option.item));
-            // console.log(item)
+        },
 
 
-        }
+
+
+
+
+
 	}
 </script>
 <style>

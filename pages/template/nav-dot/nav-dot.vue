@@ -32,10 +32,13 @@ export default {
 		 * text[string] 需要修改的角标的text 内容 ，如果定义redDot 此参数无效 ，如果定义badgeText请设置具体，如果不用输入
 		 */
 		setStyle(index, show,text) {
+            console.log("/////////")
 			let pages = getCurrentPages();
 			let page = pages[pages.length - 1];
 			// #ifdef APP-PLUS
 			let currentWebview = page.$getAppWebview();
+
+
 			if(show){
 				if(index === 0){
 					currentWebview.showTitleNViewButtonRedDot({index:index,text:text})
@@ -49,17 +52,17 @@ export default {
 					currentWebview.removeTitleNViewButtonBadge({index:index})
 				}
 			}
-			
+
 			// #endif
 		}
 	},
 	onNavigationBarButtonTap(e) {
 		uni.showToast({
-			title: e.index === 0 ? '你点了消息按钮' : '你点了关注按钮', 
+			title: e.index === 0 ? '你点hjhjhj了消息按钮' : '你点了关注按钮',
 			icon: 'none'
 		});
-		// 取消红点或者角标 
-		this.setStyle(e.index,false);
+		// 取消红点或者角标
+		this.setStyle(e.index, true);
 	},
 	components: {
 		uniIcons

@@ -14,15 +14,45 @@
                 </view>
             </view>
         </view>
+        <mpvue-picker
+        	:themeColor="themeColor"
+        	ref="mpvuePicker"
+        	:mode="mode"
+        	:deepLength="deepLength"
+        	:pickerValueDefault="pickerValueDefault"
+        	@onConfirm="onConfirm"
+        	@onCancel="onCancel"
+        	:pickerValueArray="pickerValueArray"
+        ></mpvue-picker>
 	</view>
 </template>
 
 <script>
+    import mpvuePicker from '@/components/mpvue-picker/mpvuePicker.vue';
+    var util = require('../../../common/util.js');
 	export default {
+        components: {
+            mpvuePicker
+        },
 		data() {
 			return {
                 newsId: "",
-                newsData: []
+                newsData: [],
+
+                themeColor: '#007AFF',
+                mode: '',
+                deepLength: 1,
+                pickerValueDefault: [0],
+                pickerValueArray: [
+                	{
+                		label: '中文',
+                		value: "zh-CN"
+                	},
+                	{
+                		label: '英文',
+                		value: "en-US"
+                	}
+                ],
 			}
 		},
 		methods: {
@@ -32,20 +62,23 @@
                     var year = da.getFullYear()+'年';
                     var month = da.getMonth()+1+'月';
                     var date = da.getDate()+'日';
-                    console.log([year,month,date].join('-'));
                     return [year,month,date].join('');
             },
 			getDetail(newsId){
-                console.log(newsId)
                 uni.request({
                 	url: 'https://securityin.com/api/content?type=Securityin&id=' + newsId ,
                 	data: {},
                 	success: data => {
                 		if (data.statusCode == 200) {
-                			console.log(data)
                             if(data.data.data[0].identity){
+                                let language= "ch"
+                                if( this.$i18n.locale == "zh-CN"){
+                                    language="ch"
+                                } else {
+                                    language= "en"
+                                }
                                 uni.request({
-                                    url: 'https://securityin.com/api/search?type=Securityin&q=%2Boption:ch%2Bidentity:'+ data.data.data[0].identity,
+                                    url: 'https://securityin.com/api/search?type=Securityin&q=%2Boption:'+ language +'%2Bidentity:'+ data.data.data[0].identity,
                                     data: {},
                                     success: dataSource => {
                                         console.log(dataSource)
@@ -65,7 +98,73 @@
                 		console.log('fail' + JSON.stringify(data));
                 	}
                 })
+            },
+            
+            
+            
+            onCancel(){
+            
+            },
+            	// 单列
+            showSinglePicker() {
+                this.mode = 'selector';
+                this.deepLength = 1;
+                this.pickerValueDefault = [0];
+                this.$refs.mpvuePicker.show();
+            },
+            
+            onConfirm(e) {
+                this.$i18n.locale = e.value[0];
+                this.setStyle(0, e.label);
+                util.setTabBar(this.$i18n.locale,"新闻详情", "News Detail")
+            },
+            /**
+                * 修改导航栏buttons
+                * index[number] 修改的buttons 下标索引，最右边索引为0
+                * text[string] 需要修改的text 内容
+                */
+            setStyle(index, text) {
+            	let pages = getCurrentPages();
+            	let page = pages[pages.length - 1];
+            	if (text.length > 3) {
+            		text = text.substr(0, 3) + '...';
+            	}
+            	// #ifdef APP-PLUS
+            	let currentWebview = page.$getAppWebview();
+            	let titleNView = currentWebview.getStyle().titleNView;
+            	// 添加文字过长截取为3个字符，请根据自己业务需求更改
+            	titleNView.buttons[0].text = text;
+            	currentWebview.setStyle({
+            		titleNView: titleNView
+            	});
+            	// #endif
+            	// #ifdef H5
+            	// h5 临时方案
+            	document.getElementsByClassName('uni-btn-icon')[1].innerText = text;
+            	// #endif
+            },
+            onBackPress() {
+                if (this.$refs.mpvuePicker.showPicker) {
+                    this.$refs.mpvuePicker.pickerCancel();
+                    return true;
+                }
+            },
+            onUnload() {
+                if (this.$refs.mpvuePicker.showPicker) {
+                    this.$refs.mpvuePicker.pickerCancel();
+                }
+            },
+            onNavigationBarButtonTap(e) {
+                if (e.index === 0) {
+                    this.showSinglePicker();
+                }
             }
+            
+            
+            
+            
+            
+            
 		},
         onLoad(option) {
         	// TODO 后面把参数名替换成 payload
@@ -76,6 +175,13 @@
 
         	this.getDetail(option.id);
         },
+
+
+
+
+
+
+
 	}
 </script>
 

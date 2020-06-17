@@ -1,6 +1,30 @@
 <script>
     export default {
         onLaunch: function() {
+            
+            
+            
+            var lan = 'zh'
+             try {
+            	const res = uni.getSystemInfoSync();
+            	lan = res.language
+            } catch (e) {
+            	console.log('error='+e)
+            }
+            console.log('lan='+lan); 
+             if(lan == 'en') {
+            	 this.$i18n.locale = 'en-US'
+             }
+             if(lan == 'zh-Hans-CN' || lan=='zh') {
+            	 this.$i18n.locale = 'zh-CN'
+             }
+            
+            
+            
+            
+            
+            
+            
             // console.log('App Launch');
             // #ifdef APP-PLUS
             // 检测升级

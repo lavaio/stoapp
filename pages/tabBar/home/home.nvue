@@ -2,69 +2,97 @@
     <view class="uni-container">
        <view class="uni-header-logo">
             <view class="home-header-text">
-                Integrated Platform for Digital Economy & Asset Digitalization
-                <!-- {{ i18n.game }} -->
+                <!-- Integrated Platform for Digital Economy & Asset Digitalization -->
+                {{ i18n["banner-title"] }}
 
                 <!-- <view @click="handove('zh-CN')">  {{$t('index.game')}}  </view>
-                <view> {{$t('lang')}} </view>
                 <view  @click="handove('en')">{{$t('index.game')}} </view> -->
             </view>
         </view>
         <view class="what-token">
-            <text class="pub-title">What Can Be Tokenized?</text>
+            <text class="pub-title">{{ i18n["token-title"] }}</text>
             <view class="home-token-view">
                 <image class="home-token-view-image" src="/static/token_one.png"></image>
                 <view class="home-token-view-content">
-                    <view class="home-token-view-title">Real Estate</view>
+                    <view class="home-token-view-title"> {{ i18n["token-title-one"] }}</view>
                     <view class="home-token-view-desc">
-                        Real estate is one of the most popular and promising assets which can be tokenized. Land, buildings, apartments, etc. Real estate has continually been one of the most valuable investment assets.
+                        {{ i18n["token-title-one-describe"] }}
+                        <!-- Real estate is one of the most popular and promising assets which can be tokenized. Land, buildings, apartments, etc. Real estate has continually been one of the most valuable investment assets. -->
                     </view>
                 </view>
             </view>
             <view class="home-token-view">
                 <image class="home-token-view-image" src="/static/token_two.png"></image>
                 <view class="home-token-view-content">
-                    <view class="home-token-view-title">Equity in Business</view>
+                    <view class="home-token-view-title">
+                        <!-- Equity in Business -->
+                        {{ i18n["token-title-two"] }}
+                    </view>
                     <view class="home-token-view-desc">
-                        The tokenization of business (shares) is a promising area for STO. It enables you to sell a share or business, entirely. This option is also suitable if you wish to attract additional money for the development of the company.
+                        {{ i18n["token-title-two-describe"] }}
+                        <!-- The tokenization of business (shares) is a promising area for STO. It enables you to sell a share or business, entirely. This option is also suitable if you wish to attract additional money for the development of the company. -->
                     </view>
                 </view>
             </view>
             <view class="home-token-view">
                 <image class="home-token-view-image" src="/static/token_three.png"></image>
                 <view class="home-token-view-content">
-                    <view class="home-token-view-title">Equity, Debt & Derivatives</view>
+                    <view class="home-token-view-title">
+                        <!-- Equity, Debt & Derivatives -->
+                        {{ i18n["token-title-three"] }}
+                    </view>
                     <view class="home-token-view-desc">
-                        If you own or manage an investment fund and are looking for new sources of funds to improve your portfolio, STO can be an excellent alternative to traditional investments. You will be able to determine what rights you are willing to share with investors.
+                        {{ i18n["token-title-three-describe"] }}
+                        <!-- If you own or manage an investment fund and are looking for new sources of funds to improve your portfolio, STO can be an excellent alternative to traditional investments. You will be able to determine what rights you are willing to share with investors. -->
                     </view>
                 </view>
             </view>
             <view class="home-token-view">
                 <image class="home-token-view-image" src="/static/token_four.png"></image>
                 <view class="home-token-view-content">
-                    <view class="home-token-view-title">Alternative Assets</view>
+                    <view class="home-token-view-title">
+                        <!-- Alternative Assets -->
+                        {{ i18n["token-title-four"] }}
+                    </view>
                     <view class="home-token-view-desc">
-                        In theory, almost any object can be tokenized. This makes sense mainly for objects of comparatively high value and cost. These can range from art (paintings, movies, photographs), to cars, jewelry, and much more.
+                        {{ i18n["token-title-four-describe"] }}
+                        <!-- In theory, almost any object can be tokenized. This makes sense mainly for objects of comparatively high value and cost. These can range from art (paintings, movies, photographs), to cars, jewelry, and much more. -->
                     </view>
                 </view>
             </view>
         </view>
         <view class="info">
-            <text class="info-title">Want More Information?</text>
-            <text class="info-desc">We will gladly tell you more about our services.</text>
-            <text class="public-button" @click="toContact">Get in touch</text>
+            <text class="info-title">
+                {{ i18n["info-title"] }}
+                <!-- Want More Information? -->
+            </text>
+            <text class="info-desc">
+                {{ i18n["info-title-describe"] }}
+                <!-- We will gladly tell you more about our services. -->
+            </text>
+            <text class="public-button" @click="toContact">
+                <!-- Get in touch -->
+                {{ i18n["info-button"] }}
+            </text>
         </view>
 
         <view class="why-token">
-            <text class="pub-title">Why Tokenize?</text>
+            <text class="pub-title">
+                <!-- Why Tokenize? -->
+                {{ i18n["fundraise-title"] }}
+            </text>
             <view class="tokenize-view">
                 <view class="tokenize-image">
                     <image class="tokenize-image-style" src="/static/tokenize_one.png"></image>
                 </view>
                 <view class="tokenize-content">
-                    <view class="tokenize-title">Efficiency</view>
+                    <view class="tokenize-title">
+                        <!-- Efficiency -->
+                        {{ i18n["fundraise_one_title"] }}
+                    </view>
                     <view class="tokenize-desc">
-                        No other way of attracting investment has the same ratio of the cost of organization and carrying out access to the widest pool of investors and finance from around the world.
+                        {{ i18n["fundraise_one_describe"] }}
+                        <!-- No other way of attracting investment has the same ratio of the cost of organization and carrying out access to the widest pool of investors and finance from around the world. -->
                    </view>
                 </view>
             </view>
@@ -74,9 +102,13 @@
                     <image class="tokenize-image-style" src="/static/tokenize_two.png"></image>
                 </view>
                 <view class="tokenize-content">
-                    <view class="tokenize-title">Security</view>
+                    <view class="tokenize-title">
+                        {{ i18n["fundraise_two_title"] }}
+                        <!-- Security -->
+                    </view>
                     <view class="tokenize-desc">
-                        All sides of the process - both issuers and investors are protected during the sale. Security is ensured by a smart contract and supervisory regulators.
+                        {{ i18n["fundraise_two_describe"] }}
+                        <!-- All sides of the process - both issuers and investors are protected during the sale. Security is ensured by a smart contract and supervisory regulators. -->
                    </view>
                 </view>
             </view>
@@ -86,9 +118,13 @@
                     <image class="tokenize-image-style" src="/static/tokenize_three.png"></image>
                 </view>
                 <view class="tokenize-content">
-                    <view class="tokenize-title">Liquidity</view>
+                    <view class="tokenize-title">
+                        <!-- Liquidity -->
+                        {{ i18n["fundraise_three_title"] }}
+                    </view>
                     <view class="tokenize-desc">
-                        Tokenization of assets allows you to make them available for fast sale. To sell something in parts is much easier than looking for a buyer for the entire object.
+                        {{ i18n["fundraise_three_describe"] }}
+                        <!-- Tokenization of assets allows you to make them available for fast sale. To sell something in parts is much easier than looking for a buyer for the entire object. -->
                    </view>
                 </view>
             </view>
@@ -98,9 +134,13 @@
                     <image class="tokenize-image-style" src="/static/tokenize_four.png"></image>
                 </view>
                 <view class="tokenize-content">
-                    <view class="tokenize-title">Transparency</view>
+                    <view class="tokenize-title">
+                        {{ i18n["fundraise_four_title"] }}
+                        <!-- Transparency -->
+                    </view>
                     <view class="tokenize-desc">
-                        Blockchain technology, together with legal transparency, allows all participants in the sale, token owners, to track any processes related to their assets.
+                        {{ i18n["fundraise_four_describe"] }}
+                        <!-- Blockchain technology, together with legal transparency, allows all participants in the sale, token owners, to track any processes related to their assets. -->
                    </view>
                 </view>
             </view>
@@ -110,9 +150,13 @@
                     <image class="tokenize-image-style" src="/static/tokenize_five.png"></image>
                 </view>
                 <view class="tokenize-content">
-                    <view class="tokenize-title">Availability</view>
+                    <view class="tokenize-title">
+                        <!-- Availability -->
+                        {{ i18n["fundraise_five_title"] }}
+                    </view>
                     <view class="tokenize-desc">
-                        Security Token Markets and Exchanges are open 24/7. Your tokenized objects are always available to buy and sell, unlike traditional markets.
+                        {{ i18n["fundraise_five_describe"] }}
+                        <!-- Security Token Markets and Exchanges are open 24/7. Your tokenized objects are always available to buy and sell, unlike traditional markets. -->
                    </view>
                 </view>
             </view>
@@ -122,64 +166,115 @@
                     <image class="tokenize-image-style" src="/static/tokenize_six.png"></image>
                 </view>
                 <view class="tokenize-content">
-                    <view class="tokenize-title">Legality</view>
+                    <view class="tokenize-title">
+                        <!-- Legality -->
+                        {{ i18n["fundraise_six_title"] }}
+                    </view>
                     <view class="tokenize-desc">
-                        All processes are conducted in full compliance with international law and the laws of individual countries. All participants in the process are fully protected.
+                        {{ i18n["fundraise_six_describe"] }}
+                        <!-- All processes are conducted in full compliance with international law and the laws of individual countries. All participants in the process are fully protected. -->
                    </view>
                 </view>
             </view>
         </view>
         <view class="service">
-            <text class="pub-title">Our Services</text>
+            <text class="pub-title">
+                <!-- Our Services -->
+                {{ i18n["service-title"] }}
+            </text>
             <view class="service_bg"></view>
-            <view class="service-title">Integrated Digital Asset Solution</view>
+            <view class="service-title">
+                <!-- Integrated Digital Asset Solution -->
+                {{ i18n["service-describe"] }}
+            </view>
             <view class="service-view">
-                <view class="service-view-title">Digital Asset Creation</view>
+                <view class="service-view-title">
+                    <!-- Digital Asset Creation -->
+                    {{ i18n["service_one_title"] }}
+                </view>
                 <view class="service-view-content">
-                    We can tokenize any real-world asset, transferring its value to its digital analogue.
-                    This offer is suitable for both professionals of the financial market and ordinary owners.
+                    {{ i18n["service_one_describe"] }}
+                    <!-- We can tokenize any real-world asset, transferring its value to its digital analogue. -->
+                    <!-- This offer is suitable for both professionals of the financial market and ordinary owners. -->
                 </view>
             </view>
 
             <view class="service-view">
-                <view class="service-view-title">Digital Asset Advisory</view>
+                <view class="service-view-title">
+                    <!-- Digital Asset Advisory -->
+                    {{ i18n["service_two_title"] }}
+                </view>
                 <view class="service-view-content">
-                    We are ready to give advice on any issues relating to the implementation of Security Token Offering. This can be either one-time assistance or the full project support.
+                    {{ i18n["service_two_describe"] }}
+                    <!-- We are ready to give advice on any issues relating to the implementation of Security Token Offering. This can be either one-time assistance or the full project support. -->
                 </view>
             </view>
 
             <view class="service-view">
-                <view class="service-view-title">Legal Regulation</view>
+                <view class="service-view-title">
+                    <!-- Legal Regulation -->
+                    {{ i18n["service_three_title"] }}
+                </view>
                 <view class="service-view-content">
-                    Every security token offering must be registered in accordance with the laws of a country. We help to understand all the complexities of legislation and to register STOs with regulatory authorities.
+                    {{ i18n["service_three_describe"] }}
+                    <!-- Every security token offering must be registered in accordance with the laws of a country. We help to understand all the complexities of legislation and to register STOs with regulatory authorities. -->
                 </view>
             </view>
 
             <view class="service-view">
-                <view class="service-view-title">Solution Integrations</view>
+                <view class="service-view-title">
+                    <!-- Solution Integrations -->
+                    {{ i18n["service_four_title"] }}
+                </view>
                 <view class="service-view-content">
-                    We can help integrate blockchain into client's business processes, such as logistics, law, management, etc. This can help streamline processes and save resources.
+                    {{ i18n["service_four_describe"] }}
+                    <!-- We can help integrate blockchain into client's business processes, such as logistics, law, management, etc. This can help streamline processes and save resources. -->
                 </view>
             </view>
 
             <view class="service-view">
-                <view class="service-view-title">Marketing and PR</view>
+                <view class="service-view-title">
+                    <!-- Marketing and PR -->
+                    {{ i18n["service_five_title"] }}
+                </view>
                 <view class="service-view-content">
-                    PR and Promotion of security token sale is a complex process requiring an integrated approach. We can take on the whole implementation of a marketing strategy.
+                    {{ i18n["service_five_describe"] }}
+                    <!-- PR and Promotion of security token sale is a complex process requiring an integrated approach. We can take on the whole implementation of a marketing strategy. -->
                 </view>
             </view>
 
             <view class="service-view">
-                <view class="service-view-title">Info Disclosure and Rating</view>
+                <view class="service-view-title">
+                    {{ i18n["service_six_title"] }}
+                    <!-- Info Disclosure and Rating -->
+                </view>
                 <view class="service-view-content">
-                    After the release and sale of tokens, an equally important and crucial stage begins. You need to register investments correctly, disclose asset or project information, and get rated in a credible framework.
+                    {{ i18n["service_six_describe"] }}
+                    <!-- After the release and sale of tokens, an equally important and crucial stage begins. You need to register investments correctly, disclose asset or project information, and get rated in a credible framework. -->
                 </view>
             </view>
         </view>
 
+
+
+
+        <mpvue-picker
+        	:themeColor="themeColor"
+        	ref="mpvuePicker"
+        	:mode="mode"
+        	:deepLength="deepLength"
+        	:pickerValueDefault="pickerValueDefault"
+        	@onConfirm="onConfirm"
+        	@onCancel="onCancel"
+        	:pickerValueArray="pickerValueArray"
+        ></mpvue-picker>
     </view>
+
 </template>
 <script>
+    import mpvuePicker from '../../../components/mpvue-picker/mpvuePicker.vue';
+    var util = require('../../../common/util.js');
+
     // TODO 修复Android v3 加载过慢问题
     // #ifdef APP-PLUS
     var domModule = weex.requireModule('dom');
@@ -189,200 +284,107 @@
     });
     // #endif
 
-    import uLink from '@/components/uLink.vue'
+
     export default {
         components: {
-            uLink
+            mpvuePicker
         },
         computed: {
-            i18n () {
+            i18n() {
               return this.$t('index')
             }
         },
         data() {
             return {
-                list: [{
-                        id: 'view',
-                        name: '视图容器',
-                        open: false,
-                        pages: [
-                            'view',
-                            'scroll-view',
-                            'swiper'
-                            // #ifndef MP-TOUTIAO
-                            ,
-                            'movable-view',
-                            'cover-view'
-                            // #endif
-                        ]
-                    }, {
-                        id: 'content',
-                        name: '基础内容',
-                        open: false,
-                        pages: ['text', 'rich-text', 'progress']
-                    }, {
-                        id: 'form',
-                        name: '表单组件',
-                        open: false,
-                        pages: ['button', 'checkbox', 'form', 'input', 'label', 'picker', 'picker-view', 'radio',
-                            'slider',
-                            'switch', 'textarea',
-                            // #ifdef APP-PLUS || MP-WEIXIN || H5
-                            'editor',
-                            // #endif
-                        ]
-                    }, {
-                        id: 'nav',
-                        name: '导航',
-                        open: false,
-                        pages: ['navigator']
-                    }, {
-                        id: 'media',
-                        name: '媒体组件',
-                        open: false,
-                        pages: [
-                            'image',
-                            'video',
-                            // #ifndef MP-ALIPAY || MP-TOUTIAO
-                            'audio',
-                            // #endif
-                        ],
-                    },
-                    // #ifndef MP-TOUTIAO
-                    {
-                        id: 'map',
-                        name: '地图',
-                        open: false,
-                        pages: ['map']
 
-                    },
-                    // #endif
-                    {
-                        id: 'canvas',
-                        name: '画布',
-                        open: false,
-                        pages: ['canvas']
-
-                    },
-                    // #ifdef APP-PLUS
-                    {
-                        id: 'web-view',
-                        name: '网页',
-                        open: false,
-                        pages: [{
-                            name: '网络网页',
-                            url: '/pages/component/web-view/web-view'
-                        }, {
-                            name: '本地网页',
-                            url: '/pages/component/web-view-local/web-view-local'
-                        }]
-                    },
-                    // #endif
-                    // #ifndef APP-PLUS
-                    {
-                        id: 'web-view',
-                        name: '网页',
-                        open: false,
-                        pages: ['web-view']
-                    },
-                    // #endif
-                    // #ifndef H5 || MP-BAIDU
-                    {
-                        url: 'ad',
-                        name: 'AD组件',
-                        open: false
-                    },
-                    // #endif
-                ],
-                navigateFlag: false
+                themeColor: '#007AFF',
+                mode: '',
+                deepLength: 1,
+                pickerValueDefault: [0],
+                pickerValueArray: [
+                	{
+                		label: '中文',
+                		value: "zh-CN"
+                	},
+                	{
+                		label: '英文',
+                		value: "en-US"
+                	}
+                ]
             }
         },
-        onShareAppMessage() {
-            return {
-                title: '欢迎体验uni-app',
-                path: '/pages/tabBar/component/component'
-            }
-        },
-        onNavigationBarButtonTap(btn) {
-            console.log(" onNavigationBarButtonTap   home ")
-            // console.log(e)
 
-            console.log(btn)
-
-            // if(btn.index == 0){
-            //     let pages = getCurrentPages();
-            //     let page = pages[pages.length - 1];
-            //     console.log(page)
-            //     // #ifdef APP-PLUS
-            //     let currentWebview = page.$getAppWebview();
-            //     let titleObj = currentWebview.getStyle().titleNView;
-            //     console.log(1);
-            //     console.log(JSON.stringify(titleObj.buttons[0]));
-            //     if (!titleObj.buttons) {
-            //     return;
-            // }
-            // if(titleObj.buttons[0].text == '\ue63d'){
-            //     titleObj.buttons[0].text = "\ue602";
-            // }else{
-            //     titleObj.buttons[0].text = "\ue63d";
-            // }
-            //     currentWebview.setStyle({
-            //     titleNView: titleObj
-            //     });
-            // // #endif
-            // }
-
-
-
-
-
-
-
-
-        },
         methods: {
             handove(item){
             	this.$i18n.locale = item;
-            	// plus.storage.setItem('locale', item);
-
-            	// localStorage.setItem('locale', item);
-            	// this.modelStatus=!this.modelStatus;
             },
             toContact(){
-               uni.navigateTo({
+                uni.navigateTo({
                     url: '/pages/tabBar/contact/contact',
-               });
+                });
             },
-            triggerCollapse(e) {
-                if (!this.list[e].pages) {
-                    this.goDetailPage(this.list[e].url);
-                    return;
-                }
-                for (var i = 0; i < this.list.length; ++i) {
-                    if (e === i) {
-                        this.list[i].open = !this.list[e].open;
-                    } else {
-                        this.list[i].open = false;
-                    }
+
+
+
+            onCancel(){
+
+            },
+            	// 单列
+            showSinglePicker() {
+                this.mode = 'selector';
+                this.deepLength = 1;
+                this.pickerValueDefault = [0];
+                this.$refs.mpvuePicker.show();
+            },
+            onConfirm(e) {
+                this.$i18n.locale = e.value[0];
+                this.setStyle(0, e.label);
+                console.log(this.$i18n.locale)
+
+                util.setTabBar(this.$i18n.locale,"首页", "Home")
+
+
+            },
+            /**
+                * 修改导航栏buttons
+                * index[number] 修改的buttons 下标索引，最右边索引为0
+                * text[string] 需要修改的text 内容
+                */
+            setStyle(index, text) {
+            	let pages = getCurrentPages();
+            	let page = pages[pages.length - 1];
+            	if (text.length > 3) {
+            		text = text.substr(0, 3) + '...';
+            	}
+            	// #ifdef APP-PLUS
+            	let currentWebview = page.$getAppWebview();
+            	let titleNView = currentWebview.getStyle().titleNView;
+            	// 添加文字过长截取为3个字符，请根据自己业务需求更改
+            	titleNView.buttons[0].text = text;
+            	currentWebview.setStyle({
+            		titleNView: titleNView
+            	});
+            	// #endif
+            	// #ifdef H5
+            	// h5 临时方案
+            	document.getElementsByClassName('uni-btn-icon')[1].innerText = text;
+            	// #endif
+            },
+            onBackPress() {
+                if (this.$refs.mpvuePicker.showPicker) {
+                    this.$refs.mpvuePicker.pickerCancel();
+                    return true;
                 }
             },
-            goDetailPage(e) {
-                if (this.navigateFlag) {
-                    return;
+            onUnload() {
+                if (this.$refs.mpvuePicker.showPicker) {
+                    this.$refs.mpvuePicker.pickerCancel();
                 }
-                this.navigateFlag = true;
-                if (typeof e === 'string') {
-                    uni.navigateTo({
-                        url: '/pages/component/' + e + '/' + e
-                    })
-                } else {
-                    uni.navigateTo({
-                        url: e.url
-                    })
+            },
+            onNavigationBarButtonTap(e) {
+                if (e.index === 0) {
+                    this.showSinglePicker();
                 }
-                setTimeout(() => {
-                    this.navigateFlag = false;
-                }, 200)
             }
         }
     }

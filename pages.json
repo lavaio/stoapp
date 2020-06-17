@@ -4,32 +4,40 @@
 		{
 			"path": "pages/tabBar/home/home",
 			"style": {
-				"navigationBarTitleText": "Home",
+				"navigationBarTitleText": "首页",
 				"app-plus": {
 					"bounce": "vertical",
-					"titleNView": {
-						"buttons": [{
-							"text": "\ue600",
-							"fontSrc": "/static/iconfont.ttf",
-                            // "text":"<view>hjh</view> <view>uuu</view>",
-							"fontSize": "22px",
-							"color": "#FFFFFF"
-						}]
-					}
+                    "titleNView": {
+                    	"buttons": [{
+                    		"text": "中文",
+                    		"fontSize": "14",
+                    		"select": true,
+                    		"width": "auto"
+                    	}]
+                    }
+					// "titleNView": {
+					// 	"buttons": [{
+					// 		"text": "\ue600",
+					// 		"fontSrc": "/static/iconfont.ttf",
+     //                        // "text":"<view>hjh</view> <view>uuu</view>",
+					// 		"fontSize": "22px",
+					// 		"color": "#FFFFFF"
+					// 	}]
+					// }
 				}
 			}
 		},
 		{
 			"path": "pages/tabBar/market/market",
 			"style": {
-				"navigationBarTitleText": "Market",
+				"navigationBarTitleText": "市场",
 				"app-plus": {
 					"titleNView": {
 						"buttons": [{
-							"text": "\ue534",
-							"fontSrc": "/static/uni.ttf",
-							"fontSize": "22px",
-							"color": "#FFFFFF"
+                            "text": "中文",
+                    		"fontSize": "14",
+                    		"select": true,
+                    		"width": "auto"
 						}]
 					}
 				}
@@ -39,14 +47,14 @@
 			// "path": "pages/tabBar/template/template",
             "path": "pages/tabBar/news/news",
 			"style": {
-				"navigationBarTitleText": "News",
+				"navigationBarTitleText": "新闻",
 				"app-plus": {
 					"titleNView": {
 						"buttons": [{
-							// "text": "\ue534",
-							// "fontSrc": "/static/uni.ttf",
-							"fontSize": "22px",
-							"color": "#FFFFFF"
+							"text": "中文",
+							"fontSize": "14",
+							"select": true,
+							"width": "auto"
 						}]
 					}
 				}
@@ -55,14 +63,14 @@
 		{
 			"path": "pages/tabBar/extUI/extUI",
 			"style": {
-				"navigationBarTitleText": "St List",
+				"navigationBarTitleText": "St 资料库",
 				"app-plus": {
 					"titleNView": {
 						"buttons": [{
-							// "text": "\ue534",
-							// "fontSrc": "/static/uni.ttf",
-							"fontSize": "22px",
-							"color": "#FFFFFF"
+							"text": "中文",
+							"fontSize": "14",
+							"select": true,
+							"width": "auto"
 						}]
 					}
 				}
@@ -330,7 +338,18 @@
         ,{
             "path" : "pages/template/sto-detail/sto-detail",
             "style" : {
-                "navigationBarTitleText": "ST Detail"
+                "navigationBarTitleText": "ST 详情",
+                "app-plus": {
+                	"titleNView": {
+                		"buttons": [{
+                			"text": "中文",
+                			"fontSize": "14",
+                			"select": true,
+                			"width": "auto"
+                		}]
+                	}
+                }
+
             }
         }
         ,{
@@ -370,7 +389,17 @@
         ,{
             "path" : "pages/template/newsDetail/newsDetail",
             "style" : {
-                "navigationBarTitleText": "News Detail"
+                "navigationBarTitleText": "新闻详情",
+                "app-plus": {
+                	"titleNView": {
+                		"buttons": [{
+                			"text": "中文",
+                			"fontSize": "14",
+                			"select": true,
+                			"width": "auto"
+                		}]
+                	}
+                }
             }
         }
     ],
@@ -1222,7 +1251,7 @@
 		// #endif
 		"pageOrientation": "portrait",
 		"navigationBarTextStyle": "white",
-		// "navigationBarTitleText": "test global",
+		// "navigationBarTitleText": "Hello global",
 		"navigationBarBackgroundColor": "#27ACE0",
 		"backgroundColor": "#F8F8F8",
 		"backgroundColorTop": "#F4F5F6",
@@ -1237,23 +1266,23 @@
 				"pagePath": "pages/tabBar/home/home",
 				"iconPath": "static/home.png",
 				"selectedIconPath": "static/homeHL.png",
-				"text": "Home"
+				"text": "首页"
 			},
 			{
 				"pagePath": "pages/tabBar/market/market",
 				"iconPath": "static/market.png",
 				"selectedIconPath": "static/marketHL.png",
-				"text": "Market"
+				"text": "市场"
 			}, {
 				"pagePath": "pages/tabBar/extUI/extUI",
 				"iconPath": "static/stlist.png",
 				"selectedIconPath": "static/stlistHL.png",
-				"text": "ST List"
+				"text": "ST资料库"
 			}, {
 				"pagePath": "pages/tabBar/news/news",
 				"iconPath": "static/news.png",
 				"selectedIconPath": "static/newsHL.png",
-				"text": "News"
+				"text": "新闻"
 			}
             // {
             // 	"pagePath": "pages/tabBar/contact/contact",

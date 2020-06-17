@@ -2,12 +2,17 @@
 	<view>
         <view class="desc-view">
             <view class="desct-title">
-                Description
+                <!-- Description -->
+                {{ i18n["describe"] }}
             </view>
             <view class="desc" ref="desc">
-                	{{stoItem.description}}
+                {{stoItem.description}}
             </view>
-            <view class="read-more" ref="readeMore" @click="handleClick"> read more</view>
+            <view class="read-more" ref="readeMore" @click="handleClick">
+            <!-- read more -->
+           <!-- {{ i18n["more"] }} -->
+             {{ i18n["more"] }}
+            </view>
         </view>
         <view class="backgroundStyle"></view>
        <!-- <view class="info">
@@ -45,10 +50,11 @@
         </view> -->
         <view class="backgroundStyle"></view>
         <view class="info">
-            <view class="public-title">Legal</view>
+            <view class="public-title">{{ i18n["legal"] }}</view>
             <view class="public-info">
                 <view class="info-left">
-                    Company name:
+                    <!-- Company name: -->
+                    {{ i18n["company-name"] }}
                 </view>
                 <view class="right">
                     <view class="info-item">{{stoItem['Company name']}}</view>
@@ -56,7 +62,8 @@
             </view>
             <view class="public-info">
                 <view class="info-left">
-                    Country of incorporation:
+                    <!-- Country of incorporation: -->
+                    {{ i18n["country-incorporation"] }}
                 </view>
                 <view class="right">
                     <view class="info-item border-before">{{stoItem['Country of incorporation']}} </view>
@@ -64,7 +71,8 @@
             </view>
             <view class="public-info">
                 <view class="info-left">
-                    Company address:
+                    {{ i18n["company-address"] }}
+                    <!-- Company address: -->
                 </view>
                 <view class="right">
                     <view class="info-item location">
@@ -74,7 +82,8 @@
             </view>
             <view class="public-info">
                 <view class="info-left">
-                    Whitelist:
+                    <!-- Whitelist: -->
+                    {{ i18n["whitelist"] }}
                 </view>
                 <view class="right">
                     <view :class=" stoItem.WhiteList ? 'info-item gou' : 'info-item'">
@@ -85,7 +94,8 @@
 
             <view class="public-info">
                 <view class="info-left">
-                    KYC:
+                    <!-- KYC: -->
+                    {{ i18n["kyc"] }}
                 </view>
                 <view class="right">
                     <view :class=" stoItem.KYC ? 'info-item gou' : 'info-item'">
@@ -107,10 +117,13 @@
         </view>
         <view class="backgroundStyle"></view>
         <view class="info">
-            <view class="public-title">Asset</view>
+            <view class="public-title">
+                {{ i18n["asset"] }}
+            </view>
             <view class="public-info">
                 <view class="info-left">
-                    Token rights:
+                    <!-- Token rights: -->
+                    {{ i18n["token-rights"] }}
                 </view>
                 <view class="right">
                     <view class="info-item">
@@ -121,10 +134,14 @@
         </view>
         <view class="backgroundStyle"></view>
         <view class="info">
-            <view class="public-title">Token details</view>
+            <view class="public-title">
+                {{ i18n["token-details"] }}
+                <!-- Token details -->
+            </view>
             <view class="public-info">
                 <view class="info-left">
-                    Symbol:
+                    {{ i18n["symbol"] }}
+                    <!-- Symbol: -->
                 </view>
                 <view class="right">
                     <view class="info-item">
@@ -134,7 +151,8 @@
             </view>
             <view class="public-info">
                 <view class="info-left">
-                    Available for sale:
+                    <!-- Available for sale: -->
+                    {{ i18n["available-for-sale"] }}
                 </view>
                 <view class="right">
                     <view class="info-item">
@@ -144,7 +162,8 @@
             </view>
             <view class="public-info">
                 <view class="info-left">
-                    Total supply tokens:
+                    <!-- Total supply tokens: -->
+                    {{ i18n["total-supply-tokens"] }}
                 </view>
                 <view class="right">
                     <view class="info-item">
@@ -156,10 +175,14 @@
 
         <view class="backgroundStyle"></view>
         <view class="info">
-            <view class="public-title">Fundraise Information</view>
+            <view class="public-title">
+                <!-- Fundraise Information -->
+                {{ i18n["financial"] }}
+            </view>
             <view class="public-info">
                 <view class="info-left">
-                    Minimum goal:
+                    <!-- Minimum goal: -->
+                    {{ i18n["min-goal"] }}
                 </view>
                 <view class="right">
                     <view class="info-item">
@@ -170,7 +193,8 @@
             </view>
             <view class="public-info">
                 <view class="info-left">
-                    Fundraising goal:
+                    <!-- Fundraising goal: -->
+                    {{ i18n["fund-goal"] }}
                 </view>
                 <view class="right">
                     <view class="info-item">
@@ -180,12 +204,13 @@
             </view>
             <view class="public-info">
                 <view class="info-left">
-                    Min investment:
+                    <!-- Min investment: -->
+                    {{ i18n["min-invest"] }}
 
                 </view>
                 <view class="right">
                     <view class="info-item">
-                        								{{stoItem['Min investment']}}
+                        {{stoItem['Min investment']}}
 
                     </view>
                 </view>
@@ -193,7 +218,8 @@
 
             <view class="public-info">
                <view class="info-left">
-                   Bonuses:
+                   <!-- Bonuses: -->
+                   {{ i18n["bonuses"] }}
                </view>
                <view class="right">
                    <view class="info-item">
@@ -205,7 +231,10 @@
         </view>
         <view class="backgroundStyle"></view>
         <view class="date-line" v-if="stoItem['milestones'] && Object.keys( this.stoItem['milestones'][0]).length">
-            <view class="public-title">Milestones</view>
+            <view class="public-title">
+                {{ i18n["milestones"] }}
+                <!-- Milestones -->
+            </view>
             <view class="date-view" ref="lessLine"  >
                 <view class="date-view-box" v-for="(value,key,itemIndex) in computTimeLine" :key="itemIndex">
                     <view>
@@ -234,12 +263,16 @@
                </view>
             </view>
             <view class="button-style" v-if="stoItem['milestones'] && stoItem['milestones'].length">
-                <view class="public-button" @click="handleLineMore" ref="lineMoreBut">view more</view>
+                <view class="public-button" @click="handleLineMore" ref="lineMoreBut"> {{ i18n["more"] }} </view>
             </view>
         </view>
         <view class="backgroundStyle"></view>
         <view class="team-member" v-if="stoItem['team members'] && stoItem['team members'].length " >
-            <view class="public-title">Team members {{stoItem['team members'].length}}</view>
+            <view class="public-title">
+                <!-- Team members -->
+                {{ i18n["team-member"] }}
+                {{stoItem['team members'].length}}
+            </view>
             <view ref="lessTeam">
                 <view class="team-member-view"  v-for="(team,index) in computTeamMember" :key="index">
                     <view class="team-left">
@@ -263,10 +296,12 @@
                 </view>
             </view>
             <view class="button-style marginTop">
-                <view class="public-button" @click="handleTeamMore" ref="teamMoreButton">Show All</view>
+                <view class="public-button" @click="handleTeamMore" ref="teamMoreButton">
+                    {{ i18n["more"] }}
+                </view>
             </view>
         </view>
-        <view class="follow-us">
+        <!-- <view class="follow-us">
             <view class="follow-title">Follow us</view>
             <view class="follow-icon-view">
                 <view class="marginRight">
@@ -276,18 +311,44 @@
                     <icon class="iconfont icon-telegram" style="font-size: 28px;"></icon>
                 </view>
             </view>
-        </view>
+        </view> -->
+        <mpvue-picker
+        	:themeColor="themeColor"
+        	ref="mpvuePicker"
+        	:mode="mode"
+        	:deepLength="deepLength"
+        	:pickerValueDefault="pickerValueDefault"
+        	@onConfirm="onConfirm"
+        	@onCancel="onCancel"
+        	:pickerValueArray="pickerValueArray"
+        ></mpvue-picker>
     </view>
 </template>
 
 <script>
+    import mpvuePicker from '@/components/mpvue-picker/mpvuePicker.vue';
 	export default {
 		data() {
 
 			return {
                 showMore: false,
                 showLineMore: false,
-                showTeamMore: false
+                showTeamMore: false,
+
+                themeColor: '#007AFF',
+                mode: '',
+                deepLength: 1,
+                pickerValueDefault: [0],
+                pickerValueArray: [
+                	{
+                		label: '中文',
+                		value: "zh-CN"
+                	},
+                	{
+                		label: '英文',
+                		value: "en-US"
+                	}
+                ],
 			}
 		},
         props:{
@@ -295,7 +356,12 @@
 				type: Object
             }
         },
-
+        components:{
+            mpvuePicker
+        },
+        mounted(){
+            this.setButtonInnerHtml()
+        },
         computed: {
             computTimeLine: function () {
                 let obj = this.stoItem['milestones'][0];
@@ -312,6 +378,9 @@
                     return index < 4
                 })
             },
+            i18n() {
+              return this.$t('sto-detail')
+            }
         },
 
 
@@ -321,11 +390,11 @@
                 if(showTeamMore){
                     this.$refs.lessTeam.$el.style.display = "none";
                     this.$refs.moreTeam.$el.style.display = "block";
-                    this.$refs.teamMoreButton.$el.innerHTML = "Collapse";
+                    this.$refs.teamMoreButton.$el.innerHTML = "collapse";
                 } else{
                     this.$refs.lessTeam.$el.style.display = "block";
                     this.$refs.moreTeam.$el.style.display = "none";
-                    this.$refs.teamMoreButton.$el.innerHTML = "Show All"
+                    this.$refs.teamMoreButton.$el.innerHTML = "see more"
                 }
                 this.showTeamMore = showTeamMore;
             },
@@ -333,11 +402,19 @@
             handleClick(){
                 let showMore = !this.showMore;
                 if(showMore){
+                    if( this.$i18n.locale == "zh-CN"){
+                        this.$refs.readeMore.$el.innerHTML = "收起"
+                    } else {
+                        this.$refs.readeMore.$el.innerHTML = "Collapse"
+                    }
                     this.$refs.desc.$el.style.webkitLineClamp = "unset"
-                    this.$refs.readeMore.$el.innerHTML = "Collapse"
                 } else{
                     this.$refs.desc.$el.style.webkitLineClamp = "6";
-                    this.$refs.readeMore.$el.innerHTML = "reade more"
+                    if( this.$i18n.locale == "zh-CN"){
+                        this.$refs.readeMore.$el.innerHTML = "更多"
+                    } else {
+                        this.$refs.readeMore.$el.innerHTML = "reade more";
+                    }
                 }
                 this.showMore = showMore;
 
@@ -356,8 +433,113 @@
                     this.$refs.lineMoreBut.$el.innerHTML = "reade more"
                 }
                 this.showLineMore = showLineMore;
+            },
+
+            setButtonInnerHtml(){
+
+                    if( this.$i18n.locale == "zh-CN"){
+                         if(showLineMore){
+                             this.$refs.lineMoreBut.$el.innerHTML = "收起";
+                         } else {
+                             this.$refs.lineMoreBut.$el.innerHTML = "更多";
+                         }
+                        if(showMore){
+                           this.$refs.readeMore.$el.innerHTML = "收起";
+                        } else{
+                            this.$refs.readeMore.$el.innerHTML = "更多";
+                        }
+                        if(showTeamMore){
+                            this.$refs.teamMoreButton.$el.innerHTML = "收起";
+                        }else{
+                            this.$refs.teamMoreButton.$el.innerHTML = "更多";
+                        }
+
+                    } else {
+                        if(showLineMore){
+                             this.$refs.lineMoreBut.$el.innerHTML = "collapse";
+                         } else {
+                             this.$refs.lineMoreBut.$el.innerHTML = "reade more";
+                         }
+                        if(showMore){
+                           this.$refs.readeMore.$el.innerHTML = "collapse";
+                        } else{
+                            this.$refs.readeMore.$el.innerHTML = "reade more";
+                        }
+                        if(showTeamMore){
+                            this.$refs.teamMoreButton.$el.innerHTML = "collapse";
+                        }else{
+                            this.$refs.teamMoreButton.$el.innerHTML = "reade more";
+                        }
+
+                    }
+                
+
+            },
+            onLoad(){
+                this.setButtonInnerHtml();
+            },
+
+
+
+            onCancel(){
+
+            },
+            	// 单列
+            showSinglePicker() {
+                this.mode = 'selector';
+                this.deepLength = 1;
+                this.pickerValueDefault = [0];
+                this.$refs.mpvuePicker.show();
+            },
+
+            onConfirm(e) {
+                this.$i18n.locale = e.value[0];
+                this.setStyle(0, e.label);
+                this.setButtonInnerHtml();
+
+            },
+            /**
+                * 修改导航栏buttons
+                * index[number] 修改的buttons 下标索引，最右边索引为0
+                * text[string] 需要修改的text 内容
+                */
+            setStyle(index, text) {
+            	let pages = getCurrentPages();
+            	let page = pages[pages.length - 1];
+            	if (text.length > 3) {
+            		text = text.substr(0, 3) + '...';
+            	}
+            	// #ifdef APP-PLUS
+            	let currentWebview = page.$getAppWebview();
+            	let titleNView = currentWebview.getStyle().titleNView;
+            	// 添加文字过长截取为3个字符，请根据自己业务需求更改
+            	titleNView.buttons[0].text = text;
+            	currentWebview.setStyle({
+            		titleNView: titleNView
+            	});
+            	// #endif
+            	// #ifdef H5
+            	// h5 临时方案
+            	document.getElementsByClassName('uni-btn-icon')[1].innerText = text;
+            	// #endif
+            },
+            onBackPress() {
+                if (this.$refs.mpvuePicker.showPicker) {
+                    this.$refs.mpvuePicker.pickerCancel();
+                    return true;
+                }
+            },
+            onUnload() {
+                if (this.$refs.mpvuePicker.showPicker) {
+                    this.$refs.mpvuePicker.pickerCancel();
+                }
+            },
+            onNavigationBarButtonTap(e) {
+                if (e.index === 0) {
+                    this.showSinglePicker();
+                }
             }
-		}
+        }
 	}
 </script>
 

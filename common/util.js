@@ -66,8 +66,57 @@ var dateUtils = {
 	}
 };
 
+function setTabBar(language, chTitle, enTitle){
+        if( language == "zh-CN"){
+                    console.log("中文")
+                    uni.setNavigationBarTitle({
+                         index: 0,
+                         title: chTitle
+                    });
+                    uni.setTabBarItem({
+                        index: 0,
+                        text: "首页",
+                    });
+                    uni.setTabBarItem({
+                        index: 1,
+                        text: "市场",
+                    });
+                    uni.setTabBarItem({
+                        index: 2,
+                        text: "ST资料库",
+                    });
+                    uni.setTabBarItem({
+                        index: 3,
+                        text: "新闻",
+                    });
+                } else {
+                    console.log("英文")
+                    uni.setNavigationBarTitle({
+                        index: 0,
+                        title: enTitle
+                    });
+                    uni.setTabBarItem({
+                        index: 0,
+                        text: "Home",
+                    });
+                    uni.setTabBarItem({
+                        index: 1,
+                        text: "Market",
+                    });
+                    uni.setTabBarItem({
+                        index: 2,
+                        text: "ST List",
+                    });
+                    uni.setTabBarItem({
+                        index: 3,
+                        text: "News",
+                    });
+                }
+}
+
 module.exports = {
 	formatTime: formatTime,
 	formatLocation: formatLocation,
-	dateUtils: dateUtils
+	dateUtils: dateUtils,
+    setTabBar: setTabBar
 }
