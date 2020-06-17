@@ -87,7 +87,7 @@
         	@onCancel="onCancel"
         	:pickerValueArray="pickerValueArray"
         ></mpvue-picker>
-        <view class="tabs">
+        <!-- <view class="tabs">
             <view class="tabs-view">
                 <view
                     v-for="(item,index) in tabBars"
@@ -100,7 +100,7 @@
                     {{item.name}}
                 </view>
             </view>
-        </view>
+        </view> -->
         <tabDescribe   v-if="currentTabId == 'Description'" :stoItem="stoItem" ref="tabDescribe">
 
         </tabDescribe>
@@ -217,8 +217,10 @@
             onConfirm(e) {
                 this.$i18n.locale = e.value[0];
                 this.setStyle(0, e.label);
-                console.log("xxxxxxxxxxxxxxxxx")
                 this.$refs.tabDescribe.setButtonInnerHtml();
+
+                uni.setStorageSync('language', e.value[0]);
+                console.log(uni.getStorageSync("language"))
                 util.setTabBar(this.$i18n.locale,"ST 详情", "ST Detail")
             },
             /**
@@ -243,6 +245,7 @@
             	// #endif
             	// #ifdef H5
             	// h5 临时方案
+                console.log(text)
             	document.getElementsByClassName('uni-btn-icon')[1].innerText = text;
             	// #endif
             },
@@ -267,7 +270,22 @@
         onLoad: function (option) {
             this.tokenName = option.tokenName;
             // const item = JSON.parse(decodeURIComponent(option.item));
+
+
         },
+        created(){
+            let language  = uni.getStorageSync('language');
+            console.log(uni.getStorageSync("language"))
+            if( language == "en-US"){
+                this.setStyle(0, "英文");
+                this.$i18n.locale = "en-US";
+                util.setTabBar("en-US","ST 详情", "ST Detail")
+            } else{
+                this.setStyle(0, "中文");
+                this.$i18n.locale = "zh-CN";
+                util.setTabBar("zh-CN","ST 详情", "ST Detail")
+            }
+        }
 
 
 

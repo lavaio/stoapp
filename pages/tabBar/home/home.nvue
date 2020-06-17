@@ -314,6 +314,23 @@
             }
         },
 
+
+
+        created(){
+            let language  = uni.getStorageSync('language');
+            console.log(language)
+
+            if( language == "en-US"){
+                this.setStyle(0, "英文");
+                this.$i18n.locale = "en-US";
+                util.setTabBar("en-US","首页", "Home")
+
+            } else{
+                this.setStyle(0, "中文");
+                this.$i18n.locale = "zh-CN";
+                util.setTabBar("zh-CN","首页", "Home")
+            }
+        },
         methods: {
             handove(item){
             	this.$i18n.locale = item;
@@ -323,6 +340,8 @@
                     url: '/pages/tabBar/contact/contact',
                 });
             },
+
+
 
 
 
@@ -339,9 +358,10 @@
             onConfirm(e) {
                 this.$i18n.locale = e.value[0];
                 this.setStyle(0, e.label);
-                console.log(this.$i18n.locale)
 
                 util.setTabBar(this.$i18n.locale,"首页", "Home")
+
+                uni.setStorageSync('language', e.value[0]);
 
 
             },

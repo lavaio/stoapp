@@ -89,9 +89,7 @@ export default {
 
 		};
 	},
-	onLoad() {
-		this.getNewsList();
-	},
+
 	// onPullDownRefresh() {
 	// 	this.reload = true;
 	// 	this.last_id = '';
@@ -101,6 +99,25 @@ export default {
 	// 	this.status = 'more';
 	// 	this.getNewsList();
 	// },
+    onLoad(){
+        this.getNewsList();
+    },
+
+    created(){
+        let language  = uni.getStorageSync('language');
+        if( language == "en-US"){
+            this.setStyle(0, "英文");
+            this.$i18n.locale = "en-US";
+            util.setTabBar("en-US","新闻", "News")
+
+        } else{
+            this.setStyle(0, "中文");
+            this.$i18n.locale = "zh-CN";
+            util.setTabBar("zh-CN","新闻", "News")
+        }
+    },
+
+
 	methods: {
         formatDate(timeStamp){
              var da = timeStamp;
@@ -149,7 +166,9 @@ export default {
         onConfirm(e) {
             this.$i18n.locale = e.value[0];
             this.setStyle(0, e.label);
+            uni.setStorageSync('language', e.value[0]);
             util.setTabBar(this.$i18n.locale,"新闻", "News")
+
         },
         /**
             * 修改导航栏buttons

@@ -55,6 +55,31 @@
                 ],
 			}
 		},
+
+        onLoad(option){
+            // TODO 后面把参数名替换成 payload
+
+            this.newsId = option.id
+            // 目前在某些平台参数会被主动 decode，暂时这样处理。
+
+            this.getDetail(option.id);
+
+        },
+        created(){
+            let language  = uni.getStorageSync('language');
+            if( language == "en-US"){
+                this.setStyle(0, "英文");
+                this.$i18n.locale = "en-US";
+                util.setTabBar("en-US","新闻详情", "News Detail")
+
+            } else{
+                this.setStyle(0, "中文");
+                this.$i18n.locale = "zh-CN";
+                util.setTabBar("zh-CN","新闻详情", "News Detail")
+            }
+        },
+
+
 		methods: {
             formatDate(timeStamp){
                  var da = timeStamp;
@@ -99,11 +124,11 @@
                 	}
                 })
             },
-            
-            
-            
+
+
+
             onCancel(){
-            
+
             },
             	// 单列
             showSinglePicker() {
@@ -112,10 +137,11 @@
                 this.pickerValueDefault = [0];
                 this.$refs.mpvuePicker.show();
             },
-            
+
             onConfirm(e) {
                 this.$i18n.locale = e.value[0];
                 this.setStyle(0, e.label);
+                uni.setStorageSync('language', e.value[0]);
                 util.setTabBar(this.$i18n.locale,"新闻详情", "News Detail")
             },
             /**
@@ -159,22 +185,14 @@
                     this.showSinglePicker();
                 }
             }
-            
-            
-            
-            
-            
-            
+
+
+
+
+
+
 		},
-        onLoad(option) {
-        	// TODO 后面把参数名替换成 payload
 
-            console.log(option.id)
-            this.newsId = option.id
-        	// 目前在某些平台参数会被主动 decode，暂时这样处理。
-
-        	this.getDetail(option.id);
-        },
 
 
 

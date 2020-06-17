@@ -400,9 +400,23 @@
             }
         },
 
-        mounted(){
+        onLoad(){
             this.getStoList()
         },
+        created(){
+            let language  = uni.getStorageSync('language');
+            if( language == "en-US"){
+                this.setStyle(0, "英文");
+                this.$i18n.locale = "en-US";
+                util.setTabBar("en-US","ST 列表", "ST List")
+
+            } else{
+                this.setStyle(0, "中文");
+                this.$i18n.locale = "zh-CN";
+                util.setTabBar("zh-CN","ST 列表", "ST List")
+            }
+        },
+
 		methods: {
             selectHeadClick(targetDom){
                 this.$refs.selectDom.map(item=>{
@@ -460,6 +474,7 @@
             onConfirm(e) {
                 this.$i18n.locale = e.value[0];
                 this.setStyle(0, e.label);
+                uni.setStorageSync('language', e.value[0]);
                 util.setTabBar(this.$i18n.locale,"ST 列表", "ST List")
             },
             /**
