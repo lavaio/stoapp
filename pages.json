@@ -9,8 +9,9 @@
 					"bounce": "vertical",
 					"titleNView": {
 						"buttons": [{
-							// "text": "\ue600",
-							// "fontSrc": "/static/iconfont.ttf",
+							"text": "\ue600",
+							"fontSrc": "/static/iconfont.ttf",
+                            // "text":"<view>hjh</view> <view>uuu</view>",
 							"fontSize": "22px",
 							"color": "#FFFFFF"
 						}]
@@ -25,8 +26,8 @@
 				"app-plus": {
 					"titleNView": {
 						"buttons": [{
-							// "text": "\ue534",
-							// "fontSrc": "/static/uni.ttf",
+							"text": "\ue534",
+							"fontSrc": "/static/uni.ttf",
 							"fontSize": "22px",
 							"color": "#FFFFFF"
 						}]
@@ -1221,7 +1222,7 @@
 		// #endif
 		"pageOrientation": "portrait",
 		"navigationBarTextStyle": "white",
-		// "navigationBarTitleText": "Hello uniapp",
+		// "navigationBarTitleText": "test global",
 		"navigationBarBackgroundColor": "#27ACE0",
 		"backgroundColor": "#F8F8F8",
 		"backgroundColorTop": "#F4F5F6",

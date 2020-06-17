@@ -10,7 +10,7 @@
                     <view class="company-desc">{{stoItem['brief']}}</view>
                     <view class="progress">
                         <icon class='iconfont icondanxuankuang' style="font-size: 24rpx;"></icon>
-                        <text class="progress-text">Uncoming </text>
+                        <text class="progress-text">{{stoItem["status"]}} </text>
                     </view>
                 </view>
             </view>
@@ -156,6 +156,9 @@
                 	success: data => {
                         this.stoItem = data.data.data;
                         console.log(this.stoItem)
+                        console.log(
+                            Object.keys( this.stoItem['milestones'][0]).length
+                        )
                 	},
                 	fail: (data, code) => {
                 		console.log('fail' + JSON.stringify(data));

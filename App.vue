@@ -29,6 +29,9 @@
             })
             // #endif
         },
+        onNavigationBarButtonTap: function(){
+            console.log("////////////////")
+        },
         onShow: function() {
             // console.log('App Show')
         },

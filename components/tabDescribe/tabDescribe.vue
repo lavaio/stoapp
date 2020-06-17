@@ -114,7 +114,7 @@
                 </view>
                 <view class="right">
                     <view class="info-item">
-                        VMC.AI BV
+                        {{stoItem['token right']}}
                     </view>
                 </view>
             </view>
@@ -190,17 +190,6 @@
                     </view>
                 </view>
             </view>
-            <view class="public-info">
-                <view class="info-left">
-                    Bonuses:
-                </view>
-                <view class="right">
-                    <view class="info-item">
-                        1 VMC-ST = €0.14 - €0.16
-                    </view>
-                </view>
-            </view>
-
 
             <view class="public-info">
                <view class="info-left">
@@ -208,14 +197,14 @@
                </view>
                <view class="right">
                    <view class="info-item">
-                       								{{stoItem['Bonuses']}}
+                       	{{stoItem['Bonuses']}}
 
                    </view>
                </view>
            </view>
         </view>
         <view class="backgroundStyle"></view>
-        <view class="date-line" v-if="stoItem['milestones'] && stoItem['milestones'][0].length">
+        <view class="date-line" v-if="stoItem['milestones'] && Object.keys( this.stoItem['milestones'][0]).length">
             <view class="public-title">Milestones</view>
             <view class="date-view" ref="lessLine"  >
                 <view class="date-view-box" v-for="(value,key,itemIndex) in computTimeLine" :key="itemIndex">
@@ -231,7 +220,6 @@
                     </view>
                 </view>
             </view>
-
             <view class="date-view display-none" ref="moreLine" >
                 <view class="date-view-box" v-for="(value,key,itemIndex) in stoItem['milestones'][0]" :key="itemIndex">
                     <view>
@@ -279,7 +267,7 @@
             </view>
         </view>
         <view class="follow-us">
-            <view class="follow-title">flow us</view>
+            <view class="follow-title">Follow us</view>
             <view class="follow-icon-view">
                 <view class="marginRight">
                     <icon class="iconfont icon-telegram" style="font-size: 28px;"></icon>
@@ -295,6 +283,7 @@
 <script>
 	export default {
 		data() {
+
 			return {
                 showMore: false,
                 showLineMore: false,
@@ -306,6 +295,7 @@
 				type: Object
             }
         },
+
         computed: {
             computTimeLine: function () {
                 let obj = this.stoItem['milestones'][0];
@@ -324,9 +314,7 @@
             },
         },
 
-        onLoad(){
-            console.log("////////////")
-        },
+
 		methods: {
             handleTeamMore(){
                 let showTeamMore = !this.showTeamMore;

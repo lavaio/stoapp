@@ -3,6 +3,11 @@
        <view class="uni-header-logo">
             <view class="home-header-text">
                 Integrated Platform for Digital Economy & Asset Digitalization
+                <!-- {{ i18n.game }} -->
+
+                <!-- <view @click="handove('zh-CN')">  {{$t('index.game')}}  </view>
+                <view> {{$t('lang')}} </view>
+                <view  @click="handove('en')">{{$t('index.game')}} </view> -->
             </view>
         </view>
         <view class="what-token">
@@ -189,6 +194,11 @@
         components: {
             uLink
         },
+        computed: {
+            i18n () {
+              return this.$t('index')
+            }
+        },
         data() {
             return {
                 list: [{
@@ -293,12 +303,51 @@
                 path: '/pages/tabBar/component/component'
             }
         },
-        onNavigationBarButtonTap(e) {
-            uni.navigateTo({
-                url: '/pages/about/about'
-            });
+        onNavigationBarButtonTap(btn) {
+            console.log(" onNavigationBarButtonTap   home ")
+            // console.log(e)
+
+            console.log(btn)
+
+            // if(btn.index == 0){
+            //     let pages = getCurrentPages();
+            //     let page = pages[pages.length - 1];
+            //     console.log(page)
+            //     // #ifdef APP-PLUS
+            //     let currentWebview = page.$getAppWebview();
+            //     let titleObj = currentWebview.getStyle().titleNView;
+            //     console.log(1);
+            //     console.log(JSON.stringify(titleObj.buttons[0]));
+            //     if (!titleObj.buttons) {
+            //     return;
+            // }
+            // if(titleObj.buttons[0].text == '\ue63d'){
+            //     titleObj.buttons[0].text = "\ue602";
+            // }else{
+            //     titleObj.buttons[0].text = "\ue63d";
+            // }
+            //     currentWebview.setStyle({
+            //     titleNView: titleObj
+            //     });
+            // // #endif
+            // }
+
+
+
+
+
+
+
+
         },
         methods: {
+            handove(item){
+            	this.$i18n.locale = item;
+            	// plus.storage.setItem('locale', item);
+
+            	// localStorage.setItem('locale', item);
+            	// this.modelStatus=!this.modelStatus;
+            },
             toContact(){
                uni.navigateTo({
                     url: '/pages/tabBar/contact/contact',
@@ -341,6 +390,8 @@
 
 <style>
     @import '../../../common/uni-nvue.css';
+    /* @import '../../../static/iconfont.ttf'; */
+
 /*    *{
     	font-size:16px;
     }

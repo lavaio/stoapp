@@ -2,14 +2,20 @@
 	<view>
 		<!-- <view class="banner" @click="goDetail(banner)"> -->
         <view class="banner">
-			<!-- <image class="banner-img" src="/static/news_bg.png"></image> -->
-            <view class="banner-img">
+			<image class="banner-img" src="/static/news_bg.png">
                 <view class="banner-title">
                     Integrated Platform for
                     Digital Economy &
                     Asset Digitalization
                 </view>
-            </view>
+            </image>
+            <!-- <view class="banner-img">
+                <view class="banner-title">
+                    Integrated Platform for
+                    Digital Economy &
+                    Asset Digitalization
+                </view>
+            </view> -->
 		</view>
 		<view class="uni-list">
 			<view class="uni-list-cell" hover-class="uni-list-cell-hover" v-for="(value, key) in listData" :key="key" >
@@ -109,17 +115,20 @@ export default {
 .banner-img {
 	width: 100%;
     height: 360rpx;
-    background: url("~@/static/news_bg.png") no-repeat;
+    /* background: url("~@/static/news_bg.png") no-repeat; */
     text-align: center;
-    padding-top: 64rpx;
 	border-radius: 8px;
+    position: relative;
 }
-
 .banner-title {
 	font-size: 48rpx;
 	font-weight: bold;
 	line-height: 66rpx;
 	color: white;
+    position: absolute;
+    width: 686rpx;
+    padding: 64rpx 78rpx 0;
+    text-align: center;
 }
 
 .uni-media-list-logo {
