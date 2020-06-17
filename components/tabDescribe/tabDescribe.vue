@@ -314,7 +314,7 @@
                 </view>
             </view>
         </view> -->
-        <mpvue-picker
+       <!-- <mpvue-picker
         	:themeColor="themeColor"
         	ref="mpvuePicker"
         	:mode="mode"
@@ -323,7 +323,7 @@
         	@onConfirm="onConfirm"
         	@onCancel="onCancel"
         	:pickerValueArray="pickerValueArray"
-        ></mpvue-picker>
+        ></mpvue-picker> -->
     </view>
 </template>
 
