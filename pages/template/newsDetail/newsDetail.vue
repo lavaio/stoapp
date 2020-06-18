@@ -68,12 +68,6 @@
 
 
         onReady(option){
-            this.newsId = option.id
-            // 目前在某些平台参数会被主动 decode，暂时这样处理。
-
-            this.getDetail(option.id);
-
-
 
             let language  = uni.getStorageSync('language');
             if( language == "en-US"){

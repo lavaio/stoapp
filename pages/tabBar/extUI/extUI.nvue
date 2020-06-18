@@ -403,7 +403,7 @@
         onLoad(){
             this.getStoList()
         },
-        onReady(){
+        onShow(){
             this.getStoList()
             let language  = uni.getStorageSync('language');
             console.log(language)

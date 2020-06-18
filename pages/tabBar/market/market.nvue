@@ -480,7 +480,7 @@
             }
         },
 
-            onReady(){
+            onShow(){
                 let language  = uni.getStorageSync('language');
                 if( language == "en-US"){
                     // this.setStyle(0, "英文");
