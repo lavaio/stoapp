@@ -56,25 +56,25 @@
 			}
 		},
 
-        // onLoad(option){
-        //     // TODO 后面把参数名替换成 payload
-
-        //     this.newsId = option.id
-        //     // 目前在某些平台参数会被主动 decode，暂时这样处理。
-
-        //     this.getDetail(option.id);
-
-        // },
-        
-        
         onLoad(option){
+            // TODO 后面把参数名替换成 payload
+
             this.newsId = option.id
             // 目前在某些平台参数会被主动 decode，暂时这样处理。
-            
+
             this.getDetail(option.id);
-            
-            
-            
+
+        },
+
+
+        onReady(option){
+            this.newsId = option.id
+            // 目前在某些平台参数会被主动 decode，暂时这样处理。
+
+            this.getDetail(option.id);
+
+
+
             let language  = uni.getStorageSync('language');
             if( language == "en-US"){
                 // this.setStyle(0, "英文");

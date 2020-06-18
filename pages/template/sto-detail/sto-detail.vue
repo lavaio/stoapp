@@ -267,26 +267,25 @@
             }
 
 		},
-        // onLoad: function (option) {
-        //     this.tokenName = option.tokenName;
-        //     // const item = JSON.parse(decodeURIComponent(option.item));
-
-
-        // },
-        onLoad(option){
+        onLoad: function (option) {
             this.tokenName = option.tokenName;
-            
+            // const item = JSON.parse(decodeURIComponent(option.item));
+        },
+        onReady(option){
             let language  = uni.getStorageSync('language');
             console.log(uni.getStorageSync("language"))
             if( language == "en-US"){
                 // this.setStyle(0, "英文");
-                document.getElementsByClassName('uni-btn-icon')[1].innerText = "英文";
+
+                document.getElementsByClassName('uni-btn-icon')[1].innerHTML = "英文";
+                console.log( document.getElementsByClassName('uni-btn-icon')[1])
                 this.$i18n.locale = "en-US";
 
                 util.setTabBar("en-US","ST 详情", "ST Detail")
             } else{
                 // this.setStyle(0, "中文");
                 document.getElementsByClassName('uni-btn-icon')[1].innerText = "中文";
+                console.log( document.getElementsByClassName('uni-btn-icon')[1])
                 this.$i18n.locale = "zh-CN";
                 util.setTabBar("zh-CN","ST 详情", "ST Detail")
             }
