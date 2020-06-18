@@ -100,12 +100,11 @@ export default {
 	// 	this.getNewsList();
 	// },
 
-    // onLoad(){
-    //     this.getNewsList();
-    // },
-
     onLoad(){
         this.getNewsList();
+    },
+
+    onReady(){
         let language  = uni.getStorageSync('language');
         console.log(language)
         if( language == "en-US"){

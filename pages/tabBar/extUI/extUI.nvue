@@ -400,10 +400,10 @@
             }
         },
 
-        // onLoad(){
-        //     this.getStoList()
-        // },
         onLoad(){
+            this.getStoList()
+        },
+        onReady(){
             this.getStoList()
             let language  = uni.getStorageSync('language');
             console.log(language)

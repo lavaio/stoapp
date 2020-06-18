@@ -316,7 +316,7 @@
 
 
 
-        onLoad(){
+        onReady(){
             let language  = uni.getStorageSync('language');
             console.log(language)
 
