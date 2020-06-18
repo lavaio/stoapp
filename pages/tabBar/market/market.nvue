@@ -480,14 +480,16 @@
             }
         },
 
-            created(){
+            onLoad(){
                 let language  = uni.getStorageSync('language');
                 if( language == "en-US"){
-                    this.setStyle(0, "英文");
+                    // this.setStyle(0, "英文");
+                    document.getElementsByClassName('uni-btn-icon')[1].innerText = "英文";
                     this.$i18n.locale = "en-US";
                     util.setTabBar("en-US","市场", "Market")
                 } else{
-                    this.setStyle(0, "中文");
+                    // this.setStyle(0, "中文");
+                    document.getElementsByClassName('uni-btn-icon')[1].innerText = "中文";
                     this.$i18n.locale = "zh-CN";
                     util.setTabBar("zh-CN","市场", "Market")
                 }

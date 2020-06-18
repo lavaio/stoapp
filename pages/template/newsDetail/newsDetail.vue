@@ -56,24 +56,34 @@
 			}
 		},
 
-        onLoad(option){
-            // TODO 后面把参数名替换成 payload
+        // onLoad(option){
+        //     // TODO 后面把参数名替换成 payload
 
+        //     this.newsId = option.id
+        //     // 目前在某些平台参数会被主动 decode，暂时这样处理。
+
+        //     this.getDetail(option.id);
+
+        // },
+        
+        
+        onLoad(option){
             this.newsId = option.id
             // 目前在某些平台参数会被主动 decode，暂时这样处理。
-
+            
             this.getDetail(option.id);
-
-        },
-        created(){
+            
+            
+            
             let language  = uni.getStorageSync('language');
             if( language == "en-US"){
-                this.setStyle(0, "英文");
+                // this.setStyle(0, "英文");
+                document.getElementsByClassName('uni-btn-icon')[1].innerText = "英文";
                 this.$i18n.locale = "en-US";
                 util.setTabBar("en-US","新闻详情", "News Detail")
-
             } else{
-                this.setStyle(0, "中文");
+                // this.setStyle(0, "中文");
+                document.getElementsByClassName('uni-btn-icon')[1].innerText = "中文";
                 this.$i18n.locale = "zh-CN";
                 util.setTabBar("zh-CN","新闻详情", "News Detail")
             }

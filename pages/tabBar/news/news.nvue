@@ -99,19 +99,24 @@ export default {
 	// 	this.status = 'more';
 	// 	this.getNewsList();
 	// },
+
+    // onLoad(){
+    //     this.getNewsList();
+    // },
+
     onLoad(){
         this.getNewsList();
-    },
-
-    created(){
         let language  = uni.getStorageSync('language');
+        console.log(language)
         if( language == "en-US"){
-            this.setStyle(0, "英文");
+            // this.setStyle(0, "英文");
+            document.getElementsByClassName('uni-btn-icon')[1].innerText = "英文";
             this.$i18n.locale = "en-US";
             util.setTabBar("en-US","新闻", "News")
 
         } else{
-            this.setStyle(0, "中文");
+            // this.setStyle(0, "中文");
+            document.getElementsByClassName('uni-btn-icon')[1].innerText = "中文";
             this.$i18n.locale = "zh-CN";
             util.setTabBar("zh-CN","新闻", "News")
         }
