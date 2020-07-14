@@ -3,14 +3,22 @@
         <view class="head-view">
             <view class="image-view">
                 <view class="head-image">
-                    <image class="image-style" :src="stoItem['logo_urk']"></image>
+                    <image class="image-style" :src="stoItem['Logo']"></image>
                 </view>
                 <view class="image-content">
-                    <view class="company-name">{{stoItem['token name']}}</view>
-                    <view class="company-desc">{{stoItem['brief']}}</view>
+                    <view class="company-name">{{stoItem['TokenName']}}</view>
+                    <view class="company-desc">{{stoItem['Brief']}}</view>
                     <view class="progress">
                         <icon class='iconfont icondanxuankuang' style="font-size: 24rpx;"></icon>
-                        <text class="progress-text">{{stoItem["status"]}} </text>
+                        <!-- <text class="progress-text">{{stoItem["status"]}} </text>
+                        判断中英文
+                         -->
+                         <text  v-if="languageFlag == 'zh'" class="progress-text">
+                            {{statusZh[stoItem["Status"]]}}
+                         </text>
+                         <text  v-else class="progress-text">
+                            {{statusEn[stoItem["Status"]]}}
+                         </text>
                     </view>
                 </view>
             </view>
@@ -20,10 +28,16 @@
                         <!-- PROFILE -->
                         {{ i18n["profile"] }}
                     </view>
-                    <view class="percent">{{stoItem.profile}}</view>
+                    <view class="percent">{{stoItem.Profile}}</view>
                 </view>
-                <view class="tag-item tag-back tag-border" v-for="(tag,index) in stoItem['industry tags']"  :key="index">
-                    {{tag}}
+                <view class="tag-item tag-back tag-border" v-for="(tag,index) in stoItem['Industry']"  :key="index">
+                    <!-- // 判断中英文 -->
+                    <text v-if="languageFlag == 'zh'">
+                        {{industryZh[tag]}}
+                    </text>
+                    <text v-else>
+                        {{industryEn[tag]}}
+                    </text>
                 </view>
             </view>
             <view class="rank">
@@ -43,8 +57,7 @@
                     <view class="period-item">
                         <view class="period-name">Rank</view>
                         <view class="first-period-num">
-                          {{stoItem.interests && stoItem.interests.length? stoItem.interests[0].Rank : ""}}
-
+                          {{stoItem.Rank}}
                         </view>
                     </view>
                 </view>
@@ -52,7 +65,7 @@
                     <view class="period-item">
                         <view class="period-name">24H</view>
                         <view class="period-num">
-                            {{stoItem.interests && stoItem.interests.length? stoItem.interests[0].OneDay : ""}}
+                           {{stoItem.Day}}
                         </view>
                     </view>
                 </view>
@@ -60,8 +73,7 @@
                     <view class="period-item">
                         <view class="period-name">7D</view>
                         <view class="period-num">
-                            {{stoItem.interests && stoItem.interests.length? stoItem.interests[0].OneWeek : ""}}
-
+                            {{stoItem.Week}}
                         </view>
                     </view>
                 </view>
@@ -69,8 +81,7 @@
                     <view class="period-item">
                         <view class="period-name">1M</view>
                         <view class="period-num">
-                            {{stoItem.interests && stoItem.interests.length? stoItem.interests[0].OneMonth : ""}}
-
+								{{stoItem.Month}}
                         </view>
                     </view>
                 </view>
@@ -101,7 +112,7 @@
                 </view>
             </view>
         </view> -->
-        <tabDescribe   v-if="currentTabId == 'Description'" :stoItem="stoItem" ref="tabDescribe">
+        <tabDescribe   v-if="currentTabId == 'Description'" :stoItem="stoItem" ref="tabDescribe" :languageFlag="languageFlag">
 
         </tabDescribe>
        <tabDetail v-if="currentTabId== 'Details' ">
@@ -143,7 +154,9 @@
                 themeColor: '#007AFF',
                 mode: '',
                 deepLength: 1,
+                languageFlag: "zh",
                 pickerValueDefault: [0],
+
                 pickerValueArray: [
                 	{
                 		label: '中文',
@@ -174,6 +187,58 @@
                 tokenName: "",
                 stoItem: [],
                 currentTabId: "Description",
+                industryEn:{
+                    1: 'Art',
+                    2: 'Banking',
+                    4: 'Blockchain',
+                    8: 'E-commerce',
+                    16 : 'Energy',
+                    32:  'Finance',
+                    64: 'Gambling',
+                    128: 'Healthcare',
+                    256: 'Industrials',
+                    512:  'Infrastructure',
+                    1024:'Investing',
+                    2048: 'Media',
+                    4096: 'Real Estate',
+                    8192: 'Services',
+                    16384:  'Software',
+                    32768: 'Sports',
+                    65536: 'Technology'
+                },
+                industryZh:{
+                    1: '艺术',
+                    2: '银行',
+                    4: '区块链',
+                    8: '电子商务',
+                    16 : '能源',
+                    32:  '金融',
+                    64: '博彩',
+                    128: '卫生保健',
+                    256: 'Industrials',
+                    512:  'Infrastructure',
+                    1024:'投资',
+                    2048: '媒体',
+                    4096: '房地产',
+                    8192: '服务',
+                    16384:  '软件',
+                    32768: '运动',
+                    65536: '科技'
+                },
+                statusZh:{
+                    2: '即将来临',
+                    3: '强销期',
+                    4: '已结束',
+                    5: '募资结束',
+                    1: '待定',
+                },
+                statusEn:{
+                    2: 'Upcoming',
+                    3: 'Main sale',
+                    4: 'Ended',
+                    5: 'Funded',
+                    1: 'TBA',
+                }
 			}
 		},
         mounted(){
@@ -190,13 +255,31 @@
             },
             getStoDetail(){
                 const that = this;
+                let Pagelanguage  = uni.getStorageSync('language');
+                let language = 1;
+                if( Pagelanguage == "en-US"){
+                    language = 1;
+                    this.languageFlag = "en"
+                } else {
+                    language = 0;
+                    this.languageFlag = "zh"
+                }
+                let params = `projectName=${that.ProjectName}&projectID=${that.ProjectID}&language=${language}`
                 uni.request({
-                	url: "https://securityin.com/api/sto/"+ that.tokenName,
+                	url: `http://47.56.131.174/api/stoserver/v2/stos/get_entry?${params}`,
                 	data: {},
                 	success: data => {
-                        this.stoItem = data.data.data;
+                        if(data.statusCode == 200){
+                            this.stoItem = data.data.data;
+                        } else {
+                            this.stoItem = {};
+                            uni.showToast({
+                                title:"项目或者对应语言内容不存在"
+                            })
+                        }
                 	},
                 	fail: (data, code) => {
+
                 		console.log('fail' + JSON.stringify(data));
                 	}
                 });
@@ -218,10 +301,10 @@
                 this.$i18n.locale = e.value[0];
                 this.setStyle(0, e.label);
                 this.$refs.tabDescribe.setButtonInnerHtml();
-
                 uni.setStorageSync('language', e.value[0]);
                 console.log(uni.getStorageSync("language"))
                 util.setTabBar(this.$i18n.locale,"ST 详情", "ST Detail")
+                this.getStoDetail();
             },
             /**
                 * 修改导航栏buttons
@@ -268,7 +351,8 @@
 
 		},
         onLoad: function (option) {
-            this.tokenName = option.tokenName;
+            this.ProjectName = option.ProjectName;
+            this.ProjectID = option.ProjectID;
             // const item = JSON.parse(decodeURIComponent(option.item));
         },
         onReady(option){
@@ -278,14 +362,13 @@
                 // this.setStyle(0, "英文");
 
                 document.getElementsByClassName('uni-btn-icon')[1].innerHTML = "英文";
-                console.log( document.getElementsByClassName('uni-btn-icon')[1])
+
                 this.$i18n.locale = "en-US";
 
                 util.setTabBar("en-US","ST 详情", "ST Detail")
             } else{
                 // this.setStyle(0, "中文");
                 document.getElementsByClassName('uni-btn-icon')[1].innerText = "中文";
-                console.log( document.getElementsByClassName('uni-btn-icon')[1])
                 this.$i18n.locale = "zh-CN";
                 util.setTabBar("zh-CN","ST 详情", "ST Detail")
             }

@@ -55,7 +55,6 @@
 		},
 		methods: {
 			openLocation: function (e) {
-				console.log(e)
 				var value = e.detail.value
 				uni.openLocation({
 					longitude: Number(value.longitude),

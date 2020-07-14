@@ -6,7 +6,7 @@
                 {{ i18n["describe"] }}
             </view>
             <view class="desc" ref="desc">
-                {{stoItem.description}}
+                {{stoItem.Description}}
             </view>
             <view class="read-more" ref="readeMore" @click="handleClick">
             <!-- read more -->
@@ -57,7 +57,7 @@
                     {{ i18n["company-name"] }}
                 </view>
                 <view class="right">
-                    <view class="info-item">{{stoItem['Company name']}}</view>
+                    <view class="info-item">{{stoItem['Company']}}</view>
                 </view>
             </view>
             <view class="public-info">
@@ -66,7 +66,7 @@
                     {{ i18n["country-incorporation"] }}
                 </view>
                 <view class="right">
-                    <view class="info-item border-before">{{stoItem['Country of incorporation']}} </view>
+                    <view class="info-item border-before">{{stoItem['CountryOfIncorporation']}} </view>
                 </view>
             </view>
             <view class="public-info">
@@ -76,7 +76,7 @@
                 </view>
                 <view class="right">
                     <view class="info-item location">
-                        {{stoItem['Company address']}}
+                        {{stoItem['CompanyAddress']}}
                     </view>
                 </view>
             </view>
@@ -86,7 +86,7 @@
                     {{ i18n["whitelist"] }}
                 </view>
                 <view class="right">
-                    <view :class=" stoItem.WhiteList ? 'info-item gou' : 'info-item'">
+                    <view :class=" stoItem.AML? 'info-item gou' : 'info-item'">
                         Required
                     </view>
                 </view>
@@ -127,7 +127,14 @@
                 </view>
                 <view class="right">
                     <view class="info-item">
-                        {{stoItem['token right']}}
+                        <!--
+                         中英文 -->
+                        <text v-if="languageFlag == 'zh'">
+                            {{assetZh[stoItem["Asset"]]}}
+                        </text>
+                        <text v-else>
+                            {{assetEn[stoItem["Asset"]]}}
+                        </text>
                     </view>
                 </view>
             </view>
@@ -156,7 +163,7 @@
                 </view>
                 <view class="right">
                     <view class="info-item">
-                        {{stoItem['Available for sale']}}
+                        {{stoItem['AvailableForSale']}}
                     </view>
                 </view>
             </view>
@@ -167,7 +174,7 @@
                 </view>
                 <view class="right">
                     <view class="info-item">
-                        {{stoItem['Total supply tokens']}}
+                        {{stoItem['TotalSupply']}}
                     </view>
                 </view>
             </view>
@@ -186,7 +193,7 @@
                 </view>
                 <view class="right">
                     <view class="info-item">
-                        {{stoItem['Minimum goal']}}
+                        {{stoItem['MinimumGoal']}}
 
                     </view>
                 </view>
@@ -198,7 +205,7 @@
                 </view>
                 <view class="right">
                     <view class="info-item">
-                        		{{stoItem['Fundraising goal']}}
+                        {{stoItem['FundraisingGoal']}}
                     </view>
                 </view>
             </view>
@@ -210,7 +217,7 @@
                 </view>
                 <view class="right">
                     <view class="info-item">
-                        {{stoItem['Min investment']}}
+                        {{stoItem['MinInvestment']}}
 
                     </view>
                 </view>
@@ -224,76 +231,73 @@
                <view class="right">
                    <view class="info-item">
                        	{{stoItem['Bonuses']}}
-
                    </view>
                </view>
            </view>
         </view>
         <view class="backgroundStyle"></view>
-        <view class="date-line" v-if="stoItem['milestones'] && Object.keys( this.stoItem['milestones'][0]).length">
+        <view class="date-line" v-if="stoItem['MileStones'] && Object.keys( this.stoItem['MileStones']).length">
             <view class="public-title">
                 {{ i18n["milestones"] }}
-                <!-- Milestones -->
             </view>
             <view class="date-view" ref="lessLine"  >
-                <view class="date-view-box" v-for="(value,key,itemIndex) in computTimeLine" :key="itemIndex">
+                <view class="date-view-box" v-for="(item,itemIndex) in computTimeLine" :key="itemIndex">
                     <view>
-                        <!-- <view :class="item == 3 ? 'line-item': 'line-item line-style'"></view> -->
                         <view :class="itemIndex== 2 ? 'line-item' : 'line-item line-style' "></view>
                     </view>
                     <view class="date-view-right">
-                        <view class="date-title">{{key}}</view>
+                        <view class="date-title">{{item.MileStone}}</view>
                         <view class="date-desc">
-                            {{value}}
+                            {{item.Brief}}
                         </view>
                     </view>
                 </view>
             </view>
             <view class="date-view display-none" ref="moreLine" >
-                <view class="date-view-box" v-for="(value,key,itemIndex) in stoItem['milestones'][0]" :key="itemIndex">
+                <view class="date-view-box" v-for="(item,itemIndex) in stoItem['MileStones']" :key="itemIndex">
                     <view>
-                       <view :class="itemIndex== Object.keys(stoItem['milestones'][0]).length-1? 'line-item' : 'line-item line-style' "></view>
+                       <view :class="itemIndex== Object.keys(stoItem['MileStones']).length-1? 'line-item' : 'line-item line-style' "></view>
                     </view>
                     <view class="date-view-right">
-                       <view class="date-title">{{key}}</view>
+                       <view class="date-title">{{item.MileStone}}</view>
                        <view class="date-desc">
-                           {{value}}
+                           {{item.Brief}}
                        </view>
                     </view>
                </view>
             </view>
-            <view class="button-style" v-if="stoItem['milestones'] && stoItem['milestones'].length">
+            <view class="button-style" v-if="stoItem['MileStones'] && stoItem['MileStones'].length">
                 <view class="public-button" @click="handleLineMore" ref="lineMoreBut">
                 {{ market["more"] }}
                 </view>
             </view>
         </view>
         <view class="backgroundStyle"></view>
-        <view class="team-member" v-if="stoItem['team members'] && stoItem['team members'].length " >
+        <view class="team-member" v-if="stoItem['TeamMembers'] && stoItem['TeamMembers'].length " >
             <view class="public-title">
                 <!-- Team members -->
                 {{ i18n["team-member"] }}
-                {{stoItem['team members'].length}}
+                {{stoItem['TeamMembers'].length ? stoItem['TeamMembers'].length  : 0}}
             </view>
             <view ref="lessTeam">
                 <view class="team-member-view"  v-for="(team,index) in computTeamMember" :key="index">
                     <view class="team-left">
-                        <image class="team-left-image" :src="team['ImgURL']"></image>
+                        <image class="team-left-image" :src="team['Photo']"></image>
                     </view>
                     <view class="team-right">
                         <view class="member-name">{{team['Name']}}</view>
-                        <view class="member-position">{{team['Post']}}</view>
+                        <view class="member-position">{{team['Title']}}</view>
                     </view>
                 </view>
             </view>
             <view ref="moreTeam" class="display-none">
-                <view class="team-member-view"  v-for="(team,index) in stoItem['team members']" :key="index">
+                <view class="team-member-view"  v-for="(team,index) in stoItem['TeamMembers']" :key="index">
                     <view class="team-left">
-                        <image class="team-left-image" :src="team['ImgURL']"></image>
+                        <image class="team-left-image" :src="team['Photo']"></image>
                     </view>
                     <view class="team-right">
                         <view class="member-name">{{team['Name']}}</view>
-                        <view class="member-position">{{team['Post']}}</view>
+                        <view class="member-position">{{team['Title']}}</view>
                     </view>
                 </view>
             </view>
@@ -314,16 +318,7 @@
                 </view>
             </view>
         </view> -->
-       <!-- <mpvue-picker
-        	:themeColor="themeColor"
-        	ref="mpvuePicker"
-        	:mode="mode"
-        	:deepLength="deepLength"
-        	:pickerValueDefault="pickerValueDefault"
-        	@onConfirm="onConfirm"
-        	@onCancel="onCancel"
-        	:pickerValueArray="pickerValueArray"
-        ></mpvue-picker> -->
+
     </view>
 </template>
 
@@ -342,21 +337,90 @@
                 mode: '',
                 deepLength: 1,
                 pickerValueDefault: [0],
-                pickerValueArray: [
-                	{
-                		label: '中文',
-                		value: "zh-CN"
-                	},
-                	{
-                		label: '英文',
-                		value: "en-US"
-                	}
-                ],
+                assetZh:{
+                    1: '产权',
+                    2: '基金',
+                    3: '房地产',
+                    4: '房地产信托',
+                    5: '股票',
+                    6: "债券"
+                },
+                assetEn:{
+                    1: 'Equity',
+                    2: 'Fund',
+                    3: 'Real Estate',
+                    4: 'REIT',
+                    5: 'Stock',
+                    6: "Bonds"
+                },
+                countryZh:{
+                    "Bahamas": "巴哈马",
+                    "Brazil": "巴西",
+                    "Canada": "加拿大",
+                    "CaymanIslands": "开曼群岛",
+                    "Denmark": "丹麦",
+                    "Estonia": "爱沙尼亚",
+                    "Finland": "芬兰",
+                    "France": "法国",
+                    "Germany": "德国",
+                    "Gibraltar": "直布罗陀",
+                    "Liechtenstein": "列支敦士登",
+                    "Lithuania": "立陶宛",
+                    "Malta": "马耳他",
+                    "Mauritius": "毛里求斯",
+                    "Netherlands": "荷兰",
+                    "Panama": "巴拿马",
+                    "PuertoRico": "波多黎各",
+                    "Singapore": "新加坡",
+                    "Spain": "西班牙",
+                    "Switzerland": "瑞士",
+                    "UnitedKingdom": "英国",
+                },
+                countryEn:{
+                    "Bahamas": "Bahamas",
+                    "Brazil": "Brazil",
+                    "Canada": "Canada",
+                    "CaymanIslands": "CaymanIslands",
+                    "Denmark": "Denmark",
+                    "Estonia": "Estonia",
+                    "Finland": "Finland",
+                    "France": "France",
+                    "Germany": "Germany",
+                    "Gibraltar": "Gibraltar",
+                    "Liechtenstein": "Liechtenstein",
+                    "Lithuania": "Lithuania",
+                    "Malta": "Malta",
+                    "Mauritius": "Mauritius",
+                    "Netherlands": "Netherlands",
+                    "Panama": "Panama",
+                    "PuertoRico": "PuertoRico",
+                    "Singapore": "Singapore",
+                    "Spain": "Spain",
+                    "Switzerland": "Switzerland",
+                    "UnitedKingdom": "United Kingdom",
+                },
+                statusZh:{
+                    2: '即将来临',
+                    3: '强销期',
+                    4: '已结束',
+                    5: '募资结束',
+                    1: '待定',
+                },
+                statusEn:{
+                    2: 'Upcoming',
+                    3: 'Main sale',
+                    4: 'Ended',
+                    5: 'Funded',
+                    1: 'TBA',
+                }
 			}
 		},
         props:{
             stoItem: {
 				type: Object
+            },
+            languageFlag: {
+                type: String
             }
         },
         components:{
@@ -365,7 +429,7 @@
 
         computed: {
             computTimeLine: function () {
-                let obj = this.stoItem['milestones'][0];
+                let obj = this.stoItem['MileStones'];
                 let newObj = {};
                 Object.keys(obj).map((item, index)=>{
                     if(index < 3){
@@ -375,7 +439,7 @@
                 return newObj
             },
             computTeamMember: function () {
-                return this.stoItem['team members'].filter((item,index)=>{
+                return this.stoItem['TeamMembers'].filter((item,index)=>{
                     return index < 4
                 })
             },
@@ -459,7 +523,6 @@
             },
 
             setButtonInnerHtml(){
-                console.log("ppppppppppppppppppp")
                 if(this.$refs.teamMoreButton){
                     if(this.showTeamMore){
                         if( this.$i18n.locale == "zh-CN"){
