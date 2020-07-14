@@ -302,7 +302,6 @@
                 this.setStyle(0, e.label);
                 this.$refs.tabDescribe.setButtonInnerHtml();
                 uni.setStorageSync('language', e.value[0]);
-                console.log(uni.getStorageSync("language"))
                 util.setTabBar(this.$i18n.locale,"ST 详情", "ST Detail")
                 this.getStoDetail();
             },
