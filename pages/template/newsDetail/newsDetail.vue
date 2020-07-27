@@ -1,16 +1,18 @@
 <template>
 	<view>
-        	<!-- <image class="banner-img" src="/static/news_bg.png"></image> -->
-        <view class="banner-img"></view>
+        <view class="banner">
+            <image  v-if="newsData.cover" class="banner-img" :src="newsData.cover"></image>
+            <image  v-else  class="banner-img" src="/static/news_bg.png" ></image>
+        </view>
         <view class="news-detail-content">
-            <view class="" v-for="newItem in newsData"  v-bind:key="newItem.id">
-                <view class="news-detail-title">{{newItem.title}}</view>
+            <view class="">
+                <view class="news-detail-title">{{newsData.title}}</view>
                 <view class="news-detail-author-date">
-                    <text class="news-detail-author">{{newItem.author}}</text>
-                    <text class="news-detail-date"> {{formatDate(newItem.timestamp)}} </text>
+                    <text class="news-detail-author">{{newsData.author}}</text>
+                    <text class="news-detail-date"> {{newsData.updated_at ? formatDate(newsData.updated_at) : formatDate(newsData.created_at)}}</text>
                 </view>
-                <view   v-html="newItem.content">
-                    {{newItem.content}}
+                <view   v-html="newsData.content">
+                    {{newsData.content}}
                 </view>
             </view>
         </view>
@@ -37,8 +39,12 @@
 		data() {
 			return {
                 newsId: "",
-                newsData: [],
-
+                newsData: {
+                    title: "",
+                    updated_at: "",
+                    cover: "",
+                    content: "",
+                },
                 themeColor: '#007AFF',
                 mode: '',
                 deepLength: 1,
@@ -60,15 +66,15 @@
             // TODO 后面把参数名替换成 payload
 
             this.newsId = option.id
+            this.slug = option.slug
             // 目前在某些平台参数会被主动 decode，暂时这样处理。
 
-            this.getDetail(option.id);
+            this.getDetail(option.id, option.slug);
 
         },
 
 
         onReady(option){
-
             let language  = uni.getStorageSync('language');
             if( language == "en-US"){
                 // this.setStyle(0, "英文");
@@ -86,51 +92,58 @@
 
 		methods: {
             formatDate(timeStamp){
-                 var da = timeStamp;
-                    da = new Date(da);
-                    var year = da.getFullYear()+'年';
-                    var month = da.getMonth()+1+'月';
-                    var date = da.getDate()+'日';
-                    return [year,month,date].join('');
+                if(timeStamp){
+                   var da = timeStamp;
+                   da = new Date(da);
+                   var year = da.getFullYear()+'年';
+                   var month = da.getMonth()+1+'月';
+                   var date = da.getDate()+'日';
+                   return [year,month,date].join('');
+                } else{
+                    return ""
+                }
+
             },
-			getDetail(newsId){
-                uni.request({
-                	url: 'https://securityin.com/api/content?type=Securityin&id=' + newsId ,
-                	data: {},
-                	success: data => {
-                		if (data.statusCode == 200) {
-                            if(data.data.data[0].identity){
-                                let language= "ch"
-                                if( this.$i18n.locale == "zh-CN"){
-                                    language="ch"
-                                } else {
-                                    language= "en"
+
+            getDetail(newsId){
+                let lang = 1;
+                let Pagelanguage  = uni.getStorageSync('language');
+                if( Pagelanguage == "en-US"){
+                    lang = 0;
+                } else {
+                    lang = 1;
+                }
+                // uni.request({
+                	// url: "https://47.56.131.174/api/cms/v1/article/"+newsId,
+                	// data: {
+                 //        lang: lang,
+                 //    },
+                	// success: data => {
+                 //        console.log(data)
+                	// 	if (data.data && data.data.code == 0) {
+                 //            this.newsData = data.data.data;
+                	// 	} else {
+                            uni.request({
+                                url: 'http://47.56.131.174/api/cms/v1/article/0',
+                                data: {
+                                    lang: lang,
+                                    slug: this.slug
+                                },
+                                success: dataSource => {
+                                    console.log(dataSource)
+                                    this.newsData = dataSource.data.data;
+                                },
+                                fail: (dataSource, code) => {
+                                	console.log('fail' + JSON.stringify(dataSource));
                                 }
-                                uni.request({
-                                    url: 'https://securityin.com/api/search?type=Securityin&q=%2Boption:'+ language +'%2Bidentity:'+ data.data.data[0].identity,
-                                    data: {},
-                                    success: dataSource => {
-                                        console.log(dataSource)
-                                        this.newsData = dataSource.data.data;
-                                    },
-                                    fail: (dataSource, code) => {
-                                    	console.log('fail' + JSON.stringify(dataSource));
-                                    }
-                                })
-                            } else {
-                                this.newsData = data.data.data;
-                            }
-
-                		}
-                	},
-                	fail: (data, code) => {
-                		console.log('fail' + JSON.stringify(data));
-                	}
-                })
+                            })
+                        // }
+                	// },
+                	// fail: (data, code) => {
+                	// 	console.log('fail' + JSON.stringify(data));
+                	// }
+                // })
             },
-
-
-
             onCancel(){
 
             },
@@ -141,12 +154,12 @@
                 this.pickerValueDefault = [0];
                 this.$refs.mpvuePicker.show();
             },
-
             onConfirm(e) {
                 this.$i18n.locale = e.value[0];
                 this.setStyle(0, e.label);
                 uni.setStorageSync('language', e.value[0]);
                 util.setTabBar(this.$i18n.locale,"新闻详情", "News Detail")
+                this.getDetail(this.newsId, this.slug)
             },
             /**
                 * 修改导航栏buttons
@@ -189,12 +202,6 @@
                     this.showSinglePicker();
                 }
             }
-
-
-
-
-
-
 		},
 
 
@@ -209,12 +216,15 @@
 
 <style>
 
-.banner-img {
-	width: 100%;
+.banner {
+    width: 688rpx;
     height: 360rpx;
-    margin: 20px 16px;
-    background: url("~@/static/news_detail_banner.png") no-repeat;
-	background-size: contain;
+    margin: 20px auto;
+    /* background: url("~@/static/news_detail_banner.png") no-repeat; */
+}
+.banner-img{
+    width: 100%;
+    height: 100%;
 }
 .news-detail-content{
     padding: 0 16px 20px;
@@ -232,10 +242,10 @@
 .news-detail-author{
     color: #27ACE0;
     font-size: 28rpx;
+    margin-right: 10px;
 }
 .news-detail-date{
     color: #8A8E9E;
     font-size: 28rpx;
-    margin-left: 10px;
 }
 </style>

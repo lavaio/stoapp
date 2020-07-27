@@ -28,7 +28,8 @@
                         <!-- PROFILE -->
                         {{ i18n["profile"] }}
                     </view>
-                    <view class="percent">{{stoItem.Profile}}</view>
+                    <view class="percent" v-if="stoItem.Profile">{{stoItem.Profile}}%</view>
+                    <view class="percent" v-else>{{stoItem.Profile}}</view>
                 </view>
                 <view class="tag-item tag-back tag-border" v-for="(tag,index) in stoItem['Industry']"  :key="index">
                     <!-- // 判断中英文 -->

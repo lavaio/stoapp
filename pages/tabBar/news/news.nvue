@@ -20,12 +20,12 @@
 		<view class="uni-list">
 			<view class="uni-list-cell" hover-class="uni-list-cell-hover" v-for="(value, key) in listData" :key="key" >
 				<view v-if="value.type!=='ad'" class="uni-media-list" @click="goDetail(value)">
-					<image class="uni-media-list-logo" src="/static/news_item.jpg"></image>
+					<image class="uni-media-list-logo" :src="value.cover"></image>
 					<view class="uni-media-list-body">
 						<view class="uni-media-list-text-top">{{ value.title }}</view>
 						<view class="uni-media-list-text-bottom">
 							<!-- <text>{{ value.author_name }}</text> -->
-							<text> {{formatDate(value.timestamp)}}</text>
+							<text> {{value.updated_at ? formatDate(value.updated_at) : formatDate(value.created_at)}}</text>
 						</view>
 					</view>
 				</view>
@@ -122,32 +122,47 @@ export default {
 
 	methods: {
         formatDate(timeStamp){
-             var da = timeStamp;
-                da = new Date(da);
-                var year = da.getFullYear()+'年';
-                var month = da.getMonth()+1+'月';
-                var date = da.getDate()+'日';
-                return [year,month,date].join('');
+            if(timeStamp){
+               var da = timeStamp;
+               da = new Date(da);
+               var year = da.getFullYear()+'年';
+               var month = da.getMonth()+1+'月';
+               var date = da.getDate()+'日';
+               return [year,month,date].join('');
+            }else {
+                return ""
+            }
         },
-		getNewsList() {
-			uni.request({
-				url: 'https://securityin.com/api/contents?type=Securityin&order=desc&count=500',
-				data: {},
-				success: data => {
-					if (data.statusCode == 200) {
-						
-                        this.listData = data.data.data;
-					}
-				},
-				fail: (data, code) => {
-					console.log('fail' + JSON.stringify(data));
-				}
-			});
-		},
+        getNewsList(){
+            let lang = 1;
+            let Pagelanguage  = uni.getStorageSync('language');
+            if( Pagelanguage == "en-US"){
+                lang = 0;
+            } else {
+                lang = 1;
+            }
+
+            let params = `&limit=900&lang=${lang}&page=1`
+            uni.request({
+                url: `http://47.56.131.174/api/cms/v1/articles?status=1${params}`,
+                data: {},
+                success: data => {
+                    if (data.data && data.data.code == 0) {
+                      this.listData = data.data.data.items;
+                    }
+                },
+                fail: (data, code) => {
+                    console.log('fail' + JSON.stringify(data));
+                }
+            });
+
+
+        },
 		goDetail: function(e) {
+            console.log(e)
 			uni.navigateTo({
 				// url: '../../template/newsDetail/newsDetail?detailDate=' + encodeURIComponent(JSON.stringify(detail))
-                url: '/pages/template/newsDetail/newsDetail?id='+e["id"],
+                url: '/pages/template/newsDetail/newsDetail?id='+e["id"]+"&slug="+ encodeURIComponent(e["slug"])
 			});
 		},
 
@@ -170,6 +185,7 @@ export default {
             this.setStyle(0, e.label);
             uni.setStorageSync('language', e.value[0]);
             util.setTabBar(this.$i18n.locale,"新闻", "News")
+            this.getNewsList()
 
         },
         /**
