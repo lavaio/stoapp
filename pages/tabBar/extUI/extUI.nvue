@@ -24,7 +24,7 @@
                 <view class="sto-list-content">
                     <view class="logo-view">
                         <image class="sto-list-logo" :src="item.Logo"></image>
-                        <text class="sto-list-company-name">{{item['ProjectName']}}</text>
+                        <view class="sto-list-company-name">{{item['ProjectName']}}</view>
                     </view>
                     <view class="sto-list-desc">{{item.Brief}}</view>
                     <view class="sto-list-icon-view">

@@ -11,7 +11,7 @@
                     <text class="news-detail-author">{{newsData.author}}</text>
                     <text class="news-detail-date"> {{newsData.updated_at ? formatDate(newsData.updated_at) : formatDate(newsData.created_at)}}</text>
                 </view>
-                <view   v-html="newsData.content">
+                <view class="news-content"  v-html="newsData.content">
                     {{newsData.content}}
                 </view>
             </view>
@@ -203,14 +203,6 @@
                 }
             }
 		},
-
-
-
-
-
-
-
-
 	}
 </script>
 
@@ -247,5 +239,8 @@
 .news-detail-date{
     color: #8A8E9E;
     font-size: 28rpx;
+}
+.news-content{
+	overflow: hidden;
 }
 </style>

@@ -6,7 +6,7 @@
                     <image class="image-style" :src="stoItem['Logo']"></image>
                 </view>
                 <view class="image-content">
-                    <view class="company-name">{{stoItem['TokenName']}}</view>
+                    <view class="company-name">{{stoItem['ProjectName']}}</view>
                     <view class="company-desc">{{stoItem['Brief']}}</view>
                     <view class="progress">
                         <icon class='iconfont icondanxuankuang' style="font-size: 24rpx;"></icon>

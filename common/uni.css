@@ -287,8 +287,8 @@
 .member-position{
     color:#656B87;
     font-size: 28rpx;
-    height: 40rpx;
-    line-height: 40rpx;
+/*    height: 40rpx;*/
+    line-height: 36rpx; 
 }
 
 
@@ -635,6 +635,7 @@ radio-group label, checkbox-group label{
 	width: 100%;
 	display: flex;
 	flex-direction: column;
+    margin-bottom: 50px;
 }
 .uni-list:after {
 	position: absolute;

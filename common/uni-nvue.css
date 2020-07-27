@@ -411,12 +411,13 @@ page {
     padding: 12px 16px;
 }
 .sto-list-logo{
-    width: 48rpx;
-    height: 48rpx;
+    width: 60rpx;
+    height: 60rpx;
 }
 .sto-list-company-name{
-    font-size: 32rpx;
+    font-size: 28rpx;
     color: #343744;
+	line-height: 30rpx;
 }
 .sto-list-icon-view{
     display: flex;

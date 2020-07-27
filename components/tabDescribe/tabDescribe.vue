@@ -67,10 +67,10 @@
                 </view>
                 <view class="right">
                     <!-- 中英文 -->
-                    <view v-if="languageFlag == 'zh'" class="info-item border-before">
+                    <view v-if="languageFlag == 'zh'" class="info-item">
                         {{countryZh[stoItem['CountryOfIncorporation']]}}
                     </view>
-                    <view v-else class="info-item border-before">
+                    <view v-else class="info-item">
                         {{countryEn[stoItem['CountryOfIncorporation']]}}
                     </view>
                 </view>
@@ -128,8 +128,7 @@
             </view>
             <view class="public-info">
                 <view class="info-left">
-                    <!-- Token rights: -->
-                    {{ i18n["token-rights"] }}
+                    {{ i18n["asset"] }}
                 </view>
                 <view class="right">
                     <view class="info-item">
@@ -159,6 +158,26 @@
                 <view class="right">
                     <view class="info-item">
                         	{{stoItem['Symbol']}}
+                    </view>
+                </view>
+            </view>
+            <view class="public-info">
+                <view class="info-left">
+                    Blockchain
+                </view>
+                <view class="right">
+                    <view class="info-item">
+                        	{{stoItem['Blockchain']}}
+                    </view>
+                </view>
+            </view>
+            <view class="public-info">
+                <view class="info-left">
+                    Token Type
+                </view>
+                <view class="right">
+                    <view class="info-item">
+                        	{{stoItem['TokenT']}}
                     </view>
                 </view>
             </view>
@@ -228,7 +247,26 @@
                     </view>
                 </view>
             </view>
-
+            <view class="public-info" v-if="stoItem['Accepts']">
+               <view class="info-left">
+                   Accepts
+               </view>
+               <view class="right">
+                   <view class="info-item">
+                       	{{stoItem['Accepts']}}
+                   </view>
+               </view>
+            </view>
+            <view class="public-info" v-if="stoItem['STOPrice']">
+                <view class="info-left">
+                    STOPrice
+                </view>
+                <view class="right">
+                    <view class="info-item">
+                        {{stoItem['STOPrice']}}
+                    </view>
+                </view>
+            </view>
             <view class="public-info">
                <view class="info-left">
                    <!-- Bonuses: -->
@@ -283,7 +321,7 @@
             <view class="public-title">
                 <!-- Team members -->
                 {{ i18n["team-member"] }}
-                {{stoItem['TeamMembers'].length ? stoItem['TeamMembers'].length  : 0}}
+               ( {{stoItem['TeamMembers'].length ? stoItem['TeamMembers'].length  : 0}} )
             </view>
             <view ref="lessTeam">
                 <view class="team-member-view"  v-for="(team,index) in computTeamMember" :key="index">
@@ -313,6 +351,43 @@
                 </view>
             </view>
         </view>
+
+        <view class="backgroundStyle" v-if="stoItem['Advisors']"></view>
+        <view class="team-member" v-if="stoItem['Advisors'] && stoItem['Advisors'].length " >
+            <view class="public-title">
+                Advisor
+               ( {{stoItem['Advisors'].length ? stoItem['Advisors'].length  : 0}} )
+            </view>
+            <view ref="lessAdvisor">
+                <view class="team-member-view"  v-for="(team,index) in computAdvisor" :key="index">
+                    <view class="team-left">
+                        <image class="team-left-image" :src="team['Photo']"></image>
+                    </view>
+                    <view class="team-right">
+                        <view class="member-name">{{team['Name']}}</view>
+                        <view class="member-position">{{team['Title']}}</view>
+                    </view>
+                </view>
+            </view>
+            <view ref="moreAdvisor" class="display-none">
+                <view class="team-member-view"  v-for="(team,index) in stoItem['Advisors']" :key="index">
+                    <view class="team-left">
+                        <image class="team-left-image" :src="team['Photo']"></image>
+                    </view>
+                    <view class="team-right">
+                        <view class="member-name">{{team['Name']}}</view>
+                        <view class="member-position">{{team['Title']}}</view>
+                    </view>
+                </view>
+            </view>
+            <view class="button-style marginTop">
+                <view class="public-button" @click="handleAdvisorMore" ref="advisorMoreButton">
+                    {{ market["more"] }}
+                </view>
+            </view>
+        </view>
+
+
         <!-- <view class="follow-us">
             <view class="follow-title">Follow us</view>
             <view class="follow-icon-view">
@@ -338,6 +413,7 @@
                 showMore: false,
                 showLineMore: false,
                 showTeamMore: false,
+                showAdvisorMore: false,
 
                 themeColor: '#007AFF',
                 mode: '',
@@ -451,6 +527,11 @@
                     return index < 4
                 })
             },
+            computAdvisor: function () {
+                return this.stoItem['Advisors'].filter((item,index)=>{
+                    return index < 4
+                })
+            },
             i18n() {
               return this.$t('sto-detail')
             },
@@ -482,6 +563,28 @@
                 }
                 this.showTeamMore = showTeamMore;
             },
+            handleAdvisorMore(){
+                let showAdvisorMore = !this.showAdvisorMore;
+                if(showAdvisorMore){
+                    if( this.$i18n.locale == "zh-CN"){
+                        this.$refs.advisorMoreButton.$el.innerHTML = "收起";
+                    } else{
+                        this.$refs.advisorMoreButton.$el.innerHTML = "collapse";
+                    }
+                    this.$refs.lessAdvisor.$el.style.display = "none";
+                    this.$refs.moreAdvisor.$el.style.display = "block";
+                } else{
+                    if( this.$i18n.locale == "zh-CN"){
+                        this.$refs.advisorMoreButton.$el.innerHTML = "更多";
+                    } else{
+                        this.$refs.advisorMoreButton.$el.innerHTML = "see more"
+                    }
+                    this.$refs.lessAdvisor.$el.style.display = "block";
+                    this.$refs.moreAdvisor.$el.style.display = "none";
+                }
+                this.showAdvisorMore = showAdvisorMore;
+            },
+
 
             handleClick(){
                 let showMore = !this.showMore;
@@ -805,7 +908,7 @@
     }
     .line-style::after{
         content: "";
-        height: 130px;
+        height: 400px;
         border: 1px solid #27ACE0;
         display: inline-block;
         position: absolute;
