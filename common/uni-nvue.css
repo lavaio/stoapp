@@ -404,9 +404,7 @@ page {
     display: flex;
     flex-direction: row;
 }
-.sto-list-company-name{
-    margin-left: 8px;
-}
+
 .sto-list-content{
     padding: 12px 16px;
 }
@@ -415,9 +413,12 @@ page {
     height: 60rpx;
 }
 .sto-list-company-name{
-    font-size: 28rpx;
+    font-size: 26rpx;
     color: #343744;
 	line-height: 30rpx;
+	margin-left: 8px;
+	width: calc(100% - 60rpx);
+	
 }
 .sto-list-icon-view{
     display: flex;

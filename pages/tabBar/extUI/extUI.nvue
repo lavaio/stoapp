@@ -39,6 +39,7 @@
                 </view>
             </view>
         </view>
+        <uni-load-more :status="moreStatus"  :icon-size="16" :content-text="contentText" />
         <mpvue-picker
         	:themeColor="themeColor"
         	ref="mpvuePicker"
@@ -73,6 +74,15 @@
 			return {
                 themeColor: '#007AFF',
                 mode: '',
+                last_id: '',
+                reload: false,
+                moreStatus: 'more',
+                currentPage: 1,
+                contentText: {
+                	contentdown: '上拉加载更多',
+                	contentrefresh: '加载中',
+                	contentnomore: '没有更多'
+                },
                 statusZh:{
                     2: '即将来临',
                     3: '强销期',
@@ -420,6 +430,16 @@
         onLoad(){
             this.getStoList()
         },
+        onPullDownRefresh() {
+        	this.reload = true;
+        	this.last_id = '';
+        	this.getStoList();
+        },
+        onReachBottom() {
+            if(this.moreStatus == "more"){
+                this.getStoList();
+            }
+        },
         onShow(){
             this.getStoList()
             let language  = uni.getStorageSync('language');
@@ -454,7 +474,6 @@
             handleSelectValue(name,value, label){
                 this[name] = value
                 this.getStoList()
-
             },
             getStoList(){
                 let Pagelanguage  = uni.getStorageSync('language');
@@ -466,17 +485,32 @@
                      this.languageFlag = "zh"
                     language = 0;
                 }
-                let params =`language=${language}&status=${this.status}&category=${this.category}&asset=${this.asset_class}&profile=${this.profile}&token_right=${this.token_right}&country=${this.country}&page=1&limit=100`;
+                if (this.last_id) {
+                	this.moreStatus = 'more';
+                    this.currentPage += 1;
+                }
+                let params =`language=${language}&status=${this.status}&category=${this.category}&asset=${this.asset_class}&profile=${this.profile}&token_right=${this.token_right}&country=${this.country}&page=${this.currentPage}&limit=10`;
+
                 uni.request({
-                	// url: `https://securityin.com/api/stos/get_list?${params}`,
+                    // url: `https://securityin.com/api/stos/get_list?${params}`,
                     url: `http://47.56.131.174/api/stoserver/v2/stos/get_list?${params}`,
-                	data: {},
-                	success: data => {
-                        this.stoListData = data.data.data;
-                	},
-                	fail: (data, code) => {
-                		console.log('fail' + JSON.stringify(data));
-                	}
+                    data: {},
+                    success: data => {
+                        if (data.data && data.data.code == 1) {
+                            let list = data.data.data;
+                            if( !list || !list.length || list.length < 10 ){
+                                this.moreStatus = "noMore";
+                            } else{
+                                this.moreStatus = "more";
+                            }
+                            this.stoListData = this.reload ? list : this.stoListData.concat(list);
+                            this.last_id = list[list.length - 1].ID;
+                            this.reload = false;
+                        }
+                    },
+                    fail: (data, code) => {
+                        console.log('fail' + JSON.stringify(data));
+                    }
                 });
             },
             goDetailPage(item) {
@@ -495,7 +529,6 @@
                 this.pickerValueDefault = [0];
                 this.$refs.mpvuePicker.show();
             },
-
             onConfirm(e) {
                 this.$i18n.locale = e.value[0];
                 this.setStyle(0, e.label);
@@ -544,10 +577,6 @@
                     this.showSinglePicker();
                 }
             }
-
-
-
-
 
 		}
 	}
