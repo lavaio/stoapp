@@ -45,14 +45,17 @@
                 <view class="rank-text">{{ i18n["interest-rank"] }}</view>
                 <icon class="iconfont iconyiwen" style="color: #B4B6BF; font-size: 18px;"></icon>
             </view>
-            <!-- <view class="head-logo-box">
-                <view class="head-logo-view">
-                    <image class="head-logo" src="https://securityin.oss-cn-hongkong.aliyuncs.com/img/logo/Smartchem/Smartchem.png"></image>
+            <view class="head-logo-box">
+                <view class="head-logo-view" @click="linkTo(stoItem.Website)">
+                    <image class="head-logo" src="/static/rankLogo.png"></image>
                 </view>
                 <view class="head-logo-view">
-                    <image class="head-logo" src="https://securityin.oss-cn-hongkong.aliyuncs.com/img/logo/Smartchem/Smartchem.png"></image>
+                    <icon class="iconfont iconlingying" style="color: #B4B6BF; font-size: 18px;" @click="linkTo(stoItem.Linkedin)"></icon>
                 </view>
-            </view> -->
+                <view class="head-logo-view">
+                    <icon class="iconfont iconyou-tube" style="color: #B4B6BF; font-size: 18px;" @click="linkTo(stoItem.Youtube)"></icon>
+                </view>
+            </view>
             <view class="period">
                 <view class="period-view">
                     <view class="period-item">
@@ -251,6 +254,9 @@
             }
         },
 		methods: {
+            linkTo(url){
+                window.open(url);
+            },
             handleTab(e){
                 this.currentTabId = e.target.id;
             },
@@ -490,6 +496,7 @@
         display: flex;
         flex-direction: row;
         align-items: center;
+		justify-content: center;
     }
     .head-logo-view{
         padding-right: 10px;
@@ -498,8 +505,8 @@
         align-items: center;
     }
     .head-logo{
-        height: 56rpx;
-        width: 56rpx;
+        height: 40rpx;
+        width: 40rpx;
         border-radius: 50%;
     }
     .period{

@@ -92,8 +92,11 @@
                     {{ i18n["whitelist"] }}
                 </view>
                 <view class="right">
-                    <view :class=" stoItem.AML? 'info-item gou' : 'info-item'">
-                        Required
+                    <view class='info-item' v-if="stoItem.AML ==2">
+                        {{ i18n["required"] }}
+                    </view>
+                    <view class='info-item' v-else>
+                        {{ i18n["no-required"] }}
                     </view>
                 </view>
             </view>
@@ -104,8 +107,11 @@
                     {{ i18n["kyc"] }}
                 </view>
                 <view class="right">
-                    <view :class=" stoItem.KYC ? 'info-item gou' : 'info-item'">
-                        Required
+                    <view class='info-item' v-if="stoItem.KYC ==2">
+                        {{ i18n["required"] }}
+                    </view>
+                    <view class='info-item' v-else>
+                        {{ i18n["no-required"] }}
                     </view>
                 </view>
             </view>
@@ -143,7 +149,37 @@
                     </view>
                 </view>
             </view>
+            <view class="public-info">
+                <view class="info-left">
+                    {{ i18n["token-rights"] }}
+                </view>
+                <view class="right">
+                    <view class="info-item">
+                        <text v-if="languageFlag == 'zh'">
+                            {{tokenRightsZh[stoItem["TokenRights"]]}}
+                        </text>
+                        <text v-else>
+                            {{tokenRightsEn[stoItem["TokenRights"]]}}
+                        </text>
+                    </view>
+                </view>
+            </view>
+            <view class="public-info">
+                <view class="info-left">
+                    {{ i18n["regulation"] }}
+                </view>
+                <view class="right">
+                    <view class="info-item">
+                        <text>
+                            {{stoItem["Regulation"]}}
+                        </text>
+                    </view>
+                </view>
+            </view>
         </view>
+
+
+
         <view class="backgroundStyle"></view>
         <view class="info">
             <view class="public-title">
@@ -163,7 +199,7 @@
             </view>
             <view class="public-info">
                 <view class="info-left">
-                    Blockchain
+                    {{ i18n["block-chain"] }}
                 </view>
                 <view class="right">
                     <view class="info-item">
@@ -173,7 +209,7 @@
             </view>
             <view class="public-info">
                 <view class="info-left">
-                    Token Type
+                    {{ i18n["token-type"] }}
                 </view>
                 <view class="right">
                     <view class="info-item">
@@ -249,7 +285,7 @@
             </view>
             <view class="public-info" v-if="stoItem['Accepts']">
                <view class="info-left">
-                   Accepts
+                   {{ i18n["accepts"] }}
                </view>
                <view class="right">
                    <view class="info-item">
@@ -259,11 +295,21 @@
             </view>
             <view class="public-info" v-if="stoItem['STOPrice']">
                 <view class="info-left">
-                    STOPrice
+                    {{ i18n["sto-price"] }}
                 </view>
                 <view class="right">
                     <view class="info-item">
                         {{stoItem['STOPrice']}}
+                    </view>
+                </view>
+            </view>
+            <view class="public-info" v-if="stoItem['STOPrice']">
+                <view class="info-left">
+                    {{ i18n["presale-price"] }}
+                </view>
+                <view class="right">
+                    <view class="info-item">
+                        {{stoItem['PresalePrice']}}
                     </view>
                 </view>
             </view>
@@ -355,7 +401,7 @@
         <view class="backgroundStyle" v-if="stoItem['Advisors']"></view>
         <view class="team-member" v-if="stoItem['Advisors'] && stoItem['Advisors'].length " >
             <view class="public-title">
-                Advisor
+                {{ i18n["advisor"] }}
                ( {{stoItem['Advisors'].length ? stoItem['Advisors'].length  : 0}} )
             </view>
             <view ref="lessAdvisor">
@@ -387,18 +433,17 @@
             </view>
         </view>
 
-
-        <!-- <view class="follow-us">
-            <view class="follow-title">Follow us</view>
+        <view class="follow-us">
+            <view class="follow-title"> {{ i18n["follow-us"] }}</view>
             <view class="follow-icon-view">
                 <view class="marginRight">
-                    <icon class="iconfont icon-telegram" style="font-size: 28px;"></icon>
+                    <icon class="iconfont icon-telegram" style="font-size: 28px;" @click="linkTo('https://t.me/stonews2020')"></icon>
                 </view>
                 <view>
-                    <icon class="iconfont icon-telegram" style="font-size: 28px;"></icon>
+                    <icon class="iconfont icontuite" style="font-size: 28px;" @click="linkTo('https://twitter.com/SecurityIN2020')"></icon>
                 </view>
             </view>
-        </view> -->
+        </view>
 
     </view>
 </template>
@@ -419,6 +464,14 @@
                 mode: '',
                 deepLength: 1,
                 pickerValueDefault: [0],
+                tokenRightsZh:{
+                    1: '股息',
+                    2: '衡平利息',
+                    3: '股权',
+                    4: '利润分享权',
+                    5: '赎回权',
+                    6: '投票权',
+                },
                 assetZh:{
                     1: '产权',
                     2: '基金',
@@ -426,6 +479,14 @@
                     4: '房地产信托',
                     5: '股票',
                     6: "债券"
+                },
+                tokenRightsEn:{
+                    1: 'Dividends',
+                    2: 'Equitable Interest',
+                    3: 'Equity Ownership',
+                    4: 'Profit Share Right',
+                    5: 'Redemption Right',
+                    6: 'Voting Rights'
                 },
                 assetEn:{
                     1: 'Equity',
@@ -542,6 +603,9 @@
 
 
 		methods: {
+            linkTo(url){
+                window.open(url);
+            },
             handleTeamMore(){
                 let showTeamMore = !this.showTeamMore;
                 if(showTeamMore){
@@ -953,9 +1017,11 @@
     }
     .follow-us{
         background: #F4F7FC;
-        padding: 64rpx  0 96rpx;
         text-align: center;
         height: 284rpx ;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
     }
     .follow-title{
         color: #656B87;
