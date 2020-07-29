@@ -192,7 +192,13 @@ export default {
             this.setStyle(0, e.label);
             uni.setStorageSync('language', e.value[0]);
             util.setTabBar(this.$i18n.locale,"新闻", "News")
-            this.getNewsList()
+
+            this.last_id = '';
+            this.reload = false;
+            this.moreStatus = 'more';
+            this.listData = [];
+            this.currentPage = 1;
+            this.getNewsList();
 
         },
         /**

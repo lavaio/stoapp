@@ -441,7 +441,6 @@
             }
         },
         onShow(){
-            this.getStoList()
             let language  = uni.getStorageSync('language');
             if( language == "en-US"){
                 // this.setStyle(0, "英文");
@@ -533,8 +532,13 @@
                 this.$i18n.locale = e.value[0];
                 this.setStyle(0, e.label);
                 uni.setStorageSync('language', e.value[0]);
-                util.setTabBar(this.$i18n.locale,"ST 列表", "ST List")
-                this.getStoList()
+                util.setTabBar(this.$i18n.locale,"ST 列表", "ST List");
+                this.last_id = '';
+                this.reload = false;
+                this.moreStatus = 'more';
+                this.stoListData = [];
+                this.currentPage = 1;
+                this.getStoList();
             },
             /**
                 * 修改导航栏buttons

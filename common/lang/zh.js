@@ -163,7 +163,7 @@ export default{
 			"milestones": "里程碑",
 			"team-member": "团队成员"
 		},
-        "follow-us": "跟随我们",
+        "follow-us": "关注我们",
         "and": "和",
         "telegram": "Telegram",
         "twitter": "推特",

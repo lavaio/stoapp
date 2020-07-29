@@ -43,7 +43,7 @@
             </view>
             <view class="rank">
                 <view class="rank-text">{{ i18n["interest-rank"] }}</view>
-                <icon class="iconfont iconyiwen" style="color: #B4B6BF; font-size: 18px;"></icon>
+                <icon class="iconfont iconyiwen" style="color: #B4B6BF; font-size: 21px;"></icon>
             </view>
             <view class="head-logo-box">
                 <view class="head-logo-view" @click="linkTo(stoItem.Website)">
@@ -505,8 +505,8 @@
         align-items: center;
     }
     .head-logo{
-        height: 40rpx;
-        width: 40rpx;
+        height: 36rpx;
+        width: 36rpx;
         border-radius: 50%;
     }
     .period{

@@ -107,7 +107,7 @@
         "template" : "template.h5.html",
         "router" : {
             "mode" : "history",
-            "base" : "/"
+            "base" : "/h5/"
         },
         "sdkConfigs" : {
             "maps" : {}
@@ -116,6 +116,9 @@
             "timeout" : 20000
         },
         "title" : "securityin",
-        "domain" : "securityin"
+        "domain" : "securityin",
+        "devServer" : {
+            "https" : false
+        }
     }
 }
