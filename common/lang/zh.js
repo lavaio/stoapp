@@ -195,7 +195,7 @@ export default{
         "presale-price": "预售 价格",
 		"milestones": "里程碑",
 		"team-member": "团队成员",
-        "advisor": "广告",
+        "advisor": "顾问",
         "required": "要求",
         "no-required": "不要求"
 	}

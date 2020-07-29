@@ -130,7 +130,6 @@
                                     slug: this.slug
                                 },
                                 success: dataSource => {
-                                    console.log(dataSource)
                                     this.newsData = dataSource.data.data;
                                 },
                                 fail: (dataSource, code) => {
@@ -221,9 +220,6 @@
 .news-detail-content{
     padding: 0 16px 20px;
 }
-.news-detail-content img{
-	max-width: 100%;
-}
 .news-detail-title{
     color: #343744;
     font-size: 36rpx;
@@ -244,5 +240,8 @@
 }
 .news-content{
 	overflow: hidden;
+}
+>>> .news-content img{
+    max-width: 100%;
 }
 </style>
