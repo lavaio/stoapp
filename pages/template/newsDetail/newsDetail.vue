@@ -221,7 +221,9 @@
 .news-detail-content{
     padding: 0 16px 20px;
 }
-
+.news-detail-content img{
+	max-width: 100%;
+}
 .news-detail-title{
     color: #343744;
     font-size: 36rpx;
