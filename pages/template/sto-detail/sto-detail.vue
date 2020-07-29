@@ -53,7 +53,7 @@
                     <icon class="iconfont iconlingying" style="color: #B4B6BF; font-size: 18px;" @click="linkTo(stoItem.Linkedin)"></icon>
                 </view>
                 <view class="head-logo-view">
-                    <icon class="iconfont iconyou-tube" style="color: #B4B6BF; font-size: 18px;" @click="linkTo(stoItem.Youtube)"></icon>
+                    <icon class="iconfont iconyou-tube" style="color: #B4B6BF; font-size: 21px;" @click="linkTo(stoItem.Youtube)"></icon>
                 </view>
             </view>
             <view class="period">
