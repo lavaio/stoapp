@@ -244,4 +244,7 @@
 >>> .news-content img{
     max-width: 100%;
 }
+>>> .news-content h2{
+	width: unset;
+}
 </style>

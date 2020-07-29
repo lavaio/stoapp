@@ -403,6 +403,8 @@ page {
 .logo-view{
     display: flex;
     flex-direction: row;
+	justify-content: center;
+	align-items: center;
 }
 
 .sto-list-content{
